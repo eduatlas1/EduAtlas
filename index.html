@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172b4d">
+  <link rel="manifest" href="./manifest.json">
   <meta name="description" content="Discover scholarships, internships, courses and educational opportunities worldwide.">
   <title>EduAtlas — A world of opportunities</title>
   <style>
@@ -265,3 +266,12 @@ render();
 </script>
 </body>
 </html>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(() => console.log("EduAtlas app is ready!"))
+      .catch(error => console.error("App setup error:", error));
+  });
+}
+</script>
