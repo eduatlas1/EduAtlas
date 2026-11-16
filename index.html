@@ -568,7 +568,7 @@
     url: "https://careers.cern/"
   },
   {
-    name: "Amgen Scholars Programme",
+    name: "Amgen Scholars Scholarship",
     type: "Internship",
     detail: "Undergraduate research opportunities in science and biotechnology at participating institutions.",
     country: "Multiple countries",
@@ -631,6 +631,41 @@
     url: "https://www.esa.int/About_Us/Careers_at_ESA/Student_Internships"
   }
     ];
+  Const info = opportunityDetails[item.name] || {};
+
+card.innerHTML = `
+  <span class="tag">${item.type}</span>
+  <h3>${item.name}</h3>
+
+  <p>${item.detail}</p>
+
+  <p><strong>🎓 Study level:</strong> ${info.level || "See official source"}</p>
+  <p><strong>👤 Age:</strong> ${info.age || "Check official requirements"}</p>
+  <p><strong>🌍 Nationality:</strong> ${info.nationality || "Check official requirements"}</p>
+  <p><strong>📋 Eligibility:</strong> ${info.eligibility || "Not confirmed"}</p>
+  <p><strong>💰 Funding:</strong> ${info.funding || "Not confirmed"}</p>
+  <p><strong>📅 Deadline:</strong> ${info.deadline || "Not announced"}</p>
+  <p><strong>📌 Status:</strong> ${info.status || "Check official website"}</p>
+
+  <details>
+    <summary>Documents required</summary>
+    <p>${info.documents || "Check official requirements."}</p>
+  </details>
+
+  <details>
+    <summary>How to apply</summary>
+    <p>${info.application || "Follow the official application instructions."}</p>
+  </details>
+
+  <details>
+    <summary>Important notes</summary>
+    <p>${info.notes || "Check the official programme conditions."}</p>
+  </details>
+
+  <a href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
+    Official programme website ↗
+  </a>
+`;
   
   let selected = "All";
 
@@ -663,7 +698,7 @@
         item.eligibility,
         item.deadline,
         item.cost
-      ].join(" ").toLowerCase();
+     ...(Object.values(opportunityDetails[item.name] || {})) ].join(" ").toLowerCase();
 
       return matchesCategory && searchable.includes(query);
     });
@@ -679,33 +714,41 @@
     filtered.forEach(item => {
       const card = document.createElement("article");
       card.className = "card";
-Card.innerHTML = `
+  Const info = opportunityDetails[item.name] || {};
+
+card.innerHTML = `
   <span class="tag">${item.type}</span>
   <h3>${item.name}</h3>
+
   <p>${item.detail}</p>
-  <p>🎓 <strong>Eligibility:</strong> ${item.eligibility || "Not confirmed — check official source"}</p>
-  <p>📚 <strong>Study level:</strong> ${item.studyLevel || "See official programme details"}</p>
-  <p>🌍 <strong>Location:</strong> ${item.country}</p>
-  <p>💰 <strong>Funding:</strong> ${item.funding || item.cost || "Not confirmed"}</p>
-  <p>📅 <strong>Deadline:</strong> ${item.deadline || "Not announced"}</p>
-  <p><strong>Status:</strong> ${item.status || "Check official website"}</p>
+
+  <p><strong>🎓 Study level:</strong> ${info.level || "See official source"}</p>
+  <p><strong>👤 Age:</strong> ${info.age || "Check official requirements"}</p>
+  <p><strong>🌍 Nationality:</strong> ${info.nationality || "Check official requirements"}</p>
+  <p><strong>📋 Eligibility:</strong> ${info.eligibility || "Not confirmed"}</p>
+  <p><strong>💰 Funding:</strong> ${info.funding || "Not confirmed"}</p>
+  <p><strong>📅 Deadline:</strong> ${info.deadline || "Not announced"}</p>
+  <p><strong>📌 Status:</strong> ${info.status || "Check official website"}</p>
 
   <details>
-    <summary>Application details</summary>
-    <p><strong>Documents:</strong> ${item.documents || "See official requirements"}</p>
-    <p><strong>How to apply:</strong> ${item.applicationProcess || "Follow the official application instructions"}</p>
+    <summary>Documents required</summary>
+    <p>${info.documents || "Check official requirements."}</p>
   </details>
 
-  <a href="${item.url}" target="_blank" rel="noopener noreferrer">
-    Visit official website ↗
+  <details>
+    <summary>How to apply</summary>
+    <p>${info.application || "Follow the official application instructions."}</p>
+  </details>
+
+  <details>
+    <summary>Important notes</summary>
+    <p>${info.notes || "Check the official programme conditions."}</p>
+  </details>
+
+  <a href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
+    Official programme website ↗
   </a>
 `;
-      container.appendChild(card);
-    });
-  }
-
-  document.getElementById("search").addEventListener("input", render);
-
   render();
 
   if ("serviceWorker" in navigator) {
