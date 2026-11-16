@@ -95,6 +95,7 @@
       padding: 22px 15px;
       text-align: left;
       color: var(--navy);
+      cursor: pointer;
     }
     .category.active { border: 2px solid var(--sage); }
     .category .symbol { font-size: 26px; display: block; margin-bottom: 12px; }
@@ -105,8 +106,10 @@
       color: var(--navy);
       border: 1px solid #deded8;
       padding: 9px 14px;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    .filter.active { background: var(--navy); color: white; }
+    .filter.active { background: var(--navy); color: white; border-color: var(--navy); }
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -132,7 +135,25 @@
     }
     .card h3 { color: var(--navy); font-size: 19px; margin: 17px 0 9px; }
     .card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 5px 0; }
-    .card a { color: var(--navy); font-size: 13px; font-weight: bold; margin-top: auto; padding-top: 14px; text-decoration: none; }
+    .card details {
+      border-top: 1px solid #efede7;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+    .card summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--navy);
+      outline: none;
+    }
+    .card a {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: bold;
+      margin-top: auto;
+      padding-top: 14px;
+      text-decoration: none;
+    }
     .card a:hover { text-decoration: underline; }
     .empty { color: var(--muted); padding: 25px 0; }
     .note { font-size: 12px; color: var(--muted); margin-top: 22px; }
@@ -280,393 +301,1088 @@
       url: "https://cs50.harvard.edu/ai/"
     },
     {
-    name: "Türkiye Scholarships",
-    type: "Scholarship",
-    detail: "Government-funded undergraduate and postgraduate study. Nationality, age and academic requirements apply.",
-    country: "Türkiye",
-    url: "https://www.turkiyeburslari.gov.tr/"
-  },
-  {
-    name: "Stipendium Hungaricum",
-    type: "Scholarship",
-    detail: "Undergraduate and postgraduate scholarships. Available programmes depend on country agreements.",
-    country: "Hungary",
-    url: "https://stipendiumhungaricum.hu/"
-  },
-  {
-    name: "Chinese Government Scholarship",
-    type: "Scholarship",
-    detail: "International study funding. Degree availability and requirements vary by route and university.",
-    country: "China",
-    url: "https://www.campuschina.org/"
-  },
-  {
-    name: "Global Korea Scholarship",
-    type: "Scholarship",
-    detail: "Korean government scholarships with undergraduate and graduate tracks.",
-    country: "South Korea",
-    url: "https://www.studyinkorea.go.kr/"
-  },
-  {
-    name: "MEXT Scholarship",
-    type: "Scholarship",
-    detail: "Japanese government scholarships for international students.",
-    country: "Japan",
-    url: "https://www.studyinjapan.go.jp/en/"
-  },
-  {
-    name: "Romanian Government Scholarship",
-    type: "Scholarship",
-    detail: "Scholarships for eligible international students at Romanian universities.",
-    country: "Romania",
-    url: "https://scholarships.studyinromania.gov.ro/"
-  },
-  {
-    name: "Brunei Government Scholarship",
-    type: "Scholarship",
-    detail: "Government scholarship opportunities for eligible international students.",
-    country: "Brunei",
-    url: "https://www.mfa.gov.bn/"
-  },
-  {
-    name: "Manaaki New Zealand Scholarships",
-    type: "Scholarship",
-    detail: "Government scholarships for citizens of eligible partner countries.",
-    country: "New Zealand",
-    url: "https://www.nzscholarships.govt.nz/"
-  },
-  {
-    name: "Australia Awards Scholarships",
-    type: "Scholarship",
-    detail: "Government-funded study for eligible applicants from participating countries.",
-    country: "Australia",
-    url: "https://www.dfat.gov.au/people-to-people/australia-awards"
-  },
-  {
-    name: "Erasmus Mundus Joint Masters",
-    type: "Scholarship",
-    detail: "Competitive scholarships for international students pursuing selected joint Master's degrees.",
-    country: "Europe",
-    url: "https://erasmus-plus.ec.europa.eu/"
-  },
+      name: "Türkiye Scholarships",
+      type: "Scholarship",
+      detail: "Government-funded undergraduate and postgraduate study. Nationality, age and academic requirements apply.",
+      country: "Türkiye",
+      url: "https://www.turkiyeburslari.gov.tr/"
+    },
     {
-    name: "Chevening Scholarship",
-    type: "Scholarship",
-    detail: "UK Master's funding for eligible applicants. Work experience and nationality requirements apply.",
-    country: "United Kingdom",
-    url: "https://www.chevening.org/"
-  },
-  {
-    name: "Commonwealth Scholarships",
-    type: "Scholarship",
-    detail: "Postgraduate scholarships for eligible Commonwealth citizens.",
-    country: "United Kingdom",
-    url: "https://cscuk.fcdo.gov.uk/"
-  },
-  {
-    name: "DAAD Scholarships",
-    type: "Scholarship",
-    detail: "German academic exchange and postgraduate funding programmes.",
-    country: "Germany",
-    url: "https://www.daad.de/en/"
-  },
-  {
-    name: "Eiffel Excellence Scholarship",
-    type: "Scholarship",
-    detail: "French government funding for selected Master's and doctoral programmes.",
-    country: "France",
-    url: "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence"
-  },
-  {
-    name: "Swiss Government Excellence Scholarships",
-    type: "Scholarship",
-    detail: "Research and postgraduate scholarships for eligible applicants.",
-    country: "Switzerland",
-    url: "https://www.sbfi.admin.ch/"
-  },
-  {
-    name: "Swedish Institute Scholarships",
-    type: "Scholarship",
-    detail: "Master's scholarships for citizens of selected eligible countries.",
-    country: "Sweden",
-    url: "https://si.se/en/"
-  },
-  {
-    name: "Gates Cambridge Scholarship",
-    type: "Scholarship",
-    detail: "Competitive postgraduate funding at the University of Cambridge.",
-    country: "United Kingdom",
-    url: "https://www.gatescambridge.org/"
-  },
-  {
-    name: "Rhodes Scholarship",
-    type: "Scholarship",
-    detail: "Postgraduate scholarship at Oxford. Constituency and eligibility requirements apply.",
-    country: "United Kingdom",
-    url: "https://www.rhodeshouse.ox.ac.uk/"
-  },
-  {
-    name: "Yenching Academy Scholarship",
-    type: "Scholarship",
-    detail: "Interdisciplinary Master's programme at Peking University.",
-    country: "China",
-    url: "https://yenchingacademy.pku.edu.cn/"
-  },
-  {
-    name: "Hong Kong PhD Fellowship Scheme",
-    type: "Scholarship",
-    detail: "Competitive funding for international doctoral students.",
-    country: "Hong Kong",
-    url: "https://cerg1.ugc.edu.hk/hkpfs/"
-  }
-    ,
-  {
-    name: "KAUST Fellowship",
-    type: "Scholarship",
-    detail: "Graduate funding and research opportunities in science and technology.",
-    country: "Saudi Arabia",
-    url: "https://www.kaust.edu.sa/"
-  },
-  {
-    name: "MBZUAI Graduate Scholarships",
-    type: "Scholarship",
-    detail: "Graduate scholarships in artificial intelligence and related fields.",
-    country: "United Arab Emirates",
-    url: "https://mbzuai.ac.ae/"
-  },
-  {
-    name: "UBC International Scholars",
-    type: "Scholarship",
-    detail: "Undergraduate awards for exceptional international students with financial need.",
-    country: "Canada",
-    url: "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
-  },
-  {
-    name: "Lester B. Pearson Scholarship",
-    type: "Scholarship",
-    detail: "University of Toronto undergraduate scholarship for nominated international students.",
-    country: "Canada",
-    url: "https://future.utoronto.ca/pearson/about/"
-  },
-  {
-    name: "AU Emerging Global Leader Scholarship",
-    type: "Scholarship",
-    detail: "Undergraduate scholarship for eligible international students at American University.",
-    country: "United States",
-    url: "https://www.american.edu/admissions/international/egls.cfm"
-  },
-  {
-    name: "Fulbright Foreign Student Program",
-    type: "Scholarship",
-    detail: "Graduate study and research funding. Country-specific application routes apply.",
-    country: "Multiple countries",
-    url: "https://foreign.fulbrightonline.org/"
-  },
-  {
-    name: "Taiwan Scholarship",
-    type: "Scholarship",
-    detail: "Government scholarships for international students at eligible Taiwanese institutions.",
-    country: "Taiwan",
-    url: "https://www.studyintaiwan.org/"
-  },
-  {
-    name: "Qatar University Scholarships",
-    type: "Scholarship",
-    detail: "Undergraduate and postgraduate funding opportunities with different award conditions.",
-    country: "Qatar",
-    url: "https://www.qu.edu.qa/"
-  },
-  {
-    name: "Islamic Development Bank Scholarships",
-    type: "Scholarship",
-    detail: "Education funding for eligible students from member countries and Muslim communities.",
-    country: "Multiple countries",
-    url: "https://www.isdb.org/scholarships"
-  },
-  {
-    name: "Oxford Graduate Scholarships",
-    type: "Scholarship",
-    detail: "A range of funding schemes for eligible graduate applicants.",
-    country: "United Kingdom",
-    url: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
-  },
-  {
-    name: "World Health Network Student Internship",
-    type: "Internship",
-    detail: "Remote student opportunity. Check the current call for age, country, selection and deadline requirements.",
-    country: "Remote",
-    url: "https://whn.global/"
-  },
-  {
-    name: "UNICEF Internships",
-    type: "Internship",
-    detail: "Opportunities in child rights, policy, communications and research. University-level eligibility usually applies.",
-    country: "Multiple countries",
-    url: "https://www.unicef.org/careers/internships"
-  },
-  {
-    name: "WHO Internship Programme",
-    type: "Internship",
-    detail: "Public health experience for eligible students enrolled in relevant university programmes.",
-    country: "Multiple countries",
-    url: "https://www.who.int/careers/internship-programme"
-  },
-  {
-    name: "UNDP Internships",
-    type: "Internship",
-    detail: "Internship opportunities in development, policy, research and communications. University enrolment requirements apply.",
-    country: "Multiple countries",
-    url: "https://www.undp.org/careers/types-opportunities/internships"
-  },
-  {
-    name: "UNHCR Internships",
-    type: "Internship",
-    detail: "Experience in refugee protection, humanitarian work and international development.",
-    country: "Multiple countries",
-    url: "https://www.unhcr.org/careers-internships"
-  },
-  {
-    name: "World Food Programme Internships",
-    type: "Internship",
-    detail: "Opportunities in food security, logistics, communications and humanitarian operations.",
-    country: "Multiple countries",
-    url: "https://www.wfp.org/careers/internships"
-  },
-  {
-    name: "UNESCO Internships",
-    type: "Internship",
-    detail: "Opportunities related to education, science, culture and communications.",
-    country: "Multiple countries",
-    url: "https://www.unesco.org/en/careers/internships"
-  },
-  {
-    name: "World Bank Internship",
-    type: "Internship",
-    detail: "Development, economics and policy experience. Graduate enrolment is generally required.",
-    country: "Multiple countries",
-    url: "https://www.worldbank.org/en/about/careers/programs-and-internships"
-  },
-  {
-    name: "IMF Internship Programme",
-    type: "Internship",
-    detail: "Research and policy placements, primarily for PhD students in relevant fields.",
-    country: "United States",
-    url: "https://www.imf.org/en/About/Recruitment/working-at-the-imf"
-  },
-  {
-    name: "OECD Internship Programme",
-    type: "Internship",
-    detail: "Policy, economics and research opportunities for students enrolled in eligible degree programmes.",
-    country: "France",
-    url: "https://www.oecd.org/en/about/careers/internships.html"
-  },
-  {
-    name: "CERN Summer Student Programme",
-    type: "Internship",
-    detail: "Scientific and technical summer programme for eligible undergraduate and Master's students.",
-    country: "Switzerland",
-    url: "https://careers.cern/"
-  },
-  {
-    name: "Amgen Scholars Scholarship",
-    type: "Internship",
-    detail: "Undergraduate research opportunities in science and biotechnology at participating institutions.",
-    country: "Multiple countries",
-    url: "https://amgenscholars.com/"
-  },
-  {
-    name: "Mitacs Globalink Research Internship",
-    type: "Internship",
-    detail: "Research internships for students at eligible universities in participating countries.",
-    country: "Canada",
-    url: "https://www.mitacs.ca/our-programs/globalink-research-internship-students/"
-  },
-  {
-    name: "NIMS Internship Programme",
-    type: "Internship",
-    detail: "Research experience in materials science for eligible university students.",
-    country: "Japan",
-    url: "https://www.nims.go.jp/eng/hr-development/internship.html"
-  },
-  {
-    name: "NASA Internships",
-    type: "Internship",
-    detail: "Science, engineering and other internships. Most NASA opportunities require US citizenship.",
-    country: "United States",
-    url: "https://www.nasa.gov/learning-resources/internship-programs/"
-  },
-  {
-    name: "Smithsonian Internships",
-    type: "Internship",
-    detail: "Museum, science, research and cultural opportunities. Eligibility varies by placement.",
-    country: "United States",
-    url: "https://www.si.edu/ofi"
-  },
-  {
-    name: "Asian Development Bank Internships",
-    type: "Internship",
-    detail: "Graduate-level internships in development, economics, finance and related fields.",
-    country: "Multiple countries",
-    url: "https://www.adb.org/work-with-us/careers/internship-program"
-  },
-  {
-    name: "FAO Internship Programme",
-    type: "Internship",
-    detail: "Internships in food, agriculture, environment and international development.",
-    country: "Multiple countries",
-    url: "https://www.fao.org/employment/internship-programme/en"
-  },
-  {
-    name: "ILO Internship Programme",
-    type: "Internship",
-    detail: "Opportunities in labour rights, employment policy, research and international development.",
-    country: "Multiple countries",
-    url: "https://www.ilo.org/jobs"
-  },
-  {
-    name: "European Space Agency Internships",
-    type: "Internship",
-    detail: "Student placements in space science, engineering and other fields. Nationality and university requirements apply.",
-    country: "Europe",
-    url: "https://www.esa.int/About_Us/Careers_at_ESA/Student_Internships"
-  }
-    ];
-  Const info = opportunityDetails[item.name] || {};
+      name: "Stipendium Hungaricum",
+      type: "Scholarship",
+      detail: "Undergraduate and postgraduate scholarships. Available programmes depend on country agreements.",
+      country: "Hungary",
+      url: "https://stipendiumhungaricum.hu/"
+    },
+    {
+      name: "Chinese Government Scholarship",
+      type: "Scholarship",
+      detail: "International study funding. Degree availability and requirements vary by route and university.",
+      country: "China",
+      url: "https://www.campuschina.org/"
+    },
+    {
+      name: "Global Korea Scholarship",
+      type: "Scholarship",
+      detail: "Korean government scholarships with undergraduate and graduate tracks.",
+      country: "South Korea",
+      url: "https://www.studyinkorea.go.kr/"
+    },
+    {
+      name: "MEXT Scholarship",
+      type: "Scholarship",
+      detail: "Japanese government scholarships for international students.",
+      country: "Japan",
+      url: "https://www.studyinjapan.go.jp/en/"
+    },
+    {
+      name: "Romanian Government Scholarship",
+      type: "Scholarship",
+      detail: "Scholarships for eligible international students at Romanian universities.",
+      country: "Romania",
+      url: "https://scholarships.studyinromania.gov.ro/"
+    },
+    {
+      name: "Brunei Government Scholarship",
+      type: "Scholarship",
+      detail: "Government scholarship opportunities for eligible international students.",
+      country: "Brunei",
+      url: "https://www.mfa.gov.bn/"
+    },
+    {
+      name: "Manaaki New Zealand Scholarships",
+      type: "Scholarship",
+      detail: "Government scholarships for citizens of eligible partner countries.",
+      country: "New Zealand",
+      url: "https://www.nzscholarships.govt.nz/"
+    },
+    {
+      name: "Australia Awards Scholarships",
+      type: "Scholarship",
+      detail: "Government-funded study for eligible applicants from participating countries.",
+      country: "Australia",
+      url: "https://www.dfat.gov.au/people-to-people/australia-awards"
+    },
+    {
+      name: "Erasmus Mundus Joint Masters",
+      type: "Scholarship",
+      detail: "Competitive scholarships for international students pursuing selected joint Master's degrees.",
+      country: "Europe",
+      url: "https://erasmus-plus.ec.europa.eu/"
+    },
+    {
+      name: "Chevening Scholarship",
+      type: "Scholarship",
+      detail: "UK Master's funding for eligible applicants. Work experience and nationality requirements apply.",
+      country: "United Kingdom",
+      url: "https://www.chevening.org/"
+    },
+    {
+      name: "Commonwealth Scholarships",
+      type: "Scholarship",
+      detail: "Postgraduate scholarships for eligible Commonwealth citizens.",
+      country: "United Kingdom",
+      url: "https://cscuk.fcdo.gov.uk/"
+    },
+    {
+      name: "DAAD Scholarships",
+      type: "Scholarship",
+      detail: "German academic exchange and postgraduate funding programmes.",
+      country: "Germany",
+      url: "https://www.daad.de/en/"
+    },
+    {
+      name: "Eiffel Excellence Scholarship",
+      type: "Scholarship",
+      detail: "French government funding for selected Master's and doctoral programmes.",
+      country: "France",
+      url: "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence"
+    },
+    {
+      name: "Swiss Government Excellence Scholarships",
+      type: "Scholarship",
+      detail: "Research and postgraduate scholarships for eligible applicants.",
+      country: "Switzerland",
+      url: "https://www.sbfi.admin.ch/"
+    },
+    {
+      name: "Swedish Institute Scholarships",
+      type: "Scholarship",
+      detail: "Master's scholarships for citizens of selected eligible countries.",
+      country: "Sweden",
+      url: "https://si.se/en/"
+    },
+    {
+      name: "Gates Cambridge Scholarship",
+      type: "Scholarship",
+      detail: "Competitive postgraduate funding at the University of Cambridge.",
+      country: "United Kingdom",
+      url: "https://www.gatescambridge.org/"
+    },
+    {
+      name: "Rhodes Scholarship",
+      type: "Scholarship",
+      detail: "Postgraduate scholarship at Oxford. Constituency and eligibility requirements apply.",
+      country: "United Kingdom",
+      url: "https://www.rhodeshouse.ox.ac.uk/"
+    },
+    {
+      name: "Yenching Academy Scholarship",
+      type: "Scholarship",
+      detail: "Interdisciplinary Master's programme at Peking University.",
+      country: "China",
+      url: "https://yenchingacademy.pku.edu.cn/"
+    },
+    {
+      name: "Hong Kong PhD Fellowship Scheme",
+      type: "Scholarship",
+      detail: "Competitive funding for international doctoral students.",
+      country: "Hong Kong",
+      url: "https://cerg1.ugc.edu.hk/hkpfs/"
+    },
+    {
+      name: "KAUST Fellowship",
+      type: "Scholarship",
+      detail: "Graduate funding and research opportunities in science and technology.",
+      country: "Saudi Arabia",
+      url: "https://www.kaust.edu.sa/"
+    },
+    {
+      name: "MBZUAI Graduate Scholarships",
+      type: "Scholarship",
+      detail: "Graduate scholarships in artificial intelligence and related fields.",
+      country: "United Arab Emirates",
+      url: "https://mbzuai.ac.ae/"
+    },
+    {
+      name: "UBC International Scholars",
+      type: "Scholarship",
+      detail: "Undergraduate awards for exceptional international students with financial need.",
+      country: "Canada",
+      url: "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
+    },
+    {
+      name: "Lester B. Pearson Scholarship",
+      type: "Scholarship",
+      detail: "University of Toronto undergraduate scholarship for nominated international students.",
+      country: "Canada",
+      url: "https://future.utoronto.ca/pearson/about/"
+    },
+    {
+      name: "AU Emerging Global Leader Scholarship",
+      type: "Scholarship",
+      detail: "Undergraduate scholarship for eligible international students at American University.",
+      country: "United States",
+      url: "https://www.american.edu/admissions/international/egls.cfm"
+    },
+    {
+      name: "Fulbright Foreign Student Program",
+      type: "Scholarship",
+      detail: "Graduate study and research funding. Country-specific application routes apply.",
+      country: "Multiple countries",
+      url: "https://foreign.fulbrightonline.org/"
+    },
+    {
+      name: "Taiwan Scholarship",
+      type: "Scholarship",
+      detail: "Government scholarships for international students at eligible Taiwanese institutions.",
+      country: "Taiwan",
+      url: "https://www.studyintaiwan.org/"
+    },
+    {
+      name: "Qatar University Scholarships",
+      type: "Scholarship",
+      detail: "Undergraduate and postgraduate funding opportunities with different award conditions.",
+      country: "Qatar",
+      url: "https://www.qu.edu.qa/"
+    },
+    {
+      name: "Islamic Development Bank Scholarships",
+      type: "Scholarship",
+      detail: "Education funding for eligible students from member countries and Muslim communities.",
+      country: "Multiple countries",
+      url: "https://www.isdb.org/scholarships"
+    },
+    {
+      name: "Oxford Graduate Scholarships",
+      type: "Scholarship",
+      detail: "A range of funding schemes for eligible graduate applicants.",
+      country: "United Kingdom",
+      url: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
+    },
+    {
+      name: "World Health Network Student Internship",
+      type: "Internship",
+      detail: "Remote student opportunity. Check the current call for age, country, selection and deadline requirements.",
+      country: "Remote",
+      url: "https://whn.global/"
+    },
+    {
+      name: "UNICEF Internships",
+      type: "Internship",
+      detail: "Opportunities in child rights, policy, communications and research. University-level eligibility usually applies.",
+      country: "Multiple countries",
+      url: "https://www.unicef.org/careers/internships"
+    },
+    {
+      name: "WHO Internship Programme",
+      type: "Internship",
+      detail: "Public health experience for eligible students enrolled in relevant university programmes.",
+      country: "Multiple countries",
+      url: "https://www.who.int/careers/internship-programme"
+    },
+    {
+      name: "UNDP Internships",
+      type: "Internship",
+      detail: "Internship opportunities in development, policy, research and communications. University enrolment requirements apply.",
+      country: "Multiple countries",
+      url: "https://www.undp.org/careers/types-opportunities/internships"
+    },
+    {
+      name: "UNHCR Internships",
+      type: "Internship",
+      detail: "Experience in refugee protection, humanitarian work and international development.",
+      country: "Multiple countries",
+      url: "https://www.unhcr.org/careers-internships"
+    },
+    {
+      name: "World Food Programme Internships",
+      type: "Internship",
+      detail: "Opportunities in food security, logistics, communications and humanitarian operations.",
+      country: "Multiple countries",
+      url: "https://www.wfp.org/careers/internships"
+    },
+    {
+      name: "UNESCO Internships",
+      type: "Internship",
+      detail: "Opportunities related to education, science, culture and communications.",
+      country: "Multiple countries",
+      url: "https://www.unesco.org/en/careers/internships"
+    },
+    {
+      name: "World Bank Internship",
+      type: "Internship",
+      detail: "Development, economics and policy experience. Graduate enrolment is generally required.",
+      country: "Multiple countries",
+      url: "https://www.worldbank.org/en/about/careers/programs-and-internships"
+    },
+    {
+      name: "IMF Internship Programme",
+      type: "Internship",
+      detail: "Research and policy placements, primarily for PhD students in relevant fields.",
+      country: "United States",
+      url: "https://www.imf.org/en/About/Recruitment/working-at-the-imf"
+    },
+    {
+      name: "OECD Internship Programme",
+      type: "Internship",
+      detail: "Policy, economics and research opportunities for students enrolled in eligible degree programmes.",
+      country: "France",
+      url: "https://www.oecd.org/en/about/careers/internships.html"
+    },
+    {
+      name: "CERN Summer Student Programme",
+      type: "Internship",
+      detail: "Scientific and technical summer programme for eligible undergraduate and Master's students.",
+      country: "Switzerland",
+      url: "https://careers.cern/"
+    },
+    {
+      name: "Amgen Scholars Programme",
+      type: "Internship",
+      detail: "Undergraduate research opportunities in science and biotechnology at participating institutions.",
+      country: "Multiple countries",
+      url: "https://amgenscholars.com/"
+    },
+    {
+      name: "Mitacs Globalink Research Internship",
+      type: "Internship",
+      detail: "Research internships for students at eligible universities in participating countries.",
+      country: "Canada",
+      url: "https://www.mitacs.ca/our-programs/globalink-research-internship-students/"
+    },
+    {
+      name: "NIMS Internship Programme",
+      type: "Internship",
+      detail: "Research experience in materials science for eligible university students.",
+      country: "Japan",
+      url: "https://www.nims.go.jp/eng/hr-development/internship.html"
+    },
+    {
+      name: "NASA Internships",
+      type: "Internship",
+      detail: "Science, engineering and other internships. Most NASA opportunities require US citizenship.",
+      country: "United States",
+      url: "https://www.nasa.gov/learning-resources/internship-programs/"
+    },
+    {
+      name: "Smithsonian Internships",
+      type: "Internship",
+      detail: "Museum, science, research and cultural opportunities. Eligibility varies by placement.",
+      country: "United States",
+      url: "https://www.si.edu/ofi"
+    },
+    {
+      name: "Asian Development Bank Internships",
+      type: "Internship",
+      detail: "Graduate-level internships in development, economics, finance and related fields.",
+      country: "Multiple countries",
+      url: "https://www.adb.org/work-with-us/careers/internship-program"
+    },
+    {
+      name: "FAO Internship Programme",
+      type: "Internship",
+      detail: "Internships in food, agriculture, environment and international development.",
+      country: "Multiple countries",
+      url: "https://www.fao.org/employment/internship-programme/en"
+    },
+    {
+      name: "ILO Internship Programme",
+      type: "Internship",
+      detail: "Opportunities in labour rights, employment policy, research and international development.",
+      country: "Multiple countries",
+      url: "https://www.ilo.org/jobs"
+    },
+    {
+      name: "European Space Agency Internships",
+      type: "Internship",
+      detail: "Student placements in space science, engineering and other fields. Nationality and university requirements apply.",
+      country: "Europe",
+      url: "https://www.esa.int/About_Us/Careers_at_ESA/Student_Internships"
+    }
+  ];
 
-card.innerHTML = `
-  <span class="tag">${item.type}</span>
-  <h3>${item.name}</h3>
+  const opportunityDetails = {
+    "Türkiye Scholarships": {
+      level: "Bachelor's, Master's, PhD",
+      age: "Bachelor's: under 21; Master's: under 30; PhD: under 35",
+      nationality: "International applicants, including Pakistan",
+      eligibility: "Minimum academic achievement: 70% for most programmes; 90% for medicine, dentistry and pharmacy. Age and other programme conditions apply.",
+      funding: "Tuition, monthly stipend, accommodation, health insurance, one-year Turkish language course and flight ticket.",
+      deadline: "Normally January–February",
+      status: "Upcoming cycle check",
+      documents: "Passport or ID, photograph, academic transcripts, diploma or expected graduation document, test scores if applicable, and motivation letter.",
+      application: "Apply through the official Türkiye Scholarships application system.",
+      notes: "Bachelor's applicants must meet the age requirement.",
+      source: "https://www.turkiyeburslari.gov.tr/"
+    },
+    "Stipendium Hungaricum": {
+      level: "Bachelor's, One-Tier Master's, Master's, PhD",
+      age: "Must be at least 18 by August",
+      nationality: "Pakistan/AJ&K applicants apply through HEC nomination.",
+      eligibility: "Must meet HEC and Hungarian university requirements.",
+      funding: "Tuition exemption, monthly stipend, dormitory place or accommodation contribution, and medical insurance.",
+      deadline: "Check annual call",
+      status: "Awaiting next call",
+      documents: "Academic certificates, transcripts, passport/ID, motivation letter, language evidence where required.",
+      application: "Submit the online Stipendium Hungaricum application and separate HEC application.",
+      notes: "Age restriction and return undertaking may apply.",
+      source: "https://stipendiumhungaricum.hu/"
+    },
+    "Chinese Government Scholarship": {
+      level: "Bachelor's, Master's, PhD",
+      age: "Bachelor's under 25, Master's under 35, PhD under 40.",
+      nationality: "Pakistani/AJ&K nationals",
+      eligibility: "Completed Intermediate/A-level for Bachelor's; 16-year degree for Master's; MS/MPhil for PhD.",
+      funding: "Full or partial scholarship benefits depend on award category.",
+      deadline: "Check annual HEC call",
+      status: "Check portal",
+      documents: "Academic transcripts and certificates, passport, photograph, study plan, recommendation letters.",
+      application: "Apply on BOTH HEC scholarship portal and CSC Campus China portal.",
+      notes: "Both HEC and CSC applications are mandatory.",
+      source: "https://www.campuschina.org/"
+    },
+    "Global Korea Scholarship": {
+      level: "Bachelor's, Master's, PhD",
+      age: "Depends on annual call.",
+      nationality: "International applicants from eligible countries.",
+      eligibility: "Academic results, nationality, age and health requirements apply.",
+      funding: "Tuition, airfare, monthly allowance, Korean-language training.",
+      deadline: "Varies by embassy and university track.",
+      status: "Check current tracks",
+      documents: "Application form, personal statement, study plan, academic records, proof of citizenship.",
+      application: "Apply through embassy track or university track.",
+      notes: "Embassy and university deadlines differ.",
+      source: "https://www.studyinkorea.go.kr/"
+    },
+    "MEXT Scholarship": {
+      level: "Undergraduate and postgraduate categories",
+      age: "Depends on category.",
+      nationality: "International applicants",
+      eligibility: "Academic, age, health and subject requirements apply.",
+      funding: "Tuition, monthly stipend and travel support.",
+      deadline: "Annual embassy deadlines apply.",
+      status: "Check embassy announcements",
+      documents: "Application form, transcripts, graduation certificate, recommendation, medical certificate.",
+      application: "Apply through the Embassy of Japan.",
+      notes: "Undergraduate and research categories have different procedures.",
+      source: "https://www.studyinjapan.go.jp/en/"
+    },
+    "Romanian Government Scholarship": {
+      level: "Bachelor's, Master's, PhD",
+      age: "Check annual programme rules.",
+      nationality: "Non-EU foreign citizens",
+      eligibility: "Academic records and admission criteria apply. Preparatory language year provided if taught in Romanian.",
+      funding: "Tuition, monthly scholarship and accommodation support.",
+      deadline: "Check annual call",
+      status: "Awaiting next call",
+      documents: "Academic diplomas, transcripts, birth certificate, passport, CV.",
+      application: "Apply through Study in Romania platform.",
+      notes: "Check language of instruction.",
+      source: "https://scholarships.studyinromania.gov.ro/"
+    },
+    "Brunei Government Scholarship": {
+      level: "Diploma, Bachelor's, Master's",
+      age: "Annual age limits apply.",
+      nationality: "International applicants from eligible countries.",
+      eligibility: "Academic and programme requirements apply.",
+      funding: "Tuition, airfare, monthly personal allowance, meals, books, accommodation.",
+      deadline: "Check annual call",
+      status: "Check next call",
+      documents: "Academic certificates, transcripts, passport, photograph, medical documents.",
+      application: "Follow Ministry of Foreign Affairs Brunei announcement.",
+      notes: "Check course availability.",
+      source: "https://www.mfa.gov.bn/"
+    },
+    "Manaaki New Zealand Scholarships": {
+      level: "Postgraduate study",
+      age: "Country rules apply.",
+      nationality: "Citizens of listed eligible partner countries.",
+      eligibility: "Must belong to eligible country list.",
+      funding: "Tuition, living allowance, travel, insurance.",
+      deadline: "Country-specific",
+      status: "Check partner eligibility",
+      documents: "Academic records, identity documents, references, study plans.",
+      application: "Use official Manaaki application portal.",
+      notes: "Check country eligibility list.",
+      source: "https://www.nzscholarships.govt.nz/"
+    },
+    "Australia Awards Scholarships": {
+      level: "Master's and postgraduate study",
+      age: "Country-specific requirements apply.",
+      nationality: "Citizens of participating countries",
+      eligibility: "Academic, professional and development-impact requirements.",
+      funding: "Tuition, return airfare, establishment allowance, living contribution, health cover.",
+      deadline: "Annual cycle",
+      status: "Check intake dates",
+      documents: "Academic transcripts, degree certificates, CV, references, development statement.",
+      application: "Use official Australia Awards website.",
+      notes: "Development-focused scholarship.",
+      source: "https://www.dfat.gov.au/people-to-people/australia-awards"
+    },
+    "Erasmus Mundus Joint Masters": {
+      level: "Joint Master's degrees",
+      age: "Programme-specific rules.",
+      nationality: "International applicants",
+      eligibility: "Bachelor's degree, subject prerequisites, language requirements.",
+      funding: "Participation costs, travel, installation and living expenses.",
+      deadline: "Varies by programme (typically Oct–Jan).",
+      status: "Check individual consortium",
+      documents: "Degree certificate, transcripts, CV, motivation letter, references, language evidence.",
+      application: "Apply directly to the specific Master's consortium.",
+      notes: "No single central deadline.",
+      source: "https://erasmus-plus.ec.europa.eu/"
+    },
+    "Chevening Scholarship": {
+      level: "One-year Master's",
+      age: "No upper age limit.",
+      nationality: "Citizens of eligible Chevening countries",
+      eligibility: "Undergraduate degree, required post-graduation work experience, leadership potential.",
+      funding: "Tuition, monthly living allowance, travel and approved allowances.",
+      deadline: "Usually October",
+      status: "Check cycle",
+      documents: "Education history, work experience details, references, course choices, leadership essays.",
+      application: "Apply through official Chevening online system.",
+      notes: "Work experience required.",
+      source: "https://www.chevening.org/"
+    },
+    "Commonwealth Scholarships": {
+      level: "Taught Master's and PhD",
+      age: "No general upper age limit.",
+      nationality: "Commonwealth citizens",
+      eligibility: "Relevant prior degree and academic requirements.",
+      funding: "Tuition, approved living allowance, airfare.",
+      deadline: "Annual HEC/CSC deadline",
+      status: "Check call",
+      documents: "Academic records, references, development-impact statement, study plan.",
+      application: "Apply through CSC and HEC portals.",
+      notes: "Separate shared scholarship routes exist.",
+      source: "https://cscuk.fcdo.gov.uk/"
+    },
+    "DAAD Scholarships": {
+      level: "Master's, PhD, research",
+      age: "Depends on individual scholarship.",
+      nationality: "International applicants",
+      eligibility: "Academic degree, professional experience and language requirements.",
+      funding: "Monthly stipend, insurance, travel allowance.",
+      deadline: "Varies by programme.",
+      status: "Check DAAD database",
+      documents: "Transcripts, degree certificates, CV, motivation letter, references, research proposal.",
+      application: "Apply through DAAD scholarship database route.",
+      notes: "Many distinct programmes.",
+      source: "https://www.daad.de/en/"
+    },
+    "Eiffel Excellence Scholarship": {
+      level: "Master's and PhD",
+      age: "Under 30 for Master's, under 35 for PhD.",
+      nationality: "International applicants",
+      eligibility: "Must be nominated by a French higher education institution.",
+      funding: "Monthly allowance and associated benefits.",
+      deadline: "January (institutional deadline)",
+      status: "Institutional nomination",
+      documents: "Academic records, CV, motivation, project or study plan.",
+      application: "Contact French institution for nomination.",
+      notes: "University internal deadline is earlier.",
+      source: "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence"
+    },
+    "Swiss Government Excellence Scholarships": {
+      level: "Research fellowship, PhD, postdoctoral",
+      age: "Varies by award category.",
+      nationality: "Citizens of eligible countries",
+      eligibility: "Research proposal, academic qualifications, Swiss academic supervisor.",
+      funding: "Monthly stipend and support.",
+      deadline: "Country-specific",
+      status: "Check Swiss representation",
+      documents: "Research proposal, CV, academic records, recommendation letters, supervisor acceptance.",
+      application: "Follow Swiss Government country procedure.",
+      notes: "Requires prior supervisor contact.",
+      source: "https://www.sbfi.admin.ch/"
+    },
+    "Swedish Institute Scholarships": {
+      level: "Master's",
+      age: "No universal age limit.",
+      nationality: "Citizens of eligible countries",
+      eligibility: "Admission to Swedish Master's programme, required work and leadership experience.",
+      funding: "Tuition, monthly living allowance, insurance, travel grant.",
+      deadline: "Winter application window",
+      status: "Check call",
+      documents: "CV, work experience evidence, leadership evidence, references.",
+      application: "Apply via University Admissions and SI portal.",
+      notes: "Work and leadership criteria required.",
+      source: "https://si.se/en/"
+    },
+    "Gates Cambridge Scholarship": {
+      level: "Postgraduate study at Cambridge",
+      age: "No general age limit.",
+      nationality: "Non-UK applicants",
+      eligibility: "Outstanding academic ability, leadership potential, commitment to others.",
+      funding: "Full cost of studying at Cambridge.",
+      deadline: "Course-specific deadline",
+      status: "Check course deadline",
+      documents: "University application, transcripts, references, Gates statement.",
+      application: "Apply for admission to Cambridge and indicate funding consideration.",
+      notes: "Eligible courses only.",
+      source: "https://www.gatescambridge.org/"
+    },
+    "Rhodes Scholarship": {
+      level: "Postgraduate study at Oxford",
+      age: "Varies by constituency.",
+      nationality: "Constituency-specific citizenship",
+      eligibility: "Academic excellence, leadership, service.",
+      funding: "Oxford course fees, annual stipend, travel support.",
+      deadline: "Year before entry",
+      status: "Constituency-specific",
+      documents: "Academic transcripts, personal statement, CV, references.",
+      application: "Apply through official Rhodes portal.",
+      notes: "Check local constituency rules.",
+      source: "https://www.rhodeshouse.ox.ac.uk/"
+    },
+    "Yenching Academy Scholarship": {
+      level: "Interdisciplinary Master's at Peking University",
+      age: "Admissions rules apply.",
+      nationality: "International applicants",
+      eligibility: "Bachelor's degree, strong academic record, interest in China studies.",
+      funding: "Tuition, accommodation, monthly stipend, travel, field-study support.",
+      deadline: "Check annual call",
+      status: "Check admissions page",
+      documents: "Transcripts, degree certificate, CV, personal statement, study plan, recommendations.",
+      application: "Apply through Yenching Academy portal.",
+      notes: "China-focused interdisciplinary study.",
+      source: "https://yenchingacademy.pku.edu.cn/"
+    },
+    "Hong Kong PhD Fellowship Scheme": {
+      level: "Full-time PhD",
+      age: "No universal age limit.",
+      nationality: "All countries",
+      eligibility: "Strong academic performance, research ability, communication skills.",
+      funding: "Annual stipend and conference/travel allowance.",
+      deadline: "Fall application window",
+      status: "Check RGC call",
+      documents: "Academic records, research proposal, references, CV, English evidence.",
+      application: "Submit initial HKPFS application and complete university applications.",
+      notes: "Prestigious research fellowship.",
+      source: "https://cerg1.ugc.edu.hk/hkpfs/"
+    },
+    "KAUST Fellowship": {
+      level: "Master's and PhD",
+      age: "Programme-specific.",
+      nationality: "International applicants",
+      eligibility: "Relevant Bachelor's or Master's degree, English requirements.",
+      funding: "Tuition, living stipend, accommodation, medical insurance.",
+      deadline: "Rolling / admissions rounds",
+      status: "Check admissions",
+      documents: "Transcripts, degree certificates, CV, statement of purpose, references.",
+      application: "Apply through KAUST graduate admissions portal.",
+      notes: "Science and technology focus.",
+      source: "https://www.kaust.edu.sa/"
+    },
+    "MBZUAI Graduate Scholarships": {
+      level: "Master's and PhD",
+      age: "Programme-specific.",
+      nationality: "International applicants",
+      eligibility: "Relevant academic background in math, computing, AI.",
+      funding: "Full tuition, stipend, accommodation, health insurance.",
+      deadline: "Check intake windows",
+      status: "Check graduate admissions",
+      documents: "Degree certificates, transcripts, CV, statement of purpose, references.",
+      application: "Apply through MBZUAI admissions portal.",
+      notes: "AI-focused institution.",
+      source: "https://mbzuai.ac.ae/"
+    },
+    "UBC International Scholars": {
+      level: "Undergraduate",
+      age: "Secondary school graduation",
+      nationality: "International students",
+      eligibility: "Outstanding academic achievement, leadership, financial need.",
+      funding: "Need-based financial support toward tuition and living costs.",
+      deadline: "Early December",
+      status: "Check deadline",
+      documents: "School transcripts, references, financial information, personal profile.",
+      application: "Apply for UBC admission and award application.",
+      notes: "Financial need criteria apply.",
+      source: "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
+    },
+    "Lester B. Pearson Scholarship": {
+      level: "Undergraduate at University of Toronto",
+      age: "Final year of secondary school",
+      nationality: "International students",
+      eligibility: "Academic excellence, creativity, leadership, school nomination.",
+      funding: "Tuition, books, incidental fees, full residence for four years.",
+      deadline: "Autumn/Winter",
+      status: "Check nomination rules",
+      documents: "School nomination, transcripts, university application.",
+      application: "Requires school nomination and UofT application.",
+      notes: "Self-nomination not allowed.",
+      source: "https://future.utoronto.ca/pearson/about/"
+    },
+    "AU Emerging Global Leader Scholarship": {
+      level: "Undergraduate",
+      age: "First-year admission criteria",
+      nationality: "International students requiring US visa",
+      eligibility: "Academic record, leadership, community service, civic commitment.",
+      funding: "Full tuition, room and board.",
+      deadline: "January",
+      status: "Check checklist",
+      documents: "Admission application, transcripts, financial documents, scholarship essays.",
+      application: "Apply to American University and scholarship portal.",
+      notes: "Highly competitive.",
+      source: "https://www.american.edu/admissions/international/egls.cfm"
+    },
+    "Fulbright Foreign Student Program": {
+      level: "Master's and PhD",
+      age: "Country-specific",
+      nationality: "Citizens of participating countries",
+      eligibility: "Academic and English requirements, GRE.",
+      funding: "Tuition, textbooks, airfare, living stipend, health insurance.",
+      deadline: "Country-specific cycle",
+      status: "Check national commission",
+      documents: "Academic records, personal statements, references, test scores.",
+      application: "Apply through national USEFP or Fulbright commission.",
+      notes: "Postgraduate study focus.",
+      source: "https://foreign.fulbrightonline.org/"
+    },
+    "Taiwan Scholarship": {
+      level: "Bachelor's, Master's, PhD",
+      age: "Annual call rules",
+      nationality: "International students",
+      eligibility: "Academic and language requirements.",
+      funding: "Tuition subsidy and monthly stipend.",
+      deadline: "Spring window",
+      status: "Check representative office",
+      documents: "Academic records, passport, admission application, recommendations.",
+      application: "Apply to scholarship office and university separately.",
+      notes: "Government scholarship.",
+      source: "https://www.studyintaiwan.org/"
+    },
+    "Qatar University Scholarships": {
+      level: "Undergraduate and postgraduate",
+      age: "Admission category rules",
+      nationality: "International applicants",
+      eligibility: "Academic admission requirements.",
+      funding: "Tuition, textbooks, accommodation, airfare (varies by award).",
+      deadline: "Semester-specific",
+      status: "Check admission calendar",
+      documents: "Transcripts, passport, photograph, English evidence.",
+      application: "Apply for admission and select scholarship category.",
+      notes: "Varying funding levels.",
+      source: "https://www.qu.edu.qa/"
+    },
+    "Islamic Development Bank Scholarships": {
+      level: "Undergraduate, Master's, PhD, research",
+      age: "Scheme-specific",
+      nationality: "Member-country citizens and Muslim communities",
+      eligibility: "Academic, subject and development requirements.",
+      funding: "Tuition, living allowance, medical insurance, travel.",
+      deadline: "Annual call",
+      status: "Check current call",
+      documents: "Academic records, passport, references, admission evidence, research plan.",
+      application: "Apply through IsDB scholarship portal.",
+      notes: "Multiple distinct schemes.",
+      source: "https://www.isdb.org/scholarships"
+    },
+    "Oxford Graduate Scholarships": {
+      level: "Master's, DPhil",
+      age: "No universal age limit",
+      nationality: "Varies by award",
+      eligibility: "Admission to eligible Oxford graduate course.",
+      funding: "Full or partial tuition and living costs.",
+      deadline: "Linked to course deadline (Dec/Jan)",
+      status: "Course-specific",
+      documents: "Graduate application, transcripts, references, statement of purpose.",
+      application: "Apply for graduate course by deadline.",
+      notes: "Collection of various funding schemes.",
+      source: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
+    },
+    "World Health Network Student Internship": {
+      level: "Student opportunity",
+      age: "Check call",
+      nationality: "Check call",
+      eligibility: "Check official vacancy criteria.",
+      funding: "Check official call",
+      deadline: "Check website",
+      status: "Verify official posting",
+      documents: "Check requirements",
+      application: "Visit official site for current status.",
+      notes: "Verify active status.",
+      source: "https://whn.global/"
+    },
+    "UNICEF Internships": {
+      level: "Undergraduate, graduate, recent graduates",
+      age: "At least 18",
+      nationality: "International",
+      eligibility: "Enrolled in university or graduated within past two years.",
+      funding: "Monthly stipend provided under UNICEF policy.",
+      deadline: "Rolling vacancies",
+      status: "Rolling",
+      documents: "CV, cover letter, enrolment/graduation proof.",
+      application: "Apply through UNICEF careers portal.",
+      notes: "Not for high school students.",
+      source: "https://www.unicef.org/careers/internships"
+    },
+    "WHO Internship Programme": {
+      level: "University students",
+      age: "At least 20",
+      nationality: "International",
+      eligibility: "Completed at least 3 years of full-time university study.",
+      funding: "Living allowance provided to eligible interns.",
+      deadline: "Vacancy-specific",
+      status: "Check vacancies",
+      documents: "CV, enrolment proof, academic records.",
+      application: "Apply through WHO careers portal.",
+      notes: "Public health focus.",
+      source: "https://www.wto.org"
+    },
+    "UNDP Internships": {
+      level: "Final-year Bachelor's, Master's, graduates",
+      age: "Vacancy rules apply",
+      nationality: "International",
+      eligibility: "Enrolled in final year or recent graduate.",
+      funding: "Stipend provided based on duty station.",
+      deadline: "Vacancy-specific",
+      status: "Rolling",
+      documents: "CV, cover letter, academic records.",
+      application: "Apply through UNDP careers portal.",
+      notes: "Development and policy focus.",
+      source: "https://www.undp.org/careers/types-opportunities/internships"
+    },
+    "UNHCR Internships": {
+      level: "University students and recent graduates",
+      age: "Vacancy rules apply",
+      nationality: "International",
+      eligibility: "Enrolled in degree or recently graduated.",
+      funding: "Stipend available depending on duty station.",
+      deadline: "Vacancy-specific",
+      status: "Rolling",
+      documents: "CV, cover letter, enrolment proof.",
+      application: "Apply through UNHCR careers portal.",
+      notes: "Refugee protection and humanitarian work.",
+      source: "https://www.unhcr.org/careers-internships"
+    },
+    "World Food Programme Internships": {
+      level: "University students and recent graduates",
+      age: "At least 18",
+      nationality: "International",
+      eligibility: "Enrolled in university or recent graduate.",
+      funding: "Stipend up to $1,000/month depending on location.",
+      deadline: "Vacancy-specific",
+      status: "Rolling",
+      documents: "CV, cover letter, enrolment proof.",
+      application: "Apply through WFP careers portal.",
+      notes: "Food security and logistics focus.",
+      source: "https://www.wfp.org/careers/internships"
+    },
+    "UNESCO Internships": {
+      level: "University students and recent graduates",
+      age: "At least 20",
+      nationality: "International",
+      eligibility: "Third-year Bachelor's, Master's, PhD or recent graduate.",
+      funding: "Generally unpaid; living expenses self-funded.",
+      deadline: "Candidate pool",
+      status: "Check pool openings",
+      documents: "CV, motivation letter, enrolment proof, academic records.",
+      application: "Apply through UNESCO careers system.",
+      notes: "Culture, education, science focus.",
+      source: "https://www.unesco.org/en/careers/internships"
+    },
+    "World Bank Internship": {
+      level: "Graduate students",
+      age: "Graduate status",
+      nationality: "International",
+      eligibility: "Master's or PhD students in relevant fields.",
+      funding: "Paid internship.",
+      deadline: "Seasonal windows",
+      status: "Seasonal",
+      documents: "CV, enrolment proof, academic records, cover letter.",
+      application: "Apply through World Bank careers portal.",
+      notes: "Economics and development focus.",
+      source: "https://www.worldbank.org/en/about/careers/programs-and-internships"
+    },
+    "IMF Internship Programme": {
+      level: "Primarily PhD students",
+      age: "Programme-specific",
+      nationality: "International",
+      eligibility: "Graduate research background, especially economics PhD.",
+      funding: "Paid internship.",
+      deadline: "Seasonal",
+      status: "Check recruitment cycle",
+      documents: "CV, transcripts, research interests, references.",
+      application: "Apply through IMF careers portal.",
+      notes: "Research and policy placements.",
+      source: "https://www.imf.org/en/About/Recruitment/working-at-the-imf"
+    },
+    "OECD Internship Programme": {
+      level: "University students",
+      age: "No universal limit",
+      nationality: "International",
+      eligibility: "Enrolled in full-time degree programme.",
+      funding: "Paid internship allowance.",
+      deadline: "Rolling",
+      status: "Rolling",
+      documents: "CV, cover letter, enrolment proof.",
+      application: "Apply through OECD online system.",
+      notes: "Policy and economic research.",
+      source: "https://www.oecd.org/en/about/careers/internships.html"
+    },
+    "CERN Summer Student Programme": {
+      level: "Undergraduate and Master's",
+      age: "Academic eligibility",
+      nationality: "International (check rules)",
+      eligibility: "Completed at least 3 years of full-time university study.",
+      funding: "Monthly allowance and travel support.",
+      deadline: "January",
+      status: "Check deadline",
+      documents: "CV, transcripts, references, enrolment proof.",
+      application: "Apply through CERN careers portal.",
+      notes: "Scientific and technical research.",
+      source: "https://careers.cern/"
+    },
+    "Amgen Scholars Programme": {
+      level: "Undergraduate research students",
+      age: "Host-specific",
+      nationality: "Host-specific rules",
+      eligibility: "Undergraduate students in science/biotechnology.",
+      funding: "Research placement and financial support by host site.",
+      deadline: "Host-specific",
+      status: "Check host institution",
+      documents: "Transcripts, CV, recommendations, personal statement.",
+      application: "Apply directly through participating host university.",
+      notes: "Biomedical and scientific research.",
+      source: "https://amgenscholars.com/"
+    },
+    "Mitacs Globalink Research Internship": {
+      level: "Undergraduate university students",
+      age: "At least 18",
+      nationality: "Eligible partner countries",
+      eligibility: "Enrolled at university in participating country, strong academic standing.",
+      funding: "Travel, accommodation and living costs covered.",
+      deadline: "Autumn/Winter",
+      status: "Check cycle",
+      documents: "Transcripts, CV, research interests, references.",
+      application: "Apply through Mitacs portal.",
+      notes: "Research internship in Canada.",
+      source: "https://www.mitacs.ca/our-programs/globalink-research-internship-students/"
+    },
+    "NIMS Internship Programme": {
+      level: "Undergraduate and graduate",
+      age: "Programme-specific",
+      nationality: "International applicants",
+      eligibility: "University enrolment with materials science interest.",
+      funding: "Daily allowance and accommodation support.",
+      deadline: "Annual call",
+      status: "Check call",
+      documents: "CV, enrolment proof, transcripts, research interests.",
+      application: "Follow NIMS internship instructions.",
+      notes: "Materials science research in Japan.",
+      source: "https://www.nims.go.jp/eng/hr-development/internship.html"
+    },
+    "NASA Internships": {
+      level: "High school, undergraduate, graduate",
+      age: "At least 16",
+      nationality: "Most require US citizenship",
+      eligibility: "Academic, GPA and citizenship requirements.",
+      funding: "Paid/unpaid depending on programme.",
+      deadline: "Term-specific",
+      status: "Citizenship restricted",
+      documents: "Academic records, CV, essays, references.",
+      application: "Apply through NASA internship portal.",
+      notes: "U.S. citizenship required for most OSTEM roles.",
+      source: "https://www.nasa.gov/learning-resources/internship-programs/"
+    },
+    "Smithsonian Internships": {
+      level: "High school, undergraduate, graduate",
+      age: "Varies by placement",
+      nationality: "Check placement rules",
+      eligibility: "Academic level and subject requirements vary.",
+      funding: "Stipends available for some placements.",
+      deadline: "Placement-specific",
+      status: "Multiple calls",
+      documents: "Application form, CV, school records, essays, recommendations.",
+      application: "Apply through specific Smithsonian museum portal.",
+      notes: "Museum and research opportunities.",
+      source: "https://www.si.edu/ofi"
+    },
+    "Asian Development Bank Internships": {
+      level: "Master's and PhD",
+      age: "Graduate status",
+      nationality: "ADB member countries",
+      eligibility: "Enrolled in Master's or PhD in relevant field.",
+      funding: "Paid internship.",
+      deadline: "Seasonal",
+      status: "Graduate-only",
+      documents: "CV, enrolment proof, transcripts, cover letter.",
+      application: "Apply through ADB recruitment portal.",
+      notes: "Development economics and finance.",
+      source: "https://www.adb.org/work-with-us/careers/internship-program"
+    },
+    "FAO Internship Programme": {
+      level: "University students and recent graduates",
+      age: "21–30",
+      nationality: "FAO member countries",
+      eligibility: "Enrolled or recent graduate in relevant field.",
+      funding: "Monthly stipend provided.",
+      deadline: "Vacancy-specific",
+      status: "Rolling",
+      documents: "CV, enrolment proof, academic records.",
+      application: "Apply through FAO recruitment portal.",
+      notes: "Food and agriculture focus.",
+      source: "https://www.fao.org/employment/internship-programme/en"
+    },
+    "ILO Internship Programme": {
+      level: "Graduate students and recent graduates",
+      age: "No universal limit",
+      nationality: "International",
+      eligibility: "Relevant postgraduate background and language skills.",
+      funding: "Compensation depends on vacancy policy.",
+      deadline: "Vacancy-specific",
+      status: "Check advertised positions",
+      documents: "CV, academic records, cover letter, enrolment proof.",
+      application: "Apply through ILO jobs portal.",
+      notes: "Labour rights and employment policy.",
+      source: "https://www.ilo.org/jobs"
+    },
+    "European Space Agency Internships": {
+      level: "Master's students",
+      age: "Final/penultimate year student",
+      nationality: "ESA Member States / cooperating states",
+      eligibility: "Relevant university study in science/engineering.",
+      funding: "Monthly allowance provided.",
+      deadline: "Annual recruitment cycle",
+      status: "Nationality restricted",
+      documents: "CV, transcripts, enrolment proof, motivation letter.",
+      application: "Apply through ESA careers portal.",
+      notes: "Requires eligible European nationality.",
+      source: "https://www.esa.int/About_Us/Careers_at_ESA/Student_Internships"
+    },
+    "Blue Ocean Student Entrepreneur Competition 2027": {
+      level: "High school (Grades 9–12)",
+      age: "High school students worldwide",
+      nationality: "Worldwide",
+      eligibility: "Enrolled in high school; solo or team entries.",
+      funding: "Free entry; cash prizes for finalists.",
+      deadline: "21 February 2027",
+      status: "Open",
+      documents: "Registration and 5-minute video pitch.",
+      application: "Register on official website.",
+      notes: "Virtual competition.",
+      source: "https://blueoceancompetition.org/"
+    },
+    "World of 8 Billion Video Contest": {
+      level: "Grades 6–12",
+      age: "Grades 6–12",
+      nationality: "Worldwide",
+      eligibility: "Students in grades 6–12 worldwide.",
+      funding: "Free entry; cash prizes up to $1,200.",
+      deadline: "3 March 2027",
+      status: "Open",
+      documents: "60-second video and works cited.",
+      application: "Upload via official portal.",
+      notes: "Strict 60-second video limit.",
+      source: "https://www.worldof8billion.org/video-contest/"
+    },
+    "The Earth Prize 2027": {
+      level: "Secondary school",
+      age: "Ages 13–19",
+      nationality: "Worldwide",
+      eligibility: "Students aged 13–19 in secondary education.",
+      funding: "Free registration; $100,000 total prize pool.",
+      deadline: "10 January 2027 registration",
+      status: "Open",
+      documents: "Team registration, project proposal.",
+      application: "Register online.",
+      notes: "Environmental sustainability solutions.",
+      source: "https://www.theearthprize.org/competition"
+    },
+    "CS50x Introduction to Computer Science": {
+      level: "Beginner",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all learners.",
+      funding: "100% free course access and free certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free edX/CS50 account, GitHub account.",
+      application: "Enroll online via edX or CS50.",
+      notes: "Covers C, Python, SQL, HTML, CSS, JavaScript.",
+      source: "https://cs50.harvard.edu/x/"
+    },
+    "CS50 Web Programming": {
+      level: "Intermediate",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Python and CS50x experience recommended.",
+      funding: "100% free course access and free certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free edX/CS50 account, GitHub account.",
+      application: "Start anytime on CS50 Web portal.",
+      notes: "Covers Django, JavaScript, SQL.",
+      source: "https://cs50.harvard.edu/web/"
+    },
+    "CS50 Introduction to Artificial Intelligence": {
+      level: "Intermediate",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Python experience recommended.",
+      funding: "100% free course access and free certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free edX/CS50 account, GitHub account.",
+      application: "Enroll online via CS50 AI website.",
+      notes: "Covers machine learning, neural networks.",
+      source: "https://cs50.harvard.edu/ai/"
+    }
+  };
 
-  <p>${item.detail}</p>
-
-  <p><strong>🎓 Study level:</strong> ${info.level || "See official source"}</p>
-  <p><strong>👤 Age:</strong> ${info.age || "Check official requirements"}</p>
-  <p><strong>🌍 Nationality:</strong> ${info.nationality || "Check official requirements"}</p>
-  <p><strong>📋 Eligibility:</strong> ${info.eligibility || "Not confirmed"}</p>
-  <p><strong>💰 Funding:</strong> ${info.funding || "Not confirmed"}</p>
-  <p><strong>📅 Deadline:</strong> ${info.deadline || "Not announced"}</p>
-  <p><strong>📌 Status:</strong> ${info.status || "Check official website"}</p>
-
-  <details>
-    <summary>Documents required</summary>
-    <p>${info.documents || "Check official requirements."}</p>
-  </details>
-
-  <details>
-    <summary>How to apply</summary>
-    <p>${info.application || "Follow the official application instructions."}</p>
-  </details>
-
-  <details>
-    <summary>Important notes</summary>
-    <p>${info.notes || "Check the official programme conditions."}</p>
-  </details>
-
-  <a href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
-    Official programme website ↗
-  </a>
-`;
-  
   let selected = "All";
 
   function choose(category) {
@@ -687,8 +1403,7 @@ card.innerHTML = `
     const query = document.getElementById("search").value.toLowerCase().trim();
 
     const filtered = opportunities.filter(item => {
-      const matchesCategory =
-        selected === "All" || item.type === selected;
+      const matchesCategory = selected === "All" || item.type === selected;
 
       const searchable = [
         item.name,
@@ -697,8 +1412,9 @@ card.innerHTML = `
         item.country,
         item.eligibility,
         item.deadline,
-        item.cost
-     ...(Object.values(opportunityDetails[item.name] || {})) ].join(" ").toLowerCase();
+        item.cost,
+        ...(Object.values(opportunityDetails[item.name] || {}))
+      ].filter(Boolean).join(" ").toLowerCase();
 
       return matchesCategory && searchable.includes(query);
     });
@@ -712,43 +1428,49 @@ card.innerHTML = `
     }
 
     filtered.forEach(item => {
+      const info = opportunityDetails[item.name] || {};
       const card = document.createElement("article");
       card.className = "card";
-  Const info = opportunityDetails[item.name] || {};
 
-card.innerHTML = `
-  <span class="tag">${item.type}</span>
-  <h3>${item.name}</h3>
+      card.innerHTML = `
+        <span class="tag">${item.type}</span>
+        <h3>${item.name}</h3>
+        <p>${item.detail}</p>
+        <p><strong>🎓 Study level:</strong> ${info.level || "See official source"}</p>
+        <p><strong>👤 Age:</strong> ${info.age || "Check official requirements"}</p>
+        <p><strong>🌍 Nationality:</strong> ${info.nationality || "Check official requirements"}</p>
+        <p><strong>📋 Eligibility:</strong> ${info.eligibility || item.eligibility || "Not confirmed"}</p>
+        <p><strong>💰 Funding:</strong> ${info.funding || item.cost || "Not confirmed"}</p>
+        <p><strong>📅 Deadline:</strong> ${info.deadline || item.deadline || "Not announced"}</p>
+        <p><strong>📌 Status:</strong> ${info.status || "Check official website"}</p>
 
-  <p>${item.detail}</p>
+        <details>
+          <summary>Documents required</summary>
+          <p>${info.documents || "Check official requirements."}</p>
+        </details>
 
-  <p><strong>🎓 Study level:</strong> ${info.level || "See official source"}</p>
-  <p><strong>👤 Age:</strong> ${info.age || "Check official requirements"}</p>
-  <p><strong>🌍 Nationality:</strong> ${info.nationality || "Check official requirements"}</p>
-  <p><strong>📋 Eligibility:</strong> ${info.eligibility || "Not confirmed"}</p>
-  <p><strong>💰 Funding:</strong> ${info.funding || "Not confirmed"}</p>
-  <p><strong>📅 Deadline:</strong> ${info.deadline || "Not announced"}</p>
-  <p><strong>📌 Status:</strong> ${info.status || "Check official website"}</p>
+        <details>
+          <summary>How to apply</summary>
+          <p>${info.application || "Follow the official application instructions."}</p>
+        </details>
 
-  <details>
-    <summary>Documents required</summary>
-    <p>${info.documents || "Check official requirements."}</p>
-  </details>
+        <details>
+          <summary>Important notes</summary>
+          <p>${info.notes || "Check the official programme conditions."}</p>
+        </details>
 
-  <details>
-    <summary>How to apply</summary>
-    <p>${info.application || "Follow the official application instructions."}</p>
-  </details>
+        <a href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
+          Official programme website ↗
+        </a>
+      `;
 
-  <details>
-    <summary>Important notes</summary>
-    <p>${info.notes || "Check the official programme conditions."}</p>
-  </details>
+      container.appendChild(card);
+    });
+  }
 
-  <a href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
-    Official programme website ↗
-  </a>
-`;
+  document.getElementById("search").addEventListener("input", render);
+
+  // Initial render on load
   render();
 
   if ("serviceWorker" in navigator) {
