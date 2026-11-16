@@ -212,66 +212,66 @@
 </footer>
 <script>
   Const opportunities = [
-  {
-    name: "Blue Ocean Student Entrepreneur Competition 2027",
-    type: "Competition",
-    detail: "Develop an innovative business idea and submit a video pitch. Students can enter individually or in teams of up to five.",
-    country: "Worldwide · Online",
-    eligibility: "High-school students worldwide",
-    deadline: "21 February 2027",
-    cost: "Free entry",
-    url: "https://blueoceancompetition.org/"
-  },
-  {
-    name: "World of 8 Billion Video Contest 2026–27",
-    type: "Competition",
-    detail: "Create a video of 60 seconds or less about a global population challenge and suggest a sustainable solution.",
-    country: "Worldwide · Online",
-    eligibility: "Grades 6–12 or international equivalent",
-    deadline: "3 March 2027",
-    cost: "Free entry",
-    url: "https://www.worldof8billion.org/video-contest/"
-  },
-  {
-    name: "The Earth Prize 2027",
-    type: "Competition",
-    detail: "Develop an environmental sustainability solution. Students can participate individually or in teams of up to five.",
-    country: "Worldwide · Online",
-    eligibility: "Ages 13–19 and currently in education",
-    deadline: "Registration: 10 January 2027; project submission: 31 January 2027",
-    cost: "Free registration",
-    url: "https://www.theearthprize.org/competition"
-  },
-  {
-    name: "CS50x — Introduction to Computer Science",
-    type: "Course",
-    detail: "Learn computer science fundamentals, programming, algorithms and problem-solving through Harvard's introductory course.",
-    country: "Worldwide · Online",
-    eligibility: "Open to learners worldwide; no prior experience required",
-    deadline: "Self-paced",
-    cost: "Free course access",
-    url: "https://cs50.harvard.edu/x/"
-  },
-  {
-    name: "CS50's Web Programming with Python and JavaScript",
-    type: "Course",
-    detail: "Learn web development, Python, JavaScript, databases and frameworks through practical projects.",
-    country: "Worldwide · Online",
-    eligibility: "Open to learners worldwide; CS50x or equivalent experience recommended",
-    deadline: "Self-paced",
-    cost: "Free course access",
-    url: "https://cs50.harvard.edu/web/"
-  },
-  {
-    name: "CS50's Introduction to Artificial Intelligence with Python",
-    type: "Course",
-    detail: "Explore search algorithms, machine learning, neural networks and artificial intelligence using Python.",
-    country: "Worldwide · Online",
-    eligibility: "Open to learners worldwide; Python experience recommended",
-    deadline: "Self-paced",
-    cost: "Free course access",
-    url: "https://cs50.harvard.edu/ai/"
-  }
+{
+name: "Blue Ocean Student Entrepreneur Competition 2027",
+type: "Competition",
+detail: "Develop an innovative business idea and submit a video pitch.",
+country: "Worldwide · Online",
+eligibility: "High-school students",
+deadline: "21 February 2027",
+cost: "Free entry",
+url: "https://blueoceancompetition.org/"
+},
+{
+name: "World of 8 Billion Video Contest",
+type: "Competition",
+detail: "Create a one-minute video about a global population challenge.",
+country: "Worldwide · Online",
+eligibility: "Grades 6–12",
+deadline: "3 March 2027",
+cost: "Free entry",
+url: "https://www.worldof8billion.org/video-contest/"
+},
+{
+name: "The Earth Prize 2027",
+type: "Competition",
+detail: "Develop an environmental sustainability solution.",
+country: "Worldwide · Online",
+eligibility: "Ages 13–19",
+deadline: "10 January 2027 registration",
+cost: "Free registration",
+url: "https://www.theearthprize.org/competition"
+},
+{
+name: "CS50x Introduction to Computer Science",
+type: "Course",
+detail: "Learn programming, algorithms and computer science fundamentals.",
+country: "Worldwide · Online",
+eligibility: "Open to all learners",
+deadline: "Self-paced",
+cost: "Free course access",
+url: "https://cs50.harvard.edu/x/"
+},
+{
+name: "CS50 Web Programming",
+type: "Course",
+detail: "Learn Python, JavaScript, databases and web development.",
+country: "Worldwide · Online",
+eligibility: "Python and CS50x experience recommended",
+deadline: "Self-paced",
+cost: "Free course access",
+url: "https://cs50.harvard.edu/web/"
+},
+{
+name: "CS50 Introduction to Artificial Intelligence",
+type: "Course",
+detail: "Explore machine learning, neural networks and artificial intelligence.",
+country: "Worldwide · Online",
+eligibility: "Python experience recommended",
+deadline: "Self-paced",
+cost: "Free course access",
+url: "https://cs50.harvard.edu/ai/"
+}
 ];
 
 let selected = "All";
@@ -291,12 +291,12 @@ function choose(category) {
 }
 
 function render() {
-  const query = document
-    .getElementById("search")
-    .value.toLowerCase()
-    .trim();
+  const query = document.getElementById("search").value.toLowerCase().trim();
 
   const filtered = opportunities.filter(item => {
+    const matchesCategory =
+      selected === "All" || item.type === selected;
+
     const searchable = [
       item.name,
       item.type,
@@ -307,18 +307,14 @@ function render() {
       item.cost
     ].join(" ").toLowerCase();
 
-    return (
-      (selected === "All" || item.type === selected) &&
-      searchable.includes(query)
-    );
+    return matchesCategory && searchable.includes(query);
   });
 
   const container = document.getElementById("cards");
   container.innerHTML = "";
 
-  if (!filtered.length) {
-    container.innerHTML =
-      '<p class="empty">No matching opportunities yet. Try another search or category.</p>';
+  if (filtered.length === 0) {
+    container.innerHTML = '<p class="empty">No matching opportunities yet. Try another search or category.</p>';
     return;
   }
 
@@ -326,56 +322,43 @@ function render() {
     const card = document.createElement("article");
     card.className = "card";
 
-    const tag = document.createElement("span");
-    tag.className = "tag";
-    tag.textContent = item.type;
-
-    const title = document.createElement("h3");
-    title.textContent = item.name;
-
-    const detail = document.createElement("p");
-    detail.textContent = item.detail;
-
-    const eligibility = document.createElement("p");
-    eligibility.textContent = "🎓 Eligibility: " + item.eligibility;
-
-    const country = document.createElement("p");
-    country.textContent = "🌍 " + item.country;
-
-    const deadline = document.createElement("p");
-    deadline.textContent = "📅 Deadline: " + item.deadline;
-
-    const cost = document.createElement("p");
-    cost.textContent = "💰 " + item.cost;
-
-    const link = document.createElement("a");
-    link.href = item.url;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "Visit official website ↗";
-
-    card.append(
-      tag,
-      title,
-      detail,
-      eligibility,
-      country,
-      deadline,
-      cost,
-      link
-    );
+    card.innerHTML = `
+      <span class="tag">${item.type}</span>
+      <h3>${item.name}</h3>
+      <p>${item.detail}</p>
+      <p>🎓 <strong>Eligibility:</strong> ${item.eligibility}</p>
+      <p>🌍 ${item.country}</p>
+      <p>📅 <strong>Deadline:</strong> ${item.deadline}</p>
+      <p>💰 ${item.cost}</p>
+      <a href="${item.url}" target="_blank" rel="noopener noreferrer">
+        Visit official website ↗
+      </a>
+    `;
 
     container.appendChild(card);
   });
+}
+  let selected = "All";
+
+function choose(category) {
+  selected = category;
+
+  document.querySelectorAll(".category, .filter").forEach(el => {
+    el.classList.toggle(
+      "active",
+      el.dataset.category === category ||
+      el.dataset.filter === category
+    );
+  });
+
+  render();
 }
 
 document.getElementById("search").addEventListener("input", render);
 
 render();
 </script>
-</body>
-</html>
-<script>
+  <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./service-worker.js")
@@ -384,3 +367,5 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
+</body>
+</html>
