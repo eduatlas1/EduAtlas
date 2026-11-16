@@ -210,58 +210,167 @@
   A world of opportunities, one place.<br>
   Helping students discover what's possible, wherever they are.
 </footer>
-
 <script>
-const opportunities = [
-  {name:"Scholarship discovery", type:"Scholarship", detail:"A space for verified undergraduate and postgraduate funding opportunities.", country:"Worldwide"},
-  {name:"Career exploration", type:"Internship", detail:"A directory for student internships and early career experiences.", country:"Worldwide"},
-  {name:"Open learning", type:"Course", detail:"Explore free learning resources and online courses.", country:"Online"},
-  {name:"Student competitions", type:"Competition", detail:"Discover academic, creative and STEM competitions.", country:"Worldwide"}
+  Const opportunities = [
+  {
+    name: "Blue Ocean Student Entrepreneur Competition 2027",
+    type: "Competition",
+    detail: "Develop an innovative business idea and submit a video pitch. Students can enter individually or in teams of up to five.",
+    country: "Worldwide · Online",
+    eligibility: "High-school students worldwide",
+    deadline: "21 February 2027",
+    cost: "Free entry",
+    url: "https://blueoceancompetition.org/"
+  },
+  {
+    name: "World of 8 Billion Video Contest 2026–27",
+    type: "Competition",
+    detail: "Create a video of 60 seconds or less about a global population challenge and suggest a sustainable solution.",
+    country: "Worldwide · Online",
+    eligibility: "Grades 6–12 or international equivalent",
+    deadline: "3 March 2027",
+    cost: "Free entry",
+    url: "https://www.worldof8billion.org/video-contest/"
+  },
+  {
+    name: "The Earth Prize 2027",
+    type: "Competition",
+    detail: "Develop an environmental sustainability solution. Students can participate individually or in teams of up to five.",
+    country: "Worldwide · Online",
+    eligibility: "Ages 13–19 and currently in education",
+    deadline: "Registration: 10 January 2027; project submission: 31 January 2027",
+    cost: "Free registration",
+    url: "https://www.theearthprize.org/competition"
+  },
+  {
+    name: "CS50x — Introduction to Computer Science",
+    type: "Course",
+    detail: "Learn computer science fundamentals, programming, algorithms and problem-solving through Harvard's introductory course.",
+    country: "Worldwide · Online",
+    eligibility: "Open to learners worldwide; no prior experience required",
+    deadline: "Self-paced",
+    cost: "Free course access",
+    url: "https://cs50.harvard.edu/x/"
+  },
+  {
+    name: "CS50's Web Programming with Python and JavaScript",
+    type: "Course",
+    detail: "Learn web development, Python, JavaScript, databases and frameworks through practical projects.",
+    country: "Worldwide · Online",
+    eligibility: "Open to learners worldwide; CS50x or equivalent experience recommended",
+    deadline: "Self-paced",
+    cost: "Free course access",
+    url: "https://cs50.harvard.edu/web/"
+  },
+  {
+    name: "CS50's Introduction to Artificial Intelligence with Python",
+    type: "Course",
+    detail: "Explore search algorithms, machine learning, neural networks and artificial intelligence using Python.",
+    country: "Worldwide · Online",
+    eligibility: "Open to learners worldwide; Python experience recommended",
+    deadline: "Self-paced",
+    cost: "Free course access",
+    url: "https://cs50.harvard.edu/ai/"
+  }
 ];
 
 let selected = "All";
 
 function choose(category) {
   selected = category;
+
   document.querySelectorAll(".category, .filter").forEach(el => {
-    el.classList.toggle("active", el.dataset.category === category || el.dataset.filter === category);
+    el.classList.toggle(
+      "active",
+      el.dataset.category === category ||
+      el.dataset.filter === category
+    );
   });
+
   render();
 }
 
 function render() {
-  const query = document.getElementById("search").value.toLowerCase();
-  const filtered = opportunities.filter(item =>
-    (selected === "All" || item.type === selected) &&
-    (item.name + item.type + item.detail + item.country).toLowerCase().includes(query)
-  );
+  const query = document
+    .getElementById("search")
+    .value.toLowerCase()
+    .trim();
+
+  const filtered = opportunities.filter(item => {
+    const searchable = [
+      item.name,
+      item.type,
+      item.detail,
+      item.country,
+      item.eligibility,
+      item.deadline,
+      item.cost
+    ].join(" ").toLowerCase();
+
+    return (
+      (selected === "All" || item.type === selected) &&
+      searchable.includes(query)
+    );
+  });
+
   const container = document.getElementById("cards");
   container.innerHTML = "";
+
   if (!filtered.length) {
-    container.innerHTML = '<p class="empty">No matching opportunities yet. Try another search.</p>';
+    container.innerHTML =
+      '<p class="empty">No matching opportunities yet. Try another search or category.</p>';
     return;
   }
+
   filtered.forEach(item => {
     const card = document.createElement("article");
     card.className = "card";
+
     const tag = document.createElement("span");
     tag.className = "tag";
     tag.textContent = item.type;
+
     const title = document.createElement("h3");
     title.textContent = item.name;
+
     const detail = document.createElement("p");
     detail.textContent = item.detail;
+
+    const eligibility = document.createElement("p");
+    eligibility.textContent = "🎓 Eligibility: " + item.eligibility;
+
     const country = document.createElement("p");
     country.textContent = "🌍 " + item.country;
-    const label = document.createElement("p");
-    label.className = "note";
-    label.textContent = "Demo category — not an active application listing.";
-    card.append(tag, title, detail, country, label);
+
+    const deadline = document.createElement("p");
+    deadline.textContent = "📅 Deadline: " + item.deadline;
+
+    const cost = document.createElement("p");
+    cost.textContent = "💰 " + item.cost;
+
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Visit official website ↗";
+
+    card.append(
+      tag,
+      title,
+      detail,
+      eligibility,
+      country,
+      deadline,
+      cost,
+      link
+    );
+
     container.appendChild(card);
   });
 }
 
 document.getElementById("search").addEventListener("input", render);
+
 render();
 </script>
 </body>
