@@ -679,20 +679,27 @@
     filtered.forEach(item => {
       const card = document.createElement("article");
       card.className = "card";
+Card.innerHTML = `
+  <span class="tag">${item.type}</span>
+  <h3>${item.name}</h3>
+  <p>${item.detail}</p>
+  <p>🎓 <strong>Eligibility:</strong> ${item.eligibility || "Not confirmed — check official source"}</p>
+  <p>📚 <strong>Study level:</strong> ${item.studyLevel || "See official programme details"}</p>
+  <p>🌍 <strong>Location:</strong> ${item.country}</p>
+  <p>💰 <strong>Funding:</strong> ${item.funding || item.cost || "Not confirmed"}</p>
+  <p>📅 <strong>Deadline:</strong> ${item.deadline || "Not announced"}</p>
+  <p><strong>Status:</strong> ${item.status || "Check official website"}</p>
 
-      card.innerHTML = `
-        <span class="tag">${item.type}</span>
-        <h3>${item.name}</h3>
-        <p>${item.detail}</p>
-        <p>🎓 <strong>Eligibility:</strong> ${item.eligibility}</p>
-        <p>🌍 ${item.country}</p>
-        <p>📅 <strong>Deadline:</strong> ${item.deadline}</p>
-        <p>💰 ${item.cost}</p>
-        <a href="${item.url}" target="_blank" rel="noopener noreferrer">
-          Visit official website ↗
-        </a>
-      `;
+  <details>
+    <summary>Application details</summary>
+    <p><strong>Documents:</strong> ${item.documents || "See official requirements"}</p>
+    <p><strong>How to apply:</strong> ${item.applicationProcess || "Follow the official application instructions"}</p>
+  </details>
 
+  <a href="${item.url}" target="_blank" rel="noopener noreferrer">
+    Visit official website ↗
+  </a>
+`;
       container.appendChild(card);
     });
   }
