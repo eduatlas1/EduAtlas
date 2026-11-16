@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b4d">
+  <meta name="description" content="Discover scholarships, internships, courses and educational opportunities worldwide.">
+  <title>EduAtlas — A world of opportunities</title>
+  <style>
+    :root {
+      --navy: #172b4d;
+      --gold: #e9b96e;
+      --ivory: #f7f5ef;
+      --sage: #76968a;
+      --ink: #263449;
+      --muted: #788393;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--ivory);
+      color: var(--ink);
+    }
+    header {
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      border-bottom: 1px solid #e9e7e0;
+    }
+    .logo { font-size: 25px; font-weight: 800; color: var(--navy); }
+    .logo span { color: var(--gold); }
+    nav { display: flex; gap: 22px; flex-wrap: wrap; }
+    nav a { color: var(--navy); text-decoration: none; font-size: 14px; }
+    .hero {
+      padding: 75px 7% 65px;
+      background: var(--navy);
+      color: white;
+    }
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(38px, 6vw, 65px);
+      max-width: 700px;
+      line-height: 1.12;
+      margin: 18px 0;
+      font-weight: normal;
+    }
+    .hero p { color: #d5dce6; line-height: 1.7; max-width: 510px; }
+    .search {
+      margin-top: 28px;
+      display: flex;
+      gap: 10px;
+      max-width: 600px;
+    }
+    input {
+      min-width: 0;
+      flex: 1;
+      padding: 16px;
+      border: 0;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+    button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 7px;
+      padding: 13px 20px;
+      font-weight: bold;
+    }
+    .search button { background: var(--gold); color: var(--navy); }
+    main { padding: 45px 7%; }
+    .section-heading { font-family: Georgia, serif; font-size: 29px; color: var(--navy); }
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin: 25px 0 45px;
+    }
+    .category {
+      background: white;
+      border: 1px solid #e9e7e0;
+      border-radius: 10px;
+      padding: 22px 15px;
+      text-align: left;
+      color: var(--navy);
+    }
+    .category.active { border: 2px solid var(--sage); }
+    .category .symbol { font-size: 26px; display: block; margin-bottom: 12px; }
+    .category small { display: block; margin-top: 7px; color: var(--muted); }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin: 18px 0; }
+    .filter {
+      background: white;
+      color: var(--navy);
+      border: 1px solid #deded8;
+      padding: 9px 14px;
+    }
+    .filter.active { background: var(--navy); color: white; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e9e7e0;
+      border-radius: 10px;
+      padding: 22px;
+    }
+    .tag {
+      font-size: 11px;
+      color: #466c5e;
+      background: #edf3ef;
+      border-radius: 20px;
+      padding: 6px 10px;
+      display: inline-block;
+    }
+    .card h3 { color: var(--navy); font-size: 19px; margin: 17px 0 9px; }
+    .card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .card a { color: var(--navy); font-size: 13px; font-weight: bold; }
+    .empty { color: var(--muted); padding: 25px 0; }
+    .note { font-size: 12px; color: var(--muted); margin-top: 22px; }
+    footer {
+      padding: 30px 7%;
+      background: var(--navy);
+      color: white;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    @media(max-width: 750px) {
+      header { align-items: flex-start; gap: 15px; flex-direction: column; }
+      nav { gap: 15px; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+      .cards { grid-template-columns: 1fr; }
+      .hero { padding: 55px 6%; }
+      main { padding: 35px 6%; }
+    }
+    @media(max-width: 390px) {
+      .search { flex-direction: column; }
+      .search button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">Edu<span>Atlas</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#categories">Explore</a>
+    <a href="#opportunities">Opportunities</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
+  <h1>A world of opportunities, one place.</h1>
+  <p>Discover scholarships, internships, courses and competitions from around the world. Your next opportunity might be closer than you think.</p>
+  <div class="search">
+    <input id="search" type="search" placeholder="Search opportunities, subjects, countries...">
+    <button onclick="render()">Explore</button>
+  </div>
+</section>
+
+<main>
+  <section id="categories">
+    <div class="section-heading">Explore possibilities.</div>
+    <p>Find the opportunity that moves you forward.</p>
+    <div class="categories">
+      <button class="category" data-category="Scholarship" onclick="choose('Scholarship')">
+        <span class="symbol">🎓</span>Scholarships<small>Funding your education</small>
+      </button>
+      <button class="category" data-category="Internship" onclick="choose('Internship')">
+        <span class="symbol">💼</span>Internships<small>Gain experience</small>
+      </button>
+      <button class="category" data-category="Course" onclick="choose('Course')">
+        <span class="symbol">📚</span>Free courses<small>Learn something new</small>
+      </button>
+      <button class="category" data-category="Competition" onclick="choose('Competition')">
+        <span class="symbol">🏆</span>Competitions<small>Show your potential</small>
+      </button>
+    </div>
+  </section>
+
+  <section id="opportunities">
+    <div class="section-heading">Discover opportunities.</div>
+    <div class="filters">
+      <button class="filter active" data-filter="All" onclick="choose('All')">All</button>
+      <button class="filter" data-filter="Scholarship" onclick="choose('Scholarship')">Scholarships</button>
+      <button class="filter" data-filter="Internship" onclick="choose('Internship')">Internships</button>
+      <button class="filter" data-filter="Course" onclick="choose('Course')">Courses</button>
+      <button class="filter" data-filter="Competition" onclick="choose('Competition')">Competitions</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <p class="note">Demonstration listings only. Real opportunities will be added after checking official sources, eligibility and deadlines.</p>
+  </section>
+</main>
+
+<footer>
+  <strong>EduAtlas</strong><br>
+  A world of opportunities, one place.<br>
+  Helping students discover what's possible, wherever they are.
+</footer>
+
+<script>
+const opportunities = [
+  {name:"Scholarship discovery", type:"Scholarship", detail:"A space for verified undergraduate and postgraduate funding opportunities.", country:"Worldwide"},
+  {name:"Career exploration", type:"Internship", detail:"A directory for student internships and early career experiences.", country:"Worldwide"},
+  {name:"Open learning", type:"Course", detail:"Explore free learning resources and online courses.", country:"Online"},
+  {name:"Student competitions", type:"Competition", detail:"Discover academic, creative and STEM competitions.", country:"Worldwide"}
+];
+
+let selected = "All";
+
+function choose(category) {
+  selected = category;
+  document.querySelectorAll(".category, .filter").forEach(el => {
+    el.classList.toggle("active", el.dataset.category === category || el.dataset.filter === category);
+  });
+  render();
+}
+
+function render() {
+  const query = document.getElementById("search").value.toLowerCase();
+  const filtered = opportunities.filter(item =>
+    (selected === "All" || item.type === selected) &&
+    (item.name + item.type + item.detail + item.country).toLowerCase().includes(query)
+  );
+  const container = document.getElementById("cards");
+  container.innerHTML = "";
+  if (!filtered.length) {
+    container.innerHTML = '<p class="empty">No matching opportunities yet. Try another search.</p>';
+    return;
+  }
+  filtered.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "card";
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = item.type;
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+    const detail = document.createElement("p");
+    detail.textContent = item.detail;
+    const country = document.createElement("p");
+    country.textContent = "🌍 " + item.country;
+    const label = document.createElement("p");
+    label.className = "note";
+    label.textContent = "Demo category — not an active application listing.";
+    card.append(tag, title, detail, country, label);
+    container.appendChild(card);
+  });
+}
+
+document.getElementById("search").addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
