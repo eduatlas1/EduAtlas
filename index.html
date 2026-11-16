@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172b4d">
   <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="apple-touch-icon" href="./icon.svg">
   <meta name="description" content="Discover scholarships, internships, courses and educational opportunities worldwide.">
   <title>EduAtlas — A world of opportunities</title>
   <style>
@@ -116,6 +118,8 @@
       border: 1px solid #e9e7e0;
       border-radius: 10px;
       padding: 22px;
+      display: flex;
+      flex-direction: column;
     }
     .tag {
       font-size: 11px;
@@ -124,10 +128,12 @@
       border-radius: 20px;
       padding: 6px 10px;
       display: inline-block;
+      align-self: flex-start;
     }
     .card h3 { color: var(--navy); font-size: 19px; margin: 17px 0 9px; }
-    .card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-    .card a { color: var(--navy); font-size: 13px; font-weight: bold; }
+    .card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 5px 0; }
+    .card a { color: var(--navy); font-size: 13px; font-weight: bold; margin-top: auto; padding-top: 14px; text-decoration: none; }
+    .card a:hover { text-decoration: underline; }
     .empty { color: var(--muted); padding: 25px 0; }
     .note { font-size: 12px; color: var(--muted); margin-top: 22px; }
     footer {
@@ -201,7 +207,7 @@
       <button class="filter" data-filter="Competition" onclick="choose('Competition')">Competitions</button>
     </div>
     <div class="cards" id="cards"></div>
-    <p class="note">Demonstration listings only. Real opportunities will be added after checking official sources, eligibility and deadlines.</p>
+    <p class="note">Always verify eligibility requirements and deadlines on the official websites before applying.</p>
   </section>
 </main>
 
@@ -210,162 +216,147 @@
   A world of opportunities, one place.<br>
   Helping students discover what's possible, wherever they are.
 </footer>
+
 <script>
-  Const opportunities = [
-{
-name: "Blue Ocean Student Entrepreneur Competition 2027",
-type: "Competition",
-detail: "Develop an innovative business idea and submit a video pitch.",
-country: "Worldwide · Online",
-eligibility: "High-school students",
-deadline: "21 February 2027",
-cost: "Free entry",
-url: "https://blueoceancompetition.org/"
-},
-{
-name: "World of 8 Billion Video Contest",
-type: "Competition",
-detail: "Create a one-minute video about a global population challenge.",
-country: "Worldwide · Online",
-eligibility: "Grades 6–12",
-deadline: "3 March 2027",
-cost: "Free entry",
-url: "https://www.worldof8billion.org/video-contest/"
-},
-{
-name: "The Earth Prize 2027",
-type: "Competition",
-detail: "Develop an environmental sustainability solution.",
-country: "Worldwide · Online",
-eligibility: "Ages 13–19",
-deadline: "10 January 2027 registration",
-cost: "Free registration",
-url: "https://www.theearthprize.org/competition"
-},
-{
-name: "CS50x Introduction to Computer Science",
-type: "Course",
-detail: "Learn programming, algorithms and computer science fundamentals.",
-country: "Worldwide · Online",
-eligibility: "Open to all learners",
-deadline: "Self-paced",
-cost: "Free course access",
-url: "https://cs50.harvard.edu/x/"
-},
-{
-name: "CS50 Web Programming",
-type: "Course",
-detail: "Learn Python, JavaScript, databases and web development.",
-country: "Worldwide · Online",
-eligibility: "Python and CS50x experience recommended",
-deadline: "Self-paced",
-cost: "Free course access",
-url: "https://cs50.harvard.edu/web/"
-},
-{
-name: "CS50 Introduction to Artificial Intelligence",
-type: "Course",
-detail: "Explore machine learning, neural networks and artificial intelligence.",
-country: "Worldwide · Online",
-eligibility: "Python experience recommended",
-deadline: "Self-paced",
-cost: "Free course access",
-url: "https://cs50.harvard.edu/ai/"
-}
-];
+  const opportunities = [
+    {
+      name: "Blue Ocean Student Entrepreneur Competition 2027",
+      type: "Competition",
+      detail: "Develop an innovative business idea and submit a video pitch.",
+      country: "Worldwide · Online",
+      eligibility: "High-school students",
+      deadline: "21 February 2027",
+      cost: "Free entry",
+      url: "https://blueoceancompetition.org/"
+    },
+    {
+      name: "World of 8 Billion Video Contest",
+      type: "Competition",
+      detail: "Create a one-minute video about a global population challenge.",
+      country: "Worldwide · Online",
+      eligibility: "Grades 6–12",
+      deadline: "3 March 2027",
+      cost: "Free entry",
+      url: "https://www.worldof8billion.org/video-contest/"
+    },
+    {
+      name: "The Earth Prize 2027",
+      type: "Competition",
+      detail: "Develop an environmental sustainability solution.",
+      country: "Worldwide · Online",
+      eligibility: "Ages 13–19",
+      deadline: "10 January 2027 registration",
+      cost: "Free registration",
+      url: "https://www.theearthprize.org/competition"
+    },
+    {
+      name: "CS50x Introduction to Computer Science",
+      type: "Course",
+      detail: "Learn programming, algorithms and computer science fundamentals.",
+      country: "Worldwide · Online",
+      eligibility: "Open to all learners",
+      deadline: "Self-paced",
+      cost: "Free course access",
+      url: "https://cs50.harvard.edu/x/"
+    },
+    {
+      name: "CS50 Web Programming",
+      type: "Course",
+      detail: "Learn Python, JavaScript, databases and web development.",
+      country: "Worldwide · Online",
+      eligibility: "Python and CS50x experience recommended",
+      deadline: "Self-paced",
+      cost: "Free course access",
+      url: "https://cs50.harvard.edu/web/"
+    },
+    {
+      name: "CS50 Introduction to Artificial Intelligence",
+      type: "Course",
+      detail: "Explore machine learning, neural networks and artificial intelligence.",
+      country: "Worldwide · Online",
+      eligibility: "Python experience recommended",
+      deadline: "Self-paced",
+      cost: "Free course access",
+      url: "https://cs50.harvard.edu/ai/"
+    }
+  ];
 
-let selected = "All";
-
-function choose(category) {
-  selected = category;
-
-  document.querySelectorAll(".category, .filter").forEach(el => {
-    el.classList.toggle(
-      "active",
-      el.dataset.category === category ||
-      el.dataset.filter === category
-    );
-  });
-
-  render();
-}
-
-function render() {
-  const query = document.getElementById("search").value.toLowerCase().trim();
-
-  const filtered = opportunities.filter(item => {
-    const matchesCategory =
-      selected === "All" || item.type === selected;
-
-    const searchable = [
-      item.name,
-      item.type,
-      item.detail,
-      item.country,
-      item.eligibility,
-      item.deadline,
-      item.cost
-    ].join(" ").toLowerCase();
-
-    return matchesCategory && searchable.includes(query);
-  });
-
-  const container = document.getElementById("cards");
-  container.innerHTML = "";
-
-  if (filtered.length === 0) {
-    container.innerHTML = '<p class="empty">No matching opportunities yet. Try another search or category.</p>';
-    return;
-  }
-
-  filtered.forEach(item => {
-    const card = document.createElement("article");
-    card.className = "card";
-
-    card.innerHTML = `
-      <span class="tag">${item.type}</span>
-      <h3>${item.name}</h3>
-      <p>${item.detail}</p>
-      <p>🎓 <strong>Eligibility:</strong> ${item.eligibility}</p>
-      <p>🌍 ${item.country}</p>
-      <p>📅 <strong>Deadline:</strong> ${item.deadline}</p>
-      <p>💰 ${item.cost}</p>
-      <a href="${item.url}" target="_blank" rel="noopener noreferrer">
-        Visit official website ↗
-      </a>
-    `;
-
-    container.appendChild(card);
-  });
-}
   let selected = "All";
 
-function choose(category) {
-  selected = category;
+  function choose(category) {
+    selected = category;
 
-  document.querySelectorAll(".category, .filter").forEach(el => {
-    el.classList.toggle(
-      "active",
-      el.dataset.category === category ||
-      el.dataset.filter === category
-    );
-  });
+    document.querySelectorAll(".category, .filter").forEach(el => {
+      el.classList.toggle(
+        "active",
+        el.dataset.category === category ||
+        el.dataset.filter === category
+      );
+    });
+
+    render();
+  }
+
+  function render() {
+    const query = document.getElementById("search").value.toLowerCase().trim();
+
+    const filtered = opportunities.filter(item => {
+      const matchesCategory =
+        selected === "All" || item.type === selected;
+
+      const searchable = [
+        item.name,
+        item.type,
+        item.detail,
+        item.country,
+        item.eligibility,
+        item.deadline,
+        item.cost
+      ].join(" ").toLowerCase();
+
+      return matchesCategory && searchable.includes(query);
+    });
+
+    const container = document.getElementById("cards");
+    container.innerHTML = "";
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<p class="empty">No matching opportunities yet. Try another search or category.</p>';
+      return;
+    }
+
+    filtered.forEach(item => {
+      const card = document.createElement("article");
+      card.className = "card";
+
+      card.innerHTML = `
+        <span class="tag">${item.type}</span>
+        <h3>${item.name}</h3>
+        <p>${item.detail}</p>
+        <p>🎓 <strong>Eligibility:</strong> ${item.eligibility}</p>
+        <p>🌍 ${item.country}</p>
+        <p>📅 <strong>Deadline:</strong> ${item.deadline}</p>
+        <p>💰 ${item.cost}</p>
+        <a href="${item.url}" target="_blank" rel="noopener noreferrer">
+          Visit official website ↗
+        </a>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  document.getElementById("search").addEventListener("input", render);
 
   render();
-}
 
-document.getElementById("search").addEventListener("input", render);
-
-render();
-</script>
-  <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .then(() => console.log("EduAtlas app is ready!"))
-      .catch(error => console.error("App setup error:", error));
-  });
-}
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js")
+        .then(() => console.log("EduAtlas app is ready!"))
+        .catch(error => console.error("App setup error:", error));
+    });
+  }
 </script>
 </body>
 </html>
