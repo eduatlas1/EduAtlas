@@ -15,7 +15,7 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/svg+xml" href="./icon.svg">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <meta name="description" content="Discover scholarships, internships, free courses, and competitions worldwide.">
+  <meta name="description" content="Discover verified scholarships, internships, free courses, and competitions worldwide with detailed eligibility, documents, and deadlines.">
   <title>EduAtlas — A world of opportunities</title>
   <style>
     :root {
@@ -24,11 +24,12 @@
       --gold: #e9b96e;
       --gold-hover: #dfa853;
       --ivory: #f7f5ef;
-      --sage: #76968a;
+      --sage: #5c7d71;
+      --sage-bg: #eaf2ed;
       --ink: #263449;
-      --muted: #647182;
+      --muted: #5c6878;
       --white: #ffffff;
-      --border: #e5e2d9;
+      --border: #e2dfd7;
     }
 
     * {
@@ -44,7 +45,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--ivory);
       color: var(--ink);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     header {
@@ -89,7 +90,7 @@
     }
 
     .hero {
-      padding: 80px 7% 70px;
+      padding: 75px 7% 65px;
       background: var(--navy);
       color: var(--white);
     }
@@ -104,7 +105,7 @@
 
     h1 {
       font-family: Georgia, serif;
-      font-size: clamp(36px, 5.5vw, 62px);
+      font-size: clamp(36px, 5.5vw, 60px);
       max-width: 720px;
       line-height: 1.12;
       margin: 16px 0;
@@ -114,15 +115,15 @@
     .hero p {
       color: #d5dce6;
       line-height: 1.7;
-      max-width: 540px;
+      max-width: 560px;
       font-size: 16px;
     }
 
     .search {
-      margin-top: 30px;
+      margin-top: 28px;
       display: flex;
       gap: 10px;
-      max-width: 620px;
+      max-width: 640px;
     }
 
     input {
@@ -136,7 +137,7 @@
     }
 
     input:focus {
-      box-shadow: 0 0 0 3px rgba(233, 185, 110, 0.4);
+      box-shadow: 0 0 0 3px rgba(233, 185, 110, 0.45);
     }
 
     button {
@@ -159,7 +160,7 @@
     }
 
     main {
-      padding: 50px 7%;
+      padding: 45px 7%;
     }
 
     .section-heading {
@@ -178,14 +179,14 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin: 25px 0 50px;
+      margin: 22px 0 45px;
     }
 
     .category {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px 18px;
+      padding: 22px 18px;
       text-align: left;
       color: var(--navy);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -204,42 +205,61 @@
     .category .symbol {
       font-size: 28px;
       display: block;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .category small {
       display: block;
-      margin-top: 6px;
+      margin-top: 5px;
       color: var(--muted);
       font-weight: normal;
       font-size: 13px;
     }
 
-    .toolbar {
+    .filter-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0 26px;
+    }
+
+    .filter-row {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 18px 0 24px;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .filter-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--muted);
     }
 
     .filters {
       display: flex;
       flex-wrap: wrap;
-      gap: 9px;
+      gap: 8px;
     }
 
-    .filter {
-      background: var(--white);
+    .filter, .level-filter {
+      background: var(--ivory);
       color: var(--navy);
-      border: 1px solid #deded8;
-      padding: 9px 16px;
+      border: 1px solid #dcd9d0;
+      padding: 8px 14px;
       border-radius: 6px;
       font-weight: 600;
+      font-size: 13px;
     }
 
-    .filter:hover {
+    .filter:hover, .level-filter:hover {
       border-color: var(--navy);
     }
 
@@ -249,31 +269,62 @@
       border-color: var(--navy);
     }
 
+    .level-filter.active {
+      background: var(--sage);
+      color: var(--white);
+      border-color: var(--sage);
+    }
+
+    .toolbar-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid #efede7;
+    }
+
     .count-badge {
+      font-size: 13.5px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .reset-btn {
+      background: transparent;
+      color: var(--sage);
+      padding: 6px 10px;
       font-size: 13px;
-      color: var(--muted);
-      font-weight: 600;
+      text-decoration: underline;
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
     }
 
     .card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(23, 43, 77, 0.07);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(23, 43, 77, 0.07);
+    }
+
+    .card-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
     }
 
     .tag {
@@ -281,81 +332,129 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #3d6355;
-      background: #eaf2ed;
+      color: #36594c;
+      background: var(--sage-bg);
       border-radius: 20px;
       padding: 5px 12px;
-      display: inline-block;
-      align-self: flex-start;
+    }
+
+    .level-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      background: #eef2f8;
+      border-radius: 20px;
+      padding: 5px 12px;
     }
 
     .card h3 {
       color: var(--navy);
-      font-size: 19px;
-      margin: 15px 0 8px;
+      font-size: 20px;
+      margin: 14px 0 8px;
       line-height: 1.3;
     }
 
-    .card p {
-      font-size: 13.5px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 5px 0;
+    .card-summary {
+      font-size: 14px;
+      color: var(--ink);
+      margin: 0 0 14px;
     }
 
-    .card p strong {
-      color: var(--ink);
+    .meta-grid {
+      background: #faf9f5;
+      border: 1px solid #efede7;
+      border-radius: 8px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .meta-item {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .meta-item strong {
+      color: var(--navy);
     }
 
     .card-details-group {
-      margin-top: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .card details {
       border-top: 1px solid #efede7;
-      padding: 9px 0;
-      font-size: 13px;
+      padding: 10px 0;
+      font-size: 13.5px;
+    }
+
+    .card details:last-child {
+      border-bottom: 1px solid #efede7;
     }
 
     .card summary {
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--navy);
       outline: none;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .card summary:hover {
+    .card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .card summary::after {
+      content: "+";
+      font-size: 16px;
       color: var(--sage);
+      font-weight: 800;
+    }
+
+    .card details[open] summary::after {
+      content: "−";
+    }
+
+    .card details p {
+      margin: 8px 0 2px;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     .card a.btn-link {
       display: inline-block;
       text-align: center;
-      background: var(--ivory);
-      color: var(--navy);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      font-size: 13px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 8px;
+      font-size: 13.5px;
       font-weight: 700;
       margin-top: auto;
-      padding: 11px 14px;
+      padding: 12px 16px;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s;
     }
 
     .card a.btn-link:hover {
-      background: var(--navy);
-      color: var(--white);
-      border-color: var(--navy);
+      background: var(--navy-light);
     }
 
     .empty {
       color: var(--muted);
-      padding: 35px 0;
+      padding: 40px 20px;
       grid-column: 1 / -1;
       text-align: center;
       font-size: 15px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
     }
 
     .note {
@@ -377,9 +476,9 @@
       font-size: 16px;
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 900px) {
       .cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
       }
     }
 
@@ -395,9 +494,6 @@
       }
       .categories {
         grid-template-columns: repeat(2, 1fr);
-      }
-      .cards {
-        grid-template-columns: 1fr;
       }
       .hero {
         padding: 55px 6%;
@@ -430,9 +526,9 @@
 <section class="hero" id="home">
   <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
   <h1>A world of opportunities, one place.</h1>
-  <p>Discover verified scholarships, internships, free courses, and global competitions. Built to help students everywhere access life-changing programs.</p>
+  <p>Discover verified scholarships, internships, free courses, and global competitions—complete with eligibility rules, required documents, and application timelines.</p>
   <div class="search">
-    <input id="search" type="search" placeholder="Search by keyword, subject, country (e.g., STEM, Pakistan, UK)...">
+    <input id="search" type="search" placeholder="Search by keyword, subject, country (e.g., STEM, Bachelor, Pakistan, UK)...">
     <button onclick="render()">Explore</button>
   </div>
 </section>
@@ -440,37 +536,59 @@
 <main>
   <section id="categories">
     <div class="section-heading">Explore possibilities.</div>
-    <p class="section-sub">Select a category below to filter curated opportunities.</p>
+    <p class="section-sub">Click a category to jump straight to curated programs.</p>
     <div class="categories">
-      <button class="category" data-category="Scholarship" onclick="choose('Scholarship')">
-        <span class="symbol">🎓</span>Scholarships<small>Funding your education</small>
+      <button class="category" data-category="Scholarship" onclick="chooseCategory('Scholarship', true)">
+        <span class="symbol">🎓</span>Scholarships<small>Full & partial study funding</small>
       </button>
-      <button class="category" data-category="Internship" onclick="choose('Internship')">
-        <span class="symbol">💼</span>Internships<small>Gain global experience</small>
+      <button class="category" data-category="Internship" onclick="chooseCategory('Internship', true)">
+        <span class="symbol">💼</span>Internships<small>Global research & work</small>
       </button>
-      <button class="category" data-category="Course" onclick="choose('Course')">
-        <span class="symbol">📚</span>Free courses<small>Learn new skills</small>
+      <button class="category" data-category="Course" onclick="chooseCategory('Course', true)">
+        <span class="symbol">📚</span>Free courses<small>University & AI certifications</small>
       </button>
-      <button class="category" data-category="Competition" onclick="choose('Competition')">
-        <span class="symbol">🏆</span>Competitions<small>Showcase your potential</small>
+      <button class="category" data-category="Competition" onclick="chooseCategory('Competition', true)">
+        <span class="symbol">🏆</span>Competitions<small>STEM, pitch & academic awards</small>
       </button>
     </div>
   </section>
 
   <section id="opportunities">
     <div class="section-heading">Discover opportunities.</div>
-    <div class="toolbar">
-      <div class="filters">
-        <button class="filter active" data-filter="All" onclick="choose('All')">All</button>
-        <button class="filter" data-filter="Scholarship" onclick="choose('Scholarship')">Scholarships</button>
-        <button class="filter" data-filter="Internship" onclick="choose('Internship')">Internships</button>
-        <button class="filter" data-filter="Course" onclick="choose('Course')">Free Courses</button>
-        <button class="filter" data-filter="Competition" onclick="choose('Competition')">Competitions</button>
+    <p class="section-sub">Combine category and academic level filters to find programs that match your profile.</p>
+
+    <div class="filter-panel">
+      <div class="filter-row">
+        <span class="filter-label">1. Opportunity Type</span>
+        <div class="filters">
+          <button class="filter active" data-filter="All" onclick="chooseCategory('All')">All Types</button>
+          <button class="filter" data-filter="Scholarship" onclick="chooseCategory('Scholarship')">Scholarships</button>
+          <button class="filter" data-filter="Internship" onclick="chooseCategory('Internship')">Internships</button>
+          <button class="filter" data-filter="Course" onclick="chooseCategory('Course')">Free Courses</button>
+          <button class="filter" data-filter="Competition" onclick="chooseCategory('Competition')">Competitions</button>
+        </div>
       </div>
-      <div class="count-badge" id="count-badge">Showing all opportunities</div>
+
+      <div class="filter-row">
+        <span class="filter-label">2. Academic / Education Level</span>
+        <div class="filters">
+          <button class="level-filter active" data-level="All" onclick="chooseLevel('All')">All Levels</button>
+          <button class="level-filter" data-level="High School" onclick="chooseLevel('High School')">High School (Grades 9–12)</button>
+          <button class="level-filter" data-level="Bachelor's" onclick="chooseLevel('Bachelor\'s')">Bachelor's / Undergrad</button>
+          <button class="level-filter" data-level="Master's" onclick="chooseLevel('Master\'s')">Master's / Graduate</button>
+          <button class="level-filter" data-level="PhD" onclick="chooseLevel('PhD')">PhD / Research</button>
+          <button class="level-filter" data-level="Open to All" onclick="chooseLevel('Open to All')">Open to All Learners</button>
+        </div>
+      </div>
+
+      <div class="toolbar-bottom">
+        <div class="count-badge" id="count-badge">Showing all opportunities</div>
+        <button class="reset-btn" onclick="resetFilters()">Reset all filters</button>
+      </div>
     </div>
+
     <div class="cards" id="cards"></div>
-    <p class="note">Always verify final eligibility requirements and deadlines directly on the official programme websites before applying.</p>
+    <p class="note">Always verify exact dates, country quotas, and document attestation requirements on the official programme websites before submitting an application.</p>
   </section>
 </main>
 
@@ -482,1489 +600,1500 @@
 
 <script>
   const opportunities = [
-    // COMPETITIONS (10 Verified Programs)
+    // COMPETITIONS (10 Detailed Programs)
     {
       name: "Blue Ocean Student Entrepreneur Competition",
       type: "Competition",
-      detail: "Develop an innovative business idea and submit a 5-minute video pitch.",
-      country: "Worldwide · Online",
-      eligibility: "High-school students (Grades 9–12)",
-      deadline: "February (Annual cycle)",
-      cost: "Free entry",
+      levels: ["High School"],
+      detail: "The largest virtual entrepreneurship pitch competition for high schoolers—design an innovative product or service that creates a new market space.",
+      country: "Worldwide · 100% Online",
       url: "https://blueoceancompetition.org/"
-    },
-    {
-      name: "World of 8 Billion Video Contest",
-      type: "Competition",
-      detail: "Create a 60-second educational video addressing a global population challenge.",
-      country: "Worldwide · Online",
-      eligibility: "Grades 6–12 worldwide",
-      deadline: "March (Annual cycle)",
-      cost: "Free entry",
-      url: "https://www.worldof8billion.org/video-contest/"
-    },
-    {
-      name: "The Earth Prize",
-      type: "Competition",
-      detail: "Develop an environmental sustainability solution for your community or the planet.",
-      country: "Worldwide · Online",
-      eligibility: "Ages 13–19",
-      deadline: "January registration",
-      cost: "Free registration",
-      url: "https://www.theearthprize.org/"
     },
     {
       name: "Breakthrough Junior Challenge",
       type: "Competition",
-      detail: "Explain a complex idea in physics, life sciences, or mathematics in a creative 2-minute video.",
-      country: "Worldwide · Online",
-      eligibility: "Ages 13–18 worldwide",
-      deadline: "June (Annual cycle)",
-      cost: "Free entry",
+      levels: ["High School"],
+      detail: "Global annual science communication competition where students explain a big idea in physics, life sciences, or mathematics in a 2-minute video.",
+      country: "Worldwide · 100% Online",
       url: "https://breakthroughjuniorchallenge.org/"
     },
     {
-      name: "Conrad Challenge",
+      name: "The Earth Prize",
       type: "Competition",
-      detail: "Global STEM and entrepreneurship competition solving real-world challenges in aerospace, health, and energy.",
-      country: "Worldwide · Online & Final Summit",
-      eligibility: "Ages 13–18 (Teams of 2–5)",
-      deadline: "November (Lean Canvas stage)",
-      cost: "Free initial round",
-      url: "https://www.conradchallenge.org/"
-    },
-    {
-      name: "International Mathematical Modeling Challenge (IMMC)",
-      type: "Competition",
-      detail: "Work in a team to solve a real-world problem using applied mathematics and modeling.",
-      country: "Worldwide · Team-based",
-      eligibility: "Secondary school students",
-      deadline: "Spring (Country-specific rounds)",
-      cost: "Free / National organizer rules",
-      url: "https://www.immchallenge.org/"
+      levels: ["High School"],
+      detail: "Global environmental sustainability competition empowering teenagers to design practical solutions to climate and ecological challenges.",
+      country: "Worldwide · Online",
+      url: "https://www.theearthprize.org/"
     },
     {
       name: "Regeneron International Science and Engineering Fair (ISEF)",
       type: "Competition",
-      detail: "The world's largest pre-college STEM research competition via affiliated national science fairs.",
-      country: "Worldwide · Affiliated Fairs",
-      eligibility: "Grades 9–12",
-      deadline: "Varies by regional/national fair",
-      cost: "Free via affiliated fairs",
+      levels: ["High School"],
+      detail: "The world's premier pre-college STEM research competition, bringing together top young scientists from over 70 countries and territories.",
+      country: "Worldwide · Affiliated National Fairs",
       url: "https://www.societyforscience.org/isef/"
+    },
+    {
+      name: "Conrad Challenge",
+      type: "Competition",
+      levels: ["High School"],
+      detail: "Multi-stage STEM and business innovation challenge where student teams create commercially viable solutions in Aerospace, Cyber-Tech, Energy, or Health.",
+      country: "Worldwide · Online & Final Summit",
+      url: "https://www.conradchallenge.org/"
+    },
+    {
+      name: "World of 8 Billion Video Contest",
+      type: "Competition",
+      levels: ["High School"],
+      detail: "Create a 60-second educational video connecting global population growth to environmental or social sustainability topics.",
+      country: "Worldwide · 100% Online",
+      url: "https://www.worldof8billion.org/video-contest/"
+    },
+    {
+      name: "International Mathematical Modeling Challenge (IMMC)",
+      type: "Competition",
+      levels: ["High School"],
+      detail: "Team-based applied mathematics competition challenging secondary students to model and solve complex real-world problems over 5 days.",
+      country: "Worldwide · Team-Based",
+      url: "https://www.immchallenge.org/"
     },
     {
       name: "Diamond Challenge",
       type: "Competition",
-      detail: "Premier high school entrepreneurship competition offering funding for business and social innovation.",
-      country: "Worldwide · Online & In-person",
-      eligibility: "High school students (Ages 14–18)",
-      deadline: "January (Annual cycle)",
-      cost: "Free entry",
+      levels: ["High School"],
+      detail: "Hosted by the University of Delaware, this global entrepreneurship competition funds high school ventures in Business Innovation and Social Innovation.",
+      country: "Worldwide · Online & In-Person Finals",
       url: "https://diamondchallenge.org/"
     },
     {
       name: "Bebras Computing Challenge",
       type: "Competition",
-      detail: "International computational thinking and informatics problem-solving challenge.",
-      country: "Worldwide · Online via schools",
-      eligibility: "School students (Ages 8–18)",
-      deadline: "November (Annual challenge week)",
-      cost: "Free via participating schools",
+      levels: ["High School"],
+      detail: "International computational thinking and logic challenge introducing informatics concepts through interactive 45-minute problem sets.",
+      country: "Worldwide · Over 80 Countries",
       url: "https://www.bebras.org/"
     },
     {
       name: "International Chemistry Quiz (ICQ)",
       type: "Competition",
-      detail: "Global chemistry competition run by the Royal Australian Chemical Institute promoting chemical sciences.",
-      country: "Worldwide · School-hosted",
-      eligibility: "Grades 7–12",
-      deadline: "Mid-year (Country coordinator dates)",
-      cost: "Low entry fee via school",
+      levels: ["High School"],
+      detail: "Organized by the Royal Australian Chemical Institute, testing chemical reasoning, data interpretation, and scientific literacy globally.",
+      country: "Worldwide · School-Hosted",
       url: "https://icq.raci.org.au/"
     },
 
-    // FREE COURSES (10 Verified Programs)
+    // FREE COURSES (10 Detailed Programs)
     {
       name: "CS50x: Introduction to Computer Science (Harvard)",
       type: "Course",
-      detail: "Harvard University's flagship course covering C, Python, SQL, algorithms, and web fundamentals.",
+      levels: ["Open to All", "High School", "Bachelor's"],
+      detail: "Harvard's legendary entry-level computer science course covering algorithmic thinking, C, Python, SQL, HTML, CSS, and JavaScript.",
       country: "Worldwide · Online",
-      eligibility: "Open to all learners",
-      deadline: "Self-paced",
-      cost: "Free course & free certificate",
       url: "https://cs50.harvard.edu/x/"
-    },
-    {
-      name: "CS50's Web Programming with Python and JavaScript",
-      type: "Course",
-      detail: "Build scalable web applications using Python, Django, JavaScript, SQL, and Git.",
-      country: "Worldwide · Online",
-      eligibility: "Basic programming experience recommended",
-      deadline: "Self-paced",
-      cost: "Free course & free certificate",
-      url: "https://cs50.harvard.edu/web/"
     },
     {
       name: "CS50's Introduction to Artificial Intelligence with Python",
       type: "Course",
-      detail: "Explore graph search algorithms, machine learning, neural networks, and natural language processing.",
+      levels: ["Open to All", "High School", "Bachelor's"],
+      detail: "Hands-on Harvard course exploring search algorithms, knowledge representation, machine learning, neural networks, and NLP in Python.",
       country: "Worldwide · Online",
-      eligibility: "Python experience recommended",
-      deadline: "Self-paced",
-      cost: "Free course & free certificate",
       url: "https://cs50.harvard.edu/ai/"
+    },
+    {
+      name: "CS50's Web Programming with Python and JavaScript",
+      type: "Course",
+      levels: ["Open to All", "Bachelor's"],
+      detail: "Deep dive into full-stack web application design, database models, APIs, security, and scalability using Django and React/JavaScript.",
+      country: "Worldwide · Online",
+      url: "https://cs50.harvard.edu/web/"
     },
     {
       name: "Elements of AI (University of Helsinki)",
       type: "Course",
-      detail: "Accessible, non-technical introduction to what AI is, how it is created, and how it affects society.",
+      levels: ["Open to All", "High School"],
+      detail: "Designed for non-programmers and science/humanities students to understand what AI actually is, how neural networks work, and ethical implications.",
       country: "Worldwide · Online",
-      eligibility: "Open to everyone (No math/coding required)",
-      deadline: "Self-paced",
-      cost: "100% Free with certificate",
       url: "https://www.elementsofai.com/"
     },
     {
-      name: "MIT OpenCourseWare: Introduction to Biology",
+      name: "MIT OpenCourseWare: Fundamentals of Biology",
       type: "Course",
-      detail: "Full undergraduate MIT lecture videos, notes, and problem sets covering biochemistry, genetics, and molecular biology.",
+      levels: ["High School", "Bachelor's", "Open to All"],
+      detail: "Complete MIT undergraduate biology curriculum featuring full lecture videos, recitation notes, exams, and molecular biology problem sets.",
       country: "Worldwide · Online",
-      eligibility: "High school & university learners",
-      deadline: "Self-paced",
-      cost: "100% Free (Open access)",
       url: "https://ocw.mit.edu/courses/7-01sc-fundamentals-of-biology-fall-2011/"
-    },
-    {
-      name: "The Science of Well-Being (Yale University)",
-      type: "Course",
-      detail: "Yale's most popular psychology course exploring behavioral science and habits for mental resilience.",
-      country: "Worldwide · Online (Coursera)",
-      eligibility: "Open to all learners",
-      deadline: "Self-paced",
-      cost: "Free to audit",
-      url: "https://www.coursera.org/learn/the-science-of-well-being"
-    },
-    {
-      name: "Scientific Computing with Python (freeCodeCamp)",
-      type: "Course",
-      detail: "Hands-on curriculum teaching Python fundamentals, data structures, and algorithmic problem solving.",
-      country: "Worldwide · Online",
-      eligibility: "Beginners welcome",
-      deadline: "Self-paced",
-      cost: "100% Free with verified certificate",
-      url: "https://www.freecodecamp.org/learn/scientific-computing-with-python/"
     },
     {
       name: "Machine Learning Specialization (Stanford & DeepLearning.AI)",
       type: "Course",
-      detail: "Taught by Andrew Ng, covering supervised learning, neural networks, and recommender systems.",
+      levels: ["Bachelor's", "Master's", "Open to All"],
+      detail: "Taught by AI pioneer Andrew Ng, teaching supervised learning, decision trees, neural networks, and reinforcement learning in Python.",
       country: "Worldwide · Online (Coursera)",
-      eligibility: "Basic coding & high school math",
-      deadline: "Self-paced",
-      cost: "Free to audit / Financial aid available",
       url: "https://www.coursera.org/specializations/machine-learning-introduction"
+    },
+    {
+      name: "Scientific Computing with Python (freeCodeCamp)",
+      type: "Course",
+      levels: ["Open to All", "High School", "Bachelor's"],
+      detail: "Project-based interactive curriculum covering Python data structures, object-oriented programming, regular expressions, and scientific algorithms.",
+      country: "Worldwide · Online",
+      url: "https://www.freecodecamp.org/learn/scientific-computing-with-python/"
+    },
+    {
+      name: "The Science of Well-Being (Yale University)",
+      type: "Course",
+      levels: ["Open to All", "High School", "Bachelor's"],
+      detail: "Yale's highest-enrolled course ever—examines cognitive biases, psychological research on happiness, and evidence-based behavioral habits.",
+      country: "Worldwide · Online (Coursera)",
+      url: "https://www.coursera.org/learn/the-science-of-well-being"
     },
     {
       name: "Khan Academy: AP & College STEM Courses",
       type: "Course",
-      detail: "Comprehensive interactive courses in Calculus, Physics, Organic Chemistry, and Biology.",
+      levels: ["High School", "Bachelor's", "Open to All"],
+      detail: "Mastery-based video lessons and practice exams for AP Biology, AP Chemistry, AP Physics, Organic Chemistry, Calculus, and Statistics.",
       country: "Worldwide · Online",
-      eligibility: "All students",
-      deadline: "Self-paced",
-      cost: "100% Free forever",
       url: "https://www.khanacademy.org/science"
     },
     {
       name: "Google AI & Digital Skills Training",
       type: "Course",
-      detail: "Practical courses on generative AI, data fundamentals, and career readiness from Google.",
+      levels: ["Open to All", "High School", "Bachelor's"],
+      detail: "Self-paced practical modules from Google covering generative AI tools, data analytics basics, digital marketing, and career readiness.",
       country: "Worldwide · Online",
-      eligibility: "Open to all learners",
-      deadline: "Self-paced",
-      cost: "Free access",
       url: "https://grow.google/intl/en_pk/"
     },
 
-    // SCHOLARSHIPS
+    // SCHOLARSHIPS (30 Detailed Programs)
     {
-      name: "Türkiye Scholarships",
+      name: "Türkiye Scholarships (Türkiye Bursları)",
       type: "Scholarship",
-      detail: "Government-funded undergraduate and postgraduate study. Nationality, age and academic requirements apply.",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Fully funded Turkish government scholarship covering tuition, monthly stipend, dormitory, health insurance, flight tickets, and 1 year of Turkish language study.",
       country: "Türkiye",
       url: "https://www.turkiyeburslari.gov.tr/"
     },
     {
       name: "Stipendium Hungaricum",
       type: "Scholarship",
-      detail: "Undergraduate and postgraduate scholarships. Available programmes depend on country agreements.",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Hungarian government scholarship for international students from partner countries (nominated via HEC in Pakistan), covering tuition, stipend, and housing.",
       country: "Hungary",
       url: "https://stipendiumhungaricum.hu/"
     },
     {
-      name: "Chinese Government Scholarship",
+      name: "Chinese Government Scholarship (CSC)",
       type: "Scholarship",
-      detail: "International study funding. Degree availability and requirements vary by route and university.",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Comprehensive study funding at top Chinese universities across STEM, medicine, economics, and humanities via bilateral or university routes.",
       country: "China",
       url: "https://www.campuschina.org/"
     },
     {
-      name: "Global Korea Scholarship",
+      name: "Global Korea Scholarship (GKS)",
       type: "Scholarship",
-      detail: "Korean government scholarships with undergraduate and graduate tracks.",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "South Korean government scholarship covering full degree tuition, round-trip airfare, monthly living stipend, and 1 year of Korean language training.",
       country: "South Korea",
       url: "https://www.studyinkorea.go.kr/"
     },
     {
-      name: "MEXT Scholarship",
+      name: "MEXT Scholarship (Japanese Government)",
       type: "Scholarship",
-      detail: "Japanese government scholarships for international students.",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Prestigious Japanese Ministry of Education scholarship covering 100% tuition, generous monthly allowance, round-trip flights, and language prep.",
       country: "Japan",
       url: "https://www.studyinjapan.go.jp/en/"
     },
     {
+      name: "Lester B. Pearson International Scholarship",
+      type: "Scholarship",
+      levels: ["Bachelor's"],
+      detail: "University of Toronto's most prestigious full-ride undergraduate scholarship covering 4 years of tuition, books, incidental fees, and residence.",
+      country: "Canada",
+      url: "https://future.utoronto.ca/pearson/about/"
+    },
+    {
+      name: "UBC International Scholars Program",
+      type: "Scholarship",
+      levels: ["Bachelor's"],
+      detail: "Need-and-merit-based undergraduate awards at the University of British Columbia covering up to full tuition and living costs for international students.",
+      country: "Canada",
+      url: "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
+    },
+    {
+      name: "AU Emerging Global Leader Scholarship",
+      type: "Scholarship",
+      levels: ["Bachelor's"],
+      detail: "Covers full billable expenses (tuition, room, and board) for high-achieving international students committed to positive civic and social change.",
+      country: "United States",
+      url: "https://www.american.edu/admissions/international/egls.cfm"
+    },
+    {
       name: "Romanian Government Scholarship",
       type: "Scholarship",
-      detail: "Scholarships for eligible international students at Romanian universities.",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Ministry of Foreign Affairs scholarship for non-EU citizens covering tuition, accommodation, and monthly financial allowance.",
       country: "Romania",
       url: "https://scholarships.studyinromania.gov.ro/"
     },
     {
-      name: "Brunei Government Scholarship",
+      name: "Brunei Darussalam Government Scholarship",
       type: "Scholarship",
-      detail: "Government scholarship opportunities for eligible international students.",
+      levels: ["Bachelor's", "Master's"],
+      detail: "Fully funded awards at Universiti Brunei Darussalam and partner institutions including tuition, airfare, accommodation, and monthly allowance.",
       country: "Brunei",
       url: "https://www.mfa.gov.bn/"
     },
     {
-      name: "Manaaki New Zealand Scholarships",
+      name: "Qatar University International Scholarships",
       type: "Scholarship",
-      detail: "Government scholarships for citizens of eligible partner countries.",
-      country: "New Zealand",
-      url: "https://www.nzscholarships.govt.nz/"
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Competitive academic merit scholarships covering full tuition fees, textbook fees, university housing, and annual round-trip airfare.",
+      country: "Qatar",
+      url: "https://www.qu.edu.qa/"
     },
     {
-      name: "Australia Awards Scholarships",
+      name: "Taiwan MOFA / MOE Scholarship",
       type: "Scholarship",
-      detail: "Government-funded study for eligible applicants from participating countries.",
-      country: "Australia",
-      url: "https://www.dfat.gov.au/people-to-people/australia-awards"
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Taiwanese government funding offering monthly living stipends and tuition waivers at accredited Taiwanese universities.",
+      country: "Taiwan",
+      url: "https://www.studyintaiwan.org/"
+    },
+    {
+      name: "Islamic Development Bank (IsDB) Scholarships",
+      type: "Scholarship",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Merit-based scholarships for students from IsDB member countries and Muslim communities studying STEM, medicine, agriculture, and development.",
+      country: "Multiple Countries",
+      url: "https://www.isdb.org/scholarships"
     },
     {
       name: "Erasmus Mundus Joint Masters",
       type: "Scholarship",
-      detail: "Competitive scholarships for international students pursuing selected joint Master's degrees.",
-      country: "Europe",
+      levels: ["Master's"],
+      detail: "EU-funded international Master's programmes studied across 2–3 European universities with full tuition, travel, and €1,400/month living stipend.",
+      country: "Europe (Multiple Countries)",
       url: "https://erasmus-plus.ec.europa.eu/"
     },
     {
       name: "Chevening Scholarship",
       type: "Scholarship",
-      detail: "UK Master's funding for eligible applicants. Work experience and nationality requirements apply.",
+      levels: ["Master's"],
+      detail: "UK government's flagship global scholarship funding any 1-year taught Master's degree at any UK university for emerging leaders.",
       country: "United Kingdom",
       url: "https://www.chevening.org/"
     },
     {
       name: "Commonwealth Scholarships",
       type: "Scholarship",
-      detail: "Postgraduate scholarships for eligible Commonwealth citizens.",
+      levels: ["Master's", "PhD"],
+      detail: "UK FCDO-funded scholarships for citizens of Commonwealth nations (including Pakistan) who could not otherwise afford to study in the UK.",
       country: "United Kingdom",
       url: "https://cscuk.fcdo.gov.uk/"
     },
     {
       name: "DAAD Scholarships",
       type: "Scholarship",
-      detail: "German academic exchange and postgraduate funding programmes.",
+      levels: ["Master's", "PhD"],
+      detail: "German Academic Exchange Service scholarships supporting postgraduate degrees and research stays at German universities.",
       country: "Germany",
       url: "https://www.daad.de/en/"
     },
     {
       name: "Eiffel Excellence Scholarship",
       type: "Scholarship",
-      detail: "French government funding for selected Master's and doctoral programmes.",
+      levels: ["Master's", "PhD"],
+      detail: "French Ministry for Europe and Foreign Affairs scholarship attracting top international students to French Master's and PhD programs.",
       country: "France",
       url: "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence"
     },
     {
       name: "Swiss Government Excellence Scholarships",
       type: "Scholarship",
-      detail: "Research and postgraduate scholarships for eligible applicants.",
+      levels: ["Master's", "PhD"],
+      detail: "Research fellowships, PhD, and postdoctoral scholarships at Swiss public universities and federal institutes of technology (ETH/EPFL).",
       country: "Switzerland",
       url: "https://www.sbfi.admin.ch/"
     },
     {
-      name: "Swedish Institute Scholarships",
+      name: "Swedish Institute Scholarships (SISGP)",
       type: "Scholarship",
-      detail: "Master's scholarships for citizens of selected eligible countries.",
+      levels: ["Master's"],
+      detail: "Fully funded Master's scholarships in Sweden covering full tuition, SEK 12,000/month living allowance, insurance, and travel grant.",
       country: "Sweden",
       url: "https://si.se/en/"
     },
     {
       name: "Gates Cambridge Scholarship",
       type: "Scholarship",
-      detail: "Competitive postgraduate funding at the University of Cambridge.",
+      levels: ["Master's", "PhD"],
+      detail: "Full-cost postgraduate scholarship at the University of Cambridge awarded to intellectually outstanding applicants with a commitment to improving lives.",
       country: "United Kingdom",
       url: "https://www.gatescambridge.org/"
     },
     {
       name: "Rhodes Scholarship",
       type: "Scholarship",
-      detail: "Postgraduate scholarship at Oxford. Constituency and eligibility requirements apply.",
+      levels: ["Master's", "PhD"],
+      detail: "The world's oldest international scholarship programme, funding full postgraduate study at the University of Oxford.",
       country: "United Kingdom",
       url: "https://www.rhodeshouse.ox.ac.uk/"
     },
     {
+      name: "Oxford Graduate Scholarships (Clarendon & Reach)",
+      type: "Scholarship",
+      levels: ["Master's", "PhD"],
+      detail: "Over 1,000 full and partial graduate scholarships awarded across all subjects at Oxford based on academic merit and potential.",
+      country: "United Kingdom",
+      url: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
+    },
+    {
+      name: "Fulbright Foreign Student Program",
+      type: "Scholarship",
+      levels: ["Master's", "PhD"],
+      detail: "U.S. government flagship exchange program (managed via USEFP in Pakistan) funding Master's and PhD degrees at American universities.",
+      country: "United States",
+      url: "https://foreign.fulbrightonline.org/"
+    },
+    {
+      name: "Manaaki New Zealand Scholarships",
+      type: "Scholarship",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "New Zealand government scholarships funding tertiary study in subjects aligned with sustainable economic and social development.",
+      country: "New Zealand",
+      url: "https://www.nzscholarships.govt.nz/"
+    },
+    {
+      name: "Australia Awards Scholarships",
+      type: "Scholarship",
+      levels: ["Master's"],
+      detail: "Long-term development awards administered by the Australian Department of Foreign Affairs and Trade for emerging leaders.",
+      country: "Australia",
+      url: "https://www.dfat.gov.au/people-to-people/australia-awards"
+    },
+    {
       name: "Yenching Academy Scholarship",
       type: "Scholarship",
-      detail: "Interdisciplinary Master's programme at Peking University.",
+      levels: ["Master's"],
+      detail: "Fully funded interdisciplinary Master's in China Studies at Peking University in Beijing with full tuition, housing, and travel.",
       country: "China",
       url: "https://yenchingacademy.pku.edu.cn/"
     },
     {
-      name: "Hong Kong PhD Fellowship Scheme",
+      name: "Hong Kong PhD Fellowship Scheme (HKPFS)",
       type: "Scholarship",
-      detail: "Competitive funding for international doctoral students.",
+      levels: ["PhD"],
+      detail: "Established by Hong Kong's Research Grants Council, offering ~US$43,000/year stipend plus conference travel across 8 top universities.",
       country: "Hong Kong",
       url: "https://cerg1.ugc.edu.hk/hkpfs/"
     },
     {
       name: "KAUST Fellowship",
       type: "Scholarship",
-      detail: "Graduate funding and research opportunities in science and technology.",
+      levels: ["Master's", "PhD"],
+      detail: "Every admitted MS/PhD student at King Abdullah University of Science and Technology receives full tuition, housing, and $20,000–$30,000/year stipend.",
       country: "Saudi Arabia",
       url: "https://www.kaust.edu.sa/"
     },
     {
       name: "MBZUAI Graduate Scholarships",
       type: "Scholarship",
-      detail: "Graduate scholarships in artificial intelligence and related fields.",
+      levels: ["Master's", "PhD"],
+      detail: "Full scholarships for all admitted students at Mohamed bin Zayed University of Artificial Intelligence in Abu Dhabi, covering tuition, housing, and stipend.",
       country: "United Arab Emirates",
       url: "https://mbzuai.ac.ae/"
     },
-    {
-      name: "UBC International Scholars",
-      type: "Scholarship",
-      detail: "Undergraduate awards for exceptional international students with financial need.",
-      country: "Canada",
-      url: "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
-    },
-    {
-      name: "Lester B. Pearson Scholarship",
-      type: "Scholarship",
-      detail: "University of Toronto undergraduate scholarship for nominated international students.",
-      country: "Canada",
-      url: "https://future.utoronto.ca/pearson/about/"
-    },
-    {
-      name: "AU Emerging Global Leader Scholarship",
-      type: "Scholarship",
-      detail: "Undergraduate scholarship for eligible international students at American University.",
-      country: "United States",
-      url: "https://www.american.edu/admissions/international/egls.cfm"
-    },
-    {
-      name: "Fulbright Foreign Student Program",
-      type: "Scholarship",
-      detail: "Graduate study and research funding. Country-specific application routes apply.",
-      country: "Multiple countries",
-      url: "https://foreign.fulbrightonline.org/"
-    },
-    {
-      name: "Taiwan Scholarship",
-      type: "Scholarship",
-      detail: "Government scholarships for international students at eligible Taiwanese institutions.",
-      country: "Taiwan",
-      url: "https://www.studyintaiwan.org/"
-    },
-    {
-      name: "Qatar University Scholarships",
-      type: "Scholarship",
-      detail: "Undergraduate and postgraduate funding opportunities with different award conditions.",
-      country: "Qatar",
-      url: "https://www.qu.edu.qa/"
-    },
-    {
-      name: "Islamic Development Bank Scholarships",
-      type: "Scholarship",
-      detail: "Education funding for eligible students from member countries and Muslim communities.",
-      country: "Multiple countries",
-      url: "https://www.isdb.org/scholarships"
-    },
-    {
-      name: "Oxford Graduate Scholarships",
-      type: "Scholarship",
-      detail: "A range of funding schemes for eligible graduate applicants.",
-      country: "United Kingdom",
-      url: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
-    },
 
-    // INTERNSHIPS
-    {
-      name: "World Health Network Student Internship",
-      type: "Internship",
-      detail: "Remote student opportunity. Check the current call for age, country, selection and deadline requirements.",
-      country: "Remote",
-      url: "https://whn.global/"
-    },
-    {
-      name: "UNICEF Internships",
-      type: "Internship",
-      detail: "Opportunities in child rights, policy, communications and research. University-level eligibility usually applies.",
-      country: "Multiple countries",
-      url: "https://www.unicef.org/careers/internships"
-    },
-    {
-      name: "WHO Internship Programme",
-      type: "Internship",
-      detail: "Public health experience for eligible students enrolled in relevant university programmes.",
-      country: "Multiple countries",
-      url: "https://www.who.int/careers/internship-programme"
-    },
-    {
-      name: "UNDP Internships",
-      type: "Internship",
-      detail: "Internship opportunities in development, policy, research and communications. University enrolment requirements apply.",
-      country: "Multiple countries",
-      url: "https://www.undp.org/careers/types-opportunities/internships"
-    },
-    {
-      name: "UNHCR Internships",
-      type: "Internship",
-      detail: "Experience in refugee protection, humanitarian work and international development.",
-      country: "Multiple countries",
-      url: "https://www.unhcr.org/careers-internships"
-    },
-    {
-      name: "World Food Programme Internships",
-      type: "Internship",
-      detail: "Opportunities in food security, logistics, communications and humanitarian operations.",
-      country: "Multiple countries",
-      url: "https://www.wfp.org/careers/internships"
-    },
-    {
-      name: "UNESCO Internships",
-      type: "Internship",
-      detail: "Opportunities related to education, science, culture and communications.",
-      country: "Multiple countries",
-      url: "https://www.unesco.org/en/careers/internships"
-    },
-    {
-      name: "World Bank Internship",
-      type: "Internship",
-      detail: "Development, economics and policy experience. Graduate enrolment is generally required.",
-      country: "Multiple countries",
-      url: "https://www.worldbank.org/en/about/careers/programs-and-internships"
-    },
-    {
-      name: "IMF Internship Programme",
-      type: "Internship",
-      detail: "Research and policy placements, primarily for PhD students in relevant fields.",
-      country: "United States",
-      url: "https://www.imf.org/en/About/Recruitment/working-at-the-imf"
-    },
-    {
-      name: "OECD Internship Programme",
-      type: "Internship",
-      detail: "Policy, economics and research opportunities for students enrolled in eligible degree programmes.",
-      country: "France",
-      url: "https://www.oecd.org/en/about/careers/internships.html"
-    },
+    // INTERNSHIPS (20 Detailed Programs)
     {
       name: "CERN Summer Student Programme",
       type: "Internship",
-      detail: "Scientific and technical summer programme for eligible undergraduate and Master's students.",
+      levels: ["Bachelor's", "Master's"],
+      detail: "Spend 8–13 weeks in Geneva working on cutting-edge particle physics, computing, and engineering projects alongside world-leading researchers.",
       country: "Switzerland",
       url: "https://careers.cern/"
     },
     {
       name: "Amgen Scholars Programme",
       type: "Internship",
-      detail: "Undergraduate research opportunities in science and biotechnology at participating institutions.",
-      country: "Multiple countries",
+      levels: ["Bachelor's"],
+      detail: "Paid summer undergraduate biomedical and biotechnology research placements at 24 premier universities across the US, Europe, and Asia.",
+      country: "Multiple Countries",
       url: "https://amgenscholars.com/"
     },
     {
       name: "Mitacs Globalink Research Internship",
       type: "Internship",
-      detail: "Research internships for students at eligible universities in participating countries.",
+      levels: ["Bachelor's"],
+      detail: "12-week fully funded summer research internship pairing senior undergraduates from partner countries with Canadian university professors.",
       country: "Canada",
       url: "https://www.mitacs.ca/our-programs/globalink-research-internship-students/"
     },
     {
-      name: "NIMS Internship Programme",
+      name: "NASA Internships (OSTEM)",
       type: "Internship",
-      detail: "Research experience in materials science for eligible university students.",
-      country: "Japan",
-      url: "https://www.nims.go.jp/eng/hr-development/internship.html"
-    },
-    {
-      name: "NASA Internships",
-      type: "Internship",
-      detail: "Science, engineering and other internships. Most NASA opportunities require US citizenship.",
+      levels: ["High School", "Bachelor's", "Master's", "PhD"],
+      detail: "Hands-on engineering, space science, and data analysis placements at NASA centers (primarily for U.S. citizens, with select international pathways).",
       country: "United States",
       url: "https://www.nasa.gov/learning-resources/internship-programs/"
     },
     {
       name: "Smithsonian Internships",
       type: "Internship",
-      detail: "Museum, science, research and cultural opportunities. Eligibility varies by placement.",
+      levels: ["High School", "Bachelor's", "Master's", "PhD"],
+      detail: "Research, conservation, museum curation, and astrophysics placements across 19 Smithsonian museums and research institutes.",
       country: "United States",
       url: "https://www.si.edu/ofi"
     },
     {
-      name: "Asian Development Bank Internships",
+      name: "UNICEF Internships",
       type: "Internship",
-      detail: "Graduate-level internships in development, economics, finance and related fields.",
-      country: "Multiple countries",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Paid global internships in child rights, public health, data analytics, policy, and communications across UNICEF country and HQ offices.",
+      country: "Multiple Countries",
+      url: "https://www.unicef.org/careers/internships"
+    },
+    {
+      name: "WHO Internship Programme",
+      type: "Internship",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Gain practical public health, epidemiology, and health policy experience at the World Health Organization headquarters or regional offices.",
+      country: "Multiple Countries",
+      url: "https://www.who.int/careers/internship-programme"
+    },
+    {
+      name: "UNDP Internships",
+      type: "Internship",
+      levels: ["Bachelor's", "Master's"],
+      detail: "Work on sustainable development, climate resilience, governance, and poverty reduction projects with the United Nations Development Programme.",
+      country: "Multiple Countries",
+      url: "https://www.undp.org/careers/types-opportunities/internships"
+    },
+    {
+      name: "UNHCR Internships",
+      type: "Internship",
+      levels: ["Bachelor's", "Master's"],
+      detail: "Support refugee protection, legal research, humanitarian logistics, and external relations with the UN Refugee Agency.",
+      country: "Multiple Countries",
+      url: "https://www.unhcr.org/careers-internships"
+    },
+    {
+      name: "World Food Programme (WFP) Internships",
+      type: "Internship",
+      levels: ["Bachelor's", "Master's"],
+      detail: "Paid internships in supply chain, nutrition science, data analysis, and humanitarian operations with the UN's food-assistance branch.",
+      country: "Multiple Countries",
+      url: "https://www.wfp.org/careers/internships"
+    },
+    {
+      name: "UNESCO Internships",
+      type: "Internship",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Placements in Paris or field offices advancing international cooperation in education, natural sciences, culture, and communication.",
+      country: "Multiple Countries",
+      url: "https://www.unesco.org/en/careers/internships"
+    },
+    {
+      name: "World Bank Internship Program",
+      type: "Internship",
+      levels: ["Master's", "PhD"],
+      detail: "Paid summer and winter placements in Washington, D.C. and country offices for graduate students in economics, finance, and climate.",
+      country: "Multiple Countries",
+      url: "https://www.worldbank.org/en/about/careers/programs-and-internships"
+    },
+    {
+      name: "IMF Fund Internship Program (FIP)",
+      type: "Internship",
+      levels: ["Master's", "PhD"],
+      detail: "10–13 week paid research internships in Washington, D.C. for doctoral and Master's students in macroeconomics and finance.",
+      country: "United States",
+      url: "https://www.imf.org/en/About/Recruitment/working-at-the-imf"
+    },
+    {
+      name: "OECD Internship Programme",
+      type: "Internship",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Paid policy and economic research internships in Paris covering AI governance, education, environment, and global trade.",
+      country: "France",
+      url: "https://www.oecd.org/en/about/careers/internships.html"
+    },
+    {
+      name: "NIMS Internship Programme",
+      type: "Internship",
+      levels: ["Bachelor's", "Master's", "PhD"],
+      detail: "Conduct hands-on materials science and nanotechnology research at Japan's National Institute for Materials Science in Tsukuba.",
+      country: "Japan",
+      url: "https://www.nims.go.jp/eng/hr-development/internship.html"
+    },
+    {
+      name: "Asian Development Bank (ADB) Internships",
+      type: "Internship",
+      levels: ["Master's", "PhD"],
+      detail: "Project-based assignments in Manila or field offices for graduate students from ADB member countries working on Asian development.",
+      country: "Multiple Countries",
       url: "https://www.adb.org/work-with-us/careers/internship-program"
     },
     {
       name: "FAO Internship Programme",
       type: "Internship",
-      detail: "Internships in food, agriculture, environment and international development.",
-      country: "Multiple countries",
+      levels: ["Bachelor's", "Master's"],
+      detail: "Paid placements with the Food and Agriculture Organization focusing on agronomy, food security, climate change, and rural development.",
+      country: "Multiple Countries",
       url: "https://www.fao.org/employment/internship-programme/en"
     },
     {
       name: "ILO Internship Programme",
       type: "Internship",
-      detail: "Opportunities in labour rights, employment policy, research and international development.",
-      country: "Multiple countries",
+      levels: ["Master's", "PhD"],
+      detail: "Internships at the International Labour Organization in Geneva and field offices focusing on labor economics, social protection, and law.",
+      country: "Multiple Countries",
       url: "https://www.ilo.org/jobs"
     },
     {
-      name: "European Space Agency Internships",
+      name: "European Space Agency (ESA) Student Internships",
       type: "Internship",
-      detail: "Student placements in space science, engineering and other fields. Nationality and university requirements apply.",
+      levels: ["Master's"],
+      detail: "3–6 month placements across ESA technical centers in Europe for Master's students from ESA Member and Cooperating States.",
       country: "Europe",
       url: "https://www.esa.int/About_Us/Careers_at_ESA/Student_Internships"
+    },
+    {
+      name: "World Health Network Student Internship",
+      type: "Internship",
+      levels: ["High School", "Bachelor's", "Master's"],
+      detail: "Remote science communication, public health research, and community outreach placements with an international scientific coalition.",
+      country: "Remote · Worldwide",
+      url: "https://whn.global/"
     }
   ];
 
   const opportunityDetails = {
     // COMPETITIONS DETAILS
     "Blue Ocean Student Entrepreneur Competition": {
-      level: "High school (Grades 9–12)",
-      age: "High school students worldwide",
-      nationality: "Worldwide",
-      eligibility: "Enrolled in high school; solo or team entries.",
-      funding: "Free entry; cash prizes for top finalists.",
-      deadline: "February (Annual cycle)",
-      status: "Annual cycle",
-      documents: "Online registration and 5-minute video pitch.",
-      application: "Register on the official Blue Ocean website.",
-      notes: "100% virtual competition.",
+      level: "High School (Grades 9–12 / O & A Levels / IB)",
+      age: "Enrolled high school students (typically ages 14–18)",
+      nationality: "Open to students in any country worldwide",
+      eligibility: "Must be enrolled in high school or pre-university equivalent at registration. Solo entries or teams (even across different schools/countries) are allowed. Every member must complete the free Blue Ocean Mini-Course before submitting.",
+      funding: "100% Free entry. Cash prizes ($1,000+ for top teams), global recognition, and Top 100 feature.",
+      deadline: "Registration & Pitch Submission: February 21 (Annual cycle); Winners announced in May.",
+      status: "Open (Annual Cycle)",
+      documents: "1) Online team registration; 2) Completion of required Mini-Course; 3) 3–5 minute original pitch video (MP4/MOV under 1GB, uploaded to YouTube with #blueoceancompetition) using Blue Ocean strategy canvas tools.",
+      application: "Step 1: Register on the official portal with a personal email. Step 2: Complete the mandatory online Mini-Course. Step 3: Research and film your 3–5 minute pitch following the published rubric. Step 4: Submit before 23:59 local time on the deadline.",
+      notes: "Strict rules: videos shorter than 3 mins or longer than 5 mins (or sped up) are disqualified. Judged 20% each on Creativity, Impact, Feasibility, Scalability, and Presentation.",
       source: "https://blueoceancompetition.org/"
     },
-    "World of 8 Billion Video Contest": {
-      level: "Grades 6–12",
-      age: "Middle and High School students",
-      nationality: "Worldwide",
-      eligibility: "Students in grades 6–12 worldwide.",
-      funding: "Free entry; cash prizes up to $1,200.",
-      deadline: "March (Annual cycle)",
-      status: "Annual cycle",
-      documents: "60-second video and works cited document.",
-      application: "Upload via official contest portal.",
-      notes: "Strict 60-second video limit.",
-      source: "https://www.worldof8billion.org/video-contest/"
-    },
-    "The Earth Prize": {
-      level: "Secondary school",
-      age: "Ages 13–19",
-      nationality: "Worldwide",
-      eligibility: "Students aged 13–19 in secondary education.",
-      funding: "Free registration; $100,000 total prize pool for winning schools/teams.",
-      deadline: "January registration",
-      status: "Annual cycle",
-      documents: "Team registration and environmental project proposal.",
-      application: "Register online via The Earth Prize portal.",
-      notes: "Includes mentorship from university students.",
-      source: "https://www.theearthprize.org/"
-    },
     "Breakthrough Junior Challenge": {
-      level: "High school",
-      age: "Ages 13–18",
-      nationality: "Worldwide",
-      eligibility: "Students aged 13–18 not yet enrolled in full-time university.",
-      funding: "Free entry; $250,000 college scholarship + $100,000 science lab for school.",
-      deadline: "June (Annual cycle)",
-      status: "Annual cycle",
-      documents: "Original 2-minute science/math explainer video + peer-to-peer reviews.",
-      application: "Submit online through official Breakthrough portal.",
-      notes: "Judged on engagement, illumination, creativity, and difficulty.",
+      level: "High School (Grades 9–12)",
+      age: "Ages 13–18 (must be 13 by May 11 and not yet 19 by October 1)",
+      nationality: "Worldwide (English-language submissions)",
+      eligibility: "Open to students globally (including homeschooled students) not yet enrolled in full-time college/university. Solo entries only.",
+      funding: "Free entry. Winner receives a $250,000 college scholarship, $50,000 prize for their inspiring teacher, and a $100,000 state-of-the-art science lab for their school.",
+      deadline: "Opens May 11; Video Submission: September 15; Mandatory Peer-to-Peer Review: September 17–30.",
+      status: "Annual Cycle (Opens May)",
+      documents: "1) Online application & topic questionnaire; 2) Original 2-minute maximum explainer video on a physics, life sciences, or math concept uploaded to YouTube; 3) Peer-to-peer grading of at least 5 other entries.",
+      application: "Step 1: Choose a challenging concept in physics, math, or life sciences. Step 2: Script, animate, or film a clear, engaging video under 2:00 minutes. Step 3: Submit via portal by Sept 15. Step 4: Complete mandatory peer-to-peer scoring by Sept 30.",
+      notes: "Skipping the Peer-to-Peer Review stage automatically disqualifies your entry. Videos over 2:00 minutes are disqualified.",
       source: "https://breakthroughjuniorchallenge.org/"
     },
-    "Conrad Challenge": {
-      level: "High school",
-      age: "Ages 13–18",
+    "The Earth Prize": {
+      level: "Secondary / High School",
+      age: "Ages 13–19",
       nationality: "Worldwide",
-      eligibility: "Teams of 2–5 high school students with an adult coach.",
-      funding: "Free Lean Canvas round; scholarships and seed funding for finalists.",
-      deadline: "November (Stage 1)",
-      status: "Annual cycle",
-      documents: "Lean Canvas business model, innovation brief, and pitch video.",
-      application: "Register team on Conrad Challenge portal.",
-      notes: "Categories include Aerospace, Cyber-Technology, Energy, and Health.",
-      source: "https://www.conradchallenge.org/"
-    },
-    "International Mathematical Modeling Challenge (IMMC)": {
-      level: "Secondary school",
-      age: "High school age",
-      nationality: "Participating countries worldwide",
-      eligibility: "Teams of up to 4 students from the same school.",
-      funding: "Varies by regional committee (usually free).",
-      deadline: "Spring (Check regional schedule)",
-      status: "Annual cycle",
-      documents: "Mathematical modeling research paper solving the annual prompt.",
-      application: "Enter through your country/region's IMMC committee.",
-      notes: "Great for students interested in applied math and data.",
-      source: "https://www.immchallenge.org/"
+      eligibility: "Students aged 13–19 enrolled in secondary education anywhere in the world. Can apply individually or in teams from the same or different schools.",
+      funding: "Free registration. $100,000 total prize pool split among top regional/global winning teams and their schools to implement their environmental projects.",
+      deadline: "Team Registration: January 10; Project Submission: March (Annual cycle).",
+      status: "Annual Cycle",
+      documents: "1) Team registration & supervisor details; 2) Written environmental innovation proposal; 3) Prototype/pilot evidence or research data.",
+      application: "Step 1: Register on The Earth Prize platform before the January deadline. Step 2: Access exclusive mentorship and sustainability learning modules. Step 3: Submit your finalized solution proposal in March.",
+      notes: "Participants get matched with university-level mentors from top global institutions.",
+      source: "https://www.theearthprize.org/"
     },
     "Regeneron International Science and Engineering Fair (ISEF)": {
-      level: "High school (Grades 9–12)",
-      age: "Under 20",
-      nationality: "Worldwide (via affiliated fairs)",
-      eligibility: "Must qualify through a Society for Science affiliated regional/national fair.",
-      funding: "All-expenses-paid trip to ISEF finals + nearly $9M in awards/scholarships.",
-      deadline: "Varies by local affiliated fair",
-      status: "Annual cycle",
-      documents: "Original STEM research paper, data notebook, and project display.",
-      application: "Compete in your country's affiliated science fair first.",
-      notes: "The gold standard for pre-college scientific research.",
+      level: "High School (Grades 9–12)",
+      age: "Under 20 years old on or before May 1",
+      nationality: "Worldwide (via 400+ affiliated fairs in 70+ countries)",
+      eligibility: "Must conduct original STEM research (individual or team of up to 3) and win top honors at a Society for Science affiliated local, regional, or national science fair (e.g., National Science Fair in Pakistan).",
+      funding: "All-expenses-paid trip to ISEF Finals in the USA + nearly $9 million in scholarships, tuition grants, and scientific awards.",
+      deadline: "National/Regional affiliated fair deadlines vary (typically Nov–Feb); ISEF Finals held in May.",
+      status: "Annual Cycle",
+      documents: "1) ISEF Official Rules & Ethics approval forms (prior to experimentation); 2) Original research paper & lab data notebook; 3) Project display board and abstract.",
+      application: "Step 1: Find your country/region's ISEF-affiliated fair on the Society for Science directory. Step 2: Complete pre-approval forms before starting lab/field work. Step 3: Compete locally to earn a finalist spot.",
+      notes: "The single most prestigious pre-college science research competition globally.",
       source: "https://www.societyforscience.org/isef/"
     },
+    "Conrad Challenge": {
+      level: "High School",
+      age: "Ages 13–18",
+      nationality: "Worldwide",
+      eligibility: "Teams of 2–5 students aged 13–18 guided by an adult coach (18+). Open to students worldwide.",
+      funding: "Free Round 1 (Investor Pitch/Lean Canvas). Finalists compete at the Innovation Summit for college scholarships, patent support, and seed grants.",
+      deadline: "Stage 1 (Investor Pitch): Early November; Stage 2 (Business Plan): January; Summit: April.",
+      status: "Annual Cycle",
+      documents: "1) Team registration; 2) Lean Canvas business model; 3) Innovation Brief & 3-minute product pitch video (Round 2).",
+      application: "Step 1: Form a team of 2–5 and select a category (Aerospace, Cyber-Tech, Energy & Environment, or Health & Nutrition). Step 2: Submit your Lean Canvas in November. Step 3: Advance to write a full Innovation Brief.",
+      notes: "Combines hard STEM engineering with real-world startup entrepreneurship.",
+      source: "https://www.conradchallenge.org/"
+    },
+    "World of 8 Billion Video Contest": {
+      level: "Middle & High School (Grades 6–12)",
+      age: "Students in Grades 6–12 (or international equivalent)",
+      nationality: "Worldwide",
+      eligibility: "Any student in grades 6–12 worldwide. Solo or team entries allowed.",
+      funding: "Free entry. Cash prizes up to $1,200 (1st place high school), $600 (2nd place), and $300 (Honorable Mention).",
+      deadline: "Submission Deadline: March 3 (Annual cycle).",
+      status: "Annual Cycle",
+      documents: "1) Original 60-second maximum video addressing one of the annual global themes; 2) Properly formatted Works Cited document with at least 2 credible sources.",
+      application: "Step 1: Pick one of the three annual themes on the website. Step 2: Research facts and propose a sustainable solution. Step 3: Upload your 60-second video and bibliography via the online form.",
+      notes: "Videos must be exactly 60 seconds or less, including title and credit screens.",
+      source: "https://www.worldof8billion.org/video-contest/"
+    },
+    "International Mathematical Modeling Challenge (IMMC)": {
+      level: "High School / Secondary School",
+      age: "Secondary school students",
+      nationality: "Participating countries & regions worldwide",
+      eligibility: "Teams of up to 4 students from the same school, supervised by a faculty advisor.",
+      funding: "Free or nominal regional fee depending on national committee.",
+      deadline: "Regional/National rounds typically held between January and April.",
+      status: "Annual Cycle",
+      documents: "1) Team registration through national/regional coordinator; 2) Formal mathematical modeling paper (up to 20 pages) written within a 5-consecutive-day window.",
+      application: "Step 1: Check the IMMC website for your country/region's organizing committee. Step 2: Register a 4-student team. Step 3: Download the real-world problem and submit your mathematical solution paper within 5 days.",
+      notes: "Outstanding papers are published and recognized internationally.",
+      source: "https://www.immchallenge.org/"
+    },
     "Diamond Challenge": {
-      level: "High school",
+      level: "High School",
       age: "Ages 14–18",
       nationality: "Worldwide",
-      eligibility: "Teams of 2–4 high school students with an adult advisor.",
-      funding: "Free entry; over $100,000 in funding awards.",
-      deadline: "January (Submission round)",
-      status: "Annual cycle",
-      documents: "Written concept narrative and pitch deck.",
-      application: "Submit online via University of Delaware's Diamond Challenge portal.",
-      notes: "Offers both Business Innovation and Social Innovation tracks.",
+      eligibility: "Teams of 2–4 high school students enrolled during the academic year, plus one adult advisor (21+).",
+      funding: "Free entry. Over $100,000 in total awards to fund student startups or higher education.",
+      deadline: "Submission Deadline: Early January; Semifinals: February; Limitless World Summit: April.",
+      status: "Annual Cycle",
+      documents: "1) Written Concept Narrative (max 5 pages); 2) 10-slide Pitch Deck PDF.",
+      application: "Step 1: Choose either the Business Innovation track or Social Innovation track. Step 2: Register on the University of Delaware portal. Step 3: Submit your written concept and pitch deck by January.",
+      notes: "Semifinalists pitch live virtually or at global pitch sites.",
       source: "https://diamondchallenge.org/"
     },
     "Bebras Computing Challenge": {
-      level: "Primary & Secondary school",
-      age: "Ages 8–18",
+      level: "Primary & Secondary School (Ages 8–18)",
+      age: "Ages 8–18 (divided into 6 age divisions)",
       nationality: "Over 80 participating countries",
-      eligibility: "Students registered through a participating school or coordinator.",
+      eligibility: "Students enrolled at a school registered with their national Bebras organizer. No prior coding skills required.",
       funding: "Free for students.",
-      deadline: "November (Annual Bebras Week)",
-      status: "Annual cycle",
-      documents: "45-minute online logic and computational thinking tasks.",
-      application: "Ask a teacher at your school to register as a Bebras coordinator.",
-      notes: "No prior coding knowledge required—tests pure logic.",
+      deadline: "Annual Bebras Week in November (registration opens Sept/Oct).",
+      status: "Annual Cycle",
+      documents: "Online 45-minute interactive logic and algorithmic puzzle assessment taken at school.",
+      application: "Step 1: Visit Bebras.org to find your country's national organizer. Step 2: Ask your computer science or math teacher to register your school. Step 3: Complete the challenge during Bebras Week.",
+      notes: "Top scorers in many countries are invited to national informatics Olympiad training.",
       source: "https://www.bebras.org/"
     },
     "International Chemistry Quiz (ICQ)": {
-      level: "Secondary school (Grades 7–12)",
-      age: "School students",
-      nationality: "Worldwide",
-      eligibility: "Enrolled in grades 7–12 at a participating school.",
-      funding: "Certificates of High Distinction and plaques for top global scorers.",
-      deadline: "Mid-year (Check local coordinator)",
-      status: "Annual cycle",
-      documents: "30 multiple-choice chemistry questions completed in 60 minutes.",
-      application: "Register through your school's science department.",
-      notes: "Organized by the Royal Australian Chemical Institute.",
+      level: "Secondary School (Grades 7–12)",
+      age: "School students (Grades 7–12)",
+      nationality: "Worldwide (20+ participating countries)",
+      eligibility: "Students enrolled in grades 7–12 at a participating school.",
+      funding: "International Certificates of High Distinction, Distinction, and Plaques for 100% scorers.",
+      deadline: "School registration in May/June; Quiz held in July/August.",
+      status: "Annual Cycle",
+      documents: "30 multiple-choice chemistry and scientific reasoning questions completed in 60 minutes.",
+      application: "Step 1: Ask your school's chemistry department to register via the RACI ICQ portal. Step 2: Sit the 60-minute exam at your school.",
+      notes: "Focuses on chemical thinking rather than rote memorization.",
       source: "https://icq.raci.org.au/"
     },
 
     // FREE COURSES DETAILS
     "CS50x: Introduction to Computer Science (Harvard)": {
-      level: "Beginner",
+      level: "Open to All (Beginner Friendly)",
       age: "All ages",
       nationality: "Worldwide",
-      eligibility: "Open to all learners with zero prior coding experience.",
-      funding: "100% free course access and free Harvard CS50 certificate.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free edX/CS50 account and GitHub account.",
-      application: "Enroll online anytime via CS50 portal.",
-      notes: "Covers C, Python, SQL, HTML, CSS, and JavaScript.",
+      eligibility: "Open to everyone—no prior programming background required.",
+      funding: "100% Free course materials, automated grading, and free Harvard CS50 certificate upon scoring 70%+ on all problem sets and final project.",
+      deadline: "Self-paced (Complete anytime before Dec 31 each year; progress carries over).",
+      status: "Open Year-Round",
+      documents: "Free edX account and free GitHub account (to submit code via CS50 Codespaces).",
+      application: "Step 1: Visit cs50.harvard.edu/x. Step 2: Watch the weekly lectures and complete 10 problem sets + 1 final project. Step 3: Download your free certificate directly from CS50.",
+      notes: "You do NOT need to pay for the edX verified certificate to get the official free CS50 certificate.",
       source: "https://cs50.harvard.edu/x/"
     },
-    "CS50's Web Programming with Python and JavaScript": {
-      level: "Intermediate",
-      age: "All ages",
-      nationality: "Worldwide",
-      eligibility: "CS50x or basic Python/HTML familiarity recommended.",
-      funding: "100% free course access and free certificate.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free edX/CS50 account and GitHub account.",
-      application: "Start anytime on the CS50 Web portal.",
-      notes: "Builds real full-stack web apps.",
-      source: "https://cs50.harvard.edu/web/"
-    },
     "CS50's Introduction to Artificial Intelligence with Python": {
-      level: "Intermediate",
+      level: "Intermediate (Open to All)",
       age: "All ages",
       nationality: "Worldwide",
-      eligibility: "Python experience recommended.",
-      funding: "100% free course access and free certificate.",
+      eligibility: "Basic Python familiarity (such as CS50x or CS50P) recommended.",
+      funding: "100% Free access and free certificate upon completing 12 AI programming projects.",
       deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free edX/CS50 account and GitHub account.",
-      application: "Enroll online via CS50 AI website.",
-      notes: "Covers neural networks, optimization, and machine learning.",
+      status: "Open Year-Round",
+      documents: "Free edX account and GitHub account.",
+      application: "Step 1: Access lectures and project specs on cs50.harvard.edu/ai. Step 2: Build projects like Minesweeper AI, Tic-Tac-Toe Minimax, and Traffic Sign Recognition. Step 3: Claim your free certificate.",
+      notes: "Great portfolio builder for science and engineering college applications.",
       source: "https://cs50.harvard.edu/ai/"
     },
-    "Elements of AI (University of Helsinki)": {
-      level: "Beginner",
+    "CS50's Web Programming with Python and JavaScript": {
+      level: "Intermediate (Open to All)",
       age: "All ages",
       nationality: "Worldwide",
-      eligibility: "Open to everyone; no programming required.",
-      funding: "100% free with downloadable completion certificate.",
+      eligibility: "Prior experience with Python and basic HTML/CSS recommended.",
+      funding: "100% Free access and free certificate.",
       deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free email registration.",
-      application: "Sign up directly on the Elements of AI website.",
-      notes: "Over 1 million students worldwide have taken this course.",
+      status: "Open Year-Round",
+      documents: "Free edX account and GitHub account.",
+      application: "Step 1: Enroll on cs50.harvard.edu/web. Step 2: Complete 5 full-stack web projects (including an e-commerce site and social network) + capstone. Step 3: Receive certificate.",
+      notes: "Teaches Git, Django, SQL models, JavaScript, and automated testing.",
+      source: "https://cs50.harvard.edu/web/"
+    },
+    "Elements of AI (University of Helsinki)": {
+      level: "Open to All (No Coding Required)",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to anyone interested in understanding AI—no math or programming prerequisites.",
+      funding: "100% Free with official University of Helsinki completion certificate (worth 2 ECTS credits in Europe).",
+      deadline: "Self-paced (typically takes 4–6 weeks at a relaxed pace).",
+      status: "Open Year-Round",
+      documents: "Free account registration with email.",
+      application: "Step 1: Create a free account at elementsofai.com. Step 2: Complete the 6 interactive chapters and peer-reviewed exercises. Step 3: Download your certificate.",
+      notes: "Over 1.3 million students from 170+ countries have enrolled.",
       source: "https://www.elementsofai.com/"
     },
-    "MIT OpenCourseWare: Introduction to Biology": {
-      level: "Introductory University / AP Level",
+    "MIT OpenCourseWare: Fundamentals of Biology": {
+      level: "High School (AP) & Bachelor's",
       age: "All ages",
       nationality: "Worldwide",
-      eligibility: "Open to all students.",
-      funding: "100% free (no registration required).",
+      eligibility: "Open to all students—no sign-up or fees required.",
+      funding: "100% Free open educational resource.",
       deadline: "Self-paced",
-      status: "Open year-round",
+      status: "Open Year-Round",
       documents: "None required.",
-      application: "Access lectures and problem sets directly on MIT OCW.",
-      notes: "Taught by MIT professors including Eric Lander.",
+      application: "Step 1: Open the MIT OCW 7.01SC course page. Step 2: Follow the video lectures by Prof. Eric Lander, complete recitation problems, and check solutions.",
+      notes: "Covers biochemistry, genetics, molecular biology, recombinant DNA, and immunology.",
       source: "https://ocw.mit.edu/courses/7-01sc-fundamentals-of-biology-fall-2011/"
     },
-    "The Science of Well-Being (Yale University)": {
-      level: "Beginner",
-      age: "All ages",
-      nationality: "Worldwide",
-      eligibility: "Open to all learners.",
-      funding: "Free to audit on Coursera.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free Coursera account.",
-      application: "Click 'Enroll for Free' and choose 'Audit' on Coursera.",
-      notes: "Taught by Yale Professor Laurie Santos.",
-      source: "https://www.coursera.org/learn/the-science-of-well-being"
-    },
-    "Scientific Computing with Python (freeCodeCamp)": {
-      level: "Beginner to Intermediate",
-      age: "All ages",
-      nationality: "Worldwide",
-      eligibility: "Open to all learners.",
-      funding: "100% free with verified developer certification.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free account on freeCodeCamp.org.",
-      application: "Start coding directly in your browser on freeCodeCamp.",
-      notes: "Includes 5 required certification projects.",
-      source: "https://www.freecodecamp.org/learn/scientific-computing-with-python/"
-    },
     "Machine Learning Specialization (Stanford & DeepLearning.AI)": {
-      level: "Beginner to Intermediate",
+      level: "Bachelor's / Master's / Open to All",
       age: "All ages",
       nationality: "Worldwide",
-      eligibility: "Basic coding and high school algebra.",
-      funding: "Free to audit; Coursera financial aid available for certificate.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free Coursera account.",
-      application: "Enroll via Coursera and select Audit or Financial Aid.",
-      notes: "Updated modern Python version of Andrew Ng's famous ML course.",
+      eligibility: "Basic Python coding and high school algebra.",
+      funding: "Free to audit all 3 courses; Coursera Financial Aid available for students who want a verified certificate.",
+      deadline: "Self-paced (approx. 2 months at 10 hrs/week).",
+      status: "Open Year-Round",
+      documents: "Free Coursera account (plus short financial aid essay if applying for free certificate).",
+      application: "Step 1: Click 'Enroll for Free' on Coursera and select 'Audit' (or click 'Financial aid available'). Step 2: Complete Jupyter Notebook labs in NumPy, Scikit-learn, and TensorFlow.",
+      notes: "Modernized Python version of Andrew Ng's world-famous Stanford ML course.",
       source: "https://www.coursera.org/specializations/machine-learning-introduction"
     },
+    "Scientific Computing with Python (freeCodeCamp)": {
+      level: "Open to All (Beginner to Intermediate)",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all learners.",
+      funding: "100% Free nonprofit platform with verified developer certification.",
+      deadline: "Self-paced",
+      status: "Open Year-Round",
+      documents: "Free account on freeCodeCamp.org.",
+      application: "Step 1: Log in to freeCodeCamp. Step 2: Complete the interactive browser-based Python labs. Step 3: Build the 5 required certification projects to claim your certificate.",
+      notes: "Great for science students who want to learn Python for data analysis.",
+      source: "https://www.freecodecamp.org/learn/scientific-computing-with-python/"
+    },
+    "The Science of Well-Being (Yale University)": {
+      level: "Open to All",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to everyone.",
+      funding: "Free to audit on Coursera.",
+      deadline: "Self-paced (10 weeks)",
+      status: "Open Year-Round",
+      documents: "Free Coursera account.",
+      application: "Step 1: Go to the course page on Coursera. Step 2: Click 'Enroll for Free' and choose 'Audit the course' at the bottom of the popup.",
+      notes: "Taught by Yale psychology professor Laurie Santos.",
+      source: "https://www.coursera.org/learn/the-science-of-well-being"
+    },
     "Khan Academy: AP & College STEM Courses": {
-      level: "High school & Introductory College",
+      level: "High School & Bachelor's",
       age: "All ages",
       nationality: "Worldwide",
       eligibility: "Open to all students.",
-      funding: "100% free nonprofit platform.",
+      funding: "100% Free forever.",
       deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Optional free account to track mastery progress.",
-      application: "Visit Khan Academy Science or Math sections.",
-      notes: "Ideal for exam prep and strengthening science fundamentals.",
+      status: "Open Year-Round",
+      documents: "Optional free account to save mastery points.",
+      application: "Step 1: Select your subject (AP Biology, AP Chemistry, AP Physics, Calculus, Organic Chemistry). Step 2: Watch concise lessons and take unit mastery quizzes.",
+      notes: "Ideal for FSc/A-Level/AP exam preparation.",
       source: "https://www.khanacademy.org/science"
     },
     "Google AI & Digital Skills Training": {
-      level: "Beginner",
+      level: "Open to All",
       age: "All ages",
       nationality: "Worldwide",
       eligibility: "Open to all learners.",
-      funding: "Free training modules and badges.",
+      funding: "Free courses and digital badges.",
       deadline: "Self-paced",
-      status: "Open year-round",
+      status: "Open Year-Round",
       documents: "Google account.",
-      application: "Access directly via Grow with Google.",
-      notes: "Covers AI productivity, data analytics basics, and digital tools.",
+      application: "Step 1: Visit Grow with Google. Step 2: Browse AI Essentials, Data Analytics, or Career Readiness modules and start learning.",
+      notes: "Includes practical prompt engineering and AI productivity lessons.",
       source: "https://grow.google/intl/en_pk/"
     },
 
     // SCHOLARSHIPS DETAILS
-    "Türkiye Scholarships": {
+    "Türkiye Scholarships (Türkiye Bursları)": {
       level: "Bachelor's, Master's, PhD",
       age: "Bachelor's: under 21; Master's: under 30; PhD: under 35",
-      nationality: "International applicants, including Pakistan",
-      eligibility: "Minimum academic achievement: 70% for most programmes; 90% for medicine, dentistry and pharmacy.",
-      funding: "Tuition, monthly stipend, accommodation, health insurance, one-year Turkish language course and flight ticket.",
-      deadline: "Normally January–February",
-      status: "Upcoming cycle check",
-      documents: "Passport or ID, photograph, academic transcripts, diploma, test scores if applicable, motivation letter.",
-      application: "Apply through the official Türkiye Scholarships application system.",
-      notes: "Bachelor's applicants must meet the age requirement.",
+      nationality: "Citizens of all countries except Türkiye (including Pakistan)",
+      eligibility: "Minimum grades: 70% for Bachelor's, 75% for Master's/PhD, and 90% for Medicine, Dentistry & Pharmacy. Final-year high school/university students graduating before August can apply.",
+      funding: "Full tuition, monthly stipend, free university dormitory (Bachelor's), general health insurance, round-trip flight ticket, and 1-year Turkish language course.",
+      deadline: "January 10 – February 20 (Annual cycle); Results in early August.",
+      status: "Annual Cycle (Jan–Feb)",
+      documents: "1) Valid National ID or Passport; 2) Recent photo (taken within 1 year); 3) High school/university diploma or temporary graduation certificate; 4) Official transcripts; 5) Letter of Intent; 6) National/International exam scores (SAT/GRE/IELTS if required by chosen university).",
+      application: "Step 1: Create an account on the official TBBS portal. Step 2: Upload scanned academic documents and write your Letter of Intent. Step 3: Select up to 12 university/department preferences. Step 4: Submit before Feb 20 (Bachelor's applicants may take a 60-min math/logic test).",
+      notes: "100% free online application—no middlemen or agents needed.",
       source: "https://www.turkiyeburslari.gov.tr/"
     },
     "Stipendium Hungaricum": {
       level: "Bachelor's, One-Tier Master's, Master's, PhD",
-      age: "Must be at least 18 by August",
-      nationality: "Pakistan/AJ&K applicants apply through HEC nomination.",
-      eligibility: "Must meet HEC and Hungarian university requirements.",
-      funding: "Tuition exemption, monthly stipend, dormitory place or accommodation contribution, and medical insurance.",
-      deadline: "Check annual call",
-      status: "Awaiting next call",
-      documents: "Academic certificates, transcripts, passport/ID, motivation letter, language evidence where required.",
-      application: "Submit the online Stipendium Hungaricum application and separate HEC application.",
-      notes: "Age restriction and return undertaking may apply.",
+      age: "Must be at least 18 years old by August 31 of the entry year (no upper age limit)",
+      nationality: "Citizens of eligible partner countries (Pakistan/AJ&K applicants nominated via HEC)",
+      eligibility: "For Pakistan: Must hold Intermediate/A-Levels (not just O-Levels) for Bachelor's, obtain at least 50% in HEC's HAT or USAT test, and not hold dual nationality.",
+      funding: "Full tuition exemption, monthly living stipend, free dormitory place or HUF 40,000/month housing contribution, and medical insurance.",
+      deadline: "Opens mid-November; Application Deadline: January 15 (Annual cycle).",
+      status: "Open / Upcoming Jan 15",
+      documents: "1) Online application form + photo; 2) Minimum 1-page Motivation Letter (Times New Roman 12pt); 3) School/degree certificates & transcripts; 4) Passport/ID copy; 5) English proficiency proof; 6) HEC HAT/USAT score (for Pakistani applicants).",
+      application: "Step 1: Apply on the Tempus Public Foundation (Stipendium Hungaricum) portal by Jan 15. Step 2: Submit a separate nomination application on the HEC Pakistan portal. Step 3: Complete university entrance exams/interviews (March–May).",
+      notes: "Both portals (Hungarian portal + sending partner portal like HEC) are mandatory.",
       source: "https://stipendiumhungaricum.hu/"
     },
-    "Chinese Government Scholarship": {
+    "Chinese Government Scholarship (CSC)": {
       level: "Bachelor's, Master's, PhD",
-      age: "Bachelor's under 25, Master's under 35, PhD under 40.",
-      nationality: "Pakistani/AJ&K nationals",
-      eligibility: "Completed Intermediate/A-level for Bachelor's; 16-year degree for Master's; MS/MPhil for PhD.",
-      funding: "Full or partial scholarship benefits depend on award category.",
-      deadline: "Check annual HEC call",
-      status: "Check portal",
-      documents: "Academic transcripts and certificates, passport, photograph, study plan, recommendation letters.",
-      application: "Apply on BOTH HEC scholarship portal and CSC Campus China portal.",
-      notes: "Both HEC and CSC applications are mandatory.",
+      age: "Bachelor's: under 25; Master's: under 35; PhD: under 40",
+      nationality: "Non-Chinese citizens (Pakistani/AJ&K nationals apply via HEC for Type A)",
+      eligibility: "Completed Intermediate/A-Levels for Bachelor's; 16-year Bachelor's for Master's; MS/MPhil for PhD. Good health and strong academic record.",
+      funding: "Full tuition waiver, free on-campus accommodation, comprehensive medical insurance, and monthly living stipend (CNY 2,500–3,500).",
+      deadline: "Usually December – January (varies by HEC and Chinese university Type B deadlines).",
+      status: "Annual Cycle (Dec–Jan)",
+      documents: "1) CSC Application Form; 2) Notarized highest diploma & transcripts; 3) Study Plan / Research Proposal (min 800 words); 4) Two recommendation letters (for grad applicants); 5) Foreigner Physical Examination Form; 6) Non-criminal record certificate.",
+      application: "Step 1: For Type A (bilateral), apply on BOTH the HEC Pakistan portal and CSC Campus China portal. Step 2: For Type B (university track), apply directly to the Chinese university and on CSC portal.",
+      notes: "Submitting on only one portal will result in automatic rejection.",
       source: "https://www.campuschina.org/"
     },
-    "Global Korea Scholarship": {
+    "Global Korea Scholarship (GKS)": {
       level: "Bachelor's, Master's, PhD",
-      age: "Depends on annual call.",
-      nationality: "International applicants from eligible countries.",
-      eligibility: "Academic results, nationality, age and health requirements apply.",
-      funding: "Tuition, airfare, monthly allowance, Korean-language training.",
-      deadline: "Varies by embassy and university track.",
-      status: "Check current tracks",
-      documents: "Application form, personal statement, study plan, academic records, proof of citizenship.",
-      application: "Apply through embassy track or university track.",
-      notes: "Embassy and university deadlines differ.",
+      age: "Undergrad: under 25; Grad: under 40",
+      nationality: "Citizens of NIIED partner countries (including Pakistan)",
+      eligibility: "Minimum GPA of 80% (or top 20% of class). Must hold high school diploma for Bachelor's or Bachelor's degree for Master's. Good physical/mental health.",
+      funding: "Full tuition, round-trip economy airfare, settlement allowance, monthly living stipend, medical insurance, and 1-year Korean language course.",
+      deadline: "Undergraduate track: Sept–Oct; Graduate track: Feb–March.",
+      status: "Annual Cycle",
+      documents: "1) GKS Application Form; 2) Personal Statement & Study Plan; 3) Recommendation Letters; 4) Apostilled/consular-verified diplomas & transcripts; 5) Proof of citizenship of applicant & parents.",
+      application: "Step 1: Choose either the Embassy Track (apply to 3 universities via Korean Embassy) OR University Track (apply directly to 1 Korean university). Step 2: Mail physical attested documents before the deadline.",
+      notes: "You can only apply through EITHER the Embassy Track OR the University Track, never both.",
       source: "https://www.studyinkorea.go.kr/"
     },
-    "MEXT Scholarship": {
-      level: "Undergraduate and postgraduate categories",
-      age: "Depends on category.",
-      nationality: "International applicants",
-      eligibility: "Academic, age, health and subject requirements apply.",
-      funding: "Tuition, monthly stipend and travel support.",
-      deadline: "Annual embassy deadlines apply.",
-      status: "Check embassy announcements",
-      documents: "Application form, transcripts, graduation certificate, recommendation, medical certificate.",
-      application: "Apply through the Embassy of Japan.",
-      notes: "Undergraduate and research categories have different procedures.",
+    "MEXT Scholarship (Japanese Government)": {
+      level: "Bachelor's, Research / Master's / PhD",
+      age: "Undergrad: 17–24; Research/Grad: under 35",
+      nationality: "Citizens of countries with Japanese diplomatic relations",
+      eligibility: "Strong academic record (minimum 65–70%+ depending on embassy), willingness to learn Japanese, and passing written subject exams (Math, English, Physics/Chemistry).",
+      funding: "100% university tuition & exam fees, monthly stipend (¥117,000–¥145,000), round-trip airfare to Japan, and 1-year preparatory Japanese education.",
+      deadline: "Embassy recommendation typically opens April–May each year.",
+      status: "Annual Cycle (Spring)",
+      documents: "1) MEXT Application Form; 2) Academic transcripts & graduation certificate; 3) Recommendation letter from principal/dean; 4) Medical certificate; 5) Field of Study & Research Plan (grad applicants).",
+      application: "Step 1: Download forms from the Embassy of Japan in your country in April/May. Step 2: Submit paper application. Step 3: Take written subject exams and interviews at the Embassy.",
+      notes: "Embassy screening includes mandatory written exams in math/science/English.",
       source: "https://www.studyinjapan.go.jp/en/"
+    },
+    "Lester B. Pearson International Scholarship": {
+      level: "Bachelor's (Undergraduate)",
+      age: "Final year of secondary school",
+      nationality: "International students (non-Canadian citizens requiring a study permit)",
+      eligibility: "Must be in final year of high school (or graduated no earlier than June of the previous year), demonstrate exceptional academic achievement and creativity, and be nominated by your high school.",
+      funding: "Covers full tuition, books, incidental fees, and full residence support at the University of Toronto for 4 years.",
+      deadline: "School Nomination: October 11; OUAC Application: October 18; Scholarship Docs: November 8.",
+      status: "Annual Cycle (Autumn)",
+      documents: "1) Official High School Nomination; 2) OUAC undergraduate admission application; 3) Online Pearson Scholarship personal essays & activity list; 4) High school transcripts.",
+      application: "Step 1: Ask your high school counselor/principal to apply to become a nominating school. Step 2: Apply to U of T via OUAC. Step 3: Complete the Pearson Scholarship application once nominated.",
+      notes: "Each high school worldwide can only nominate ONE student per year.",
+      source: "https://future.utoronto.ca/pearson/about/"
+    },
+    "UBC International Scholars Program": {
+      level: "Bachelor's (Undergraduate)",
+      age: "Entering first-year undergraduate study",
+      nationality: "International students",
+      eligibility: "Superior academic achievement, strong extracurricular leadership, and demonstrated financial need that would otherwise prevent attending UBC.",
+      funding: "Need-based packages up to full tuition, living expenses, and flights for 4 years.",
+      deadline: "School/Referee Nomination & Application: November 15; UBC Admission: December 1.",
+      status: "Annual Cycle (Nov)",
+      documents: "1) UBC online admission application; 2) International Scholars financial need form; 3) Academic transcripts; 4) Referee/nominator assessment.",
+      application: "Step 1: Submit your International Scholars package by Nov 15. Step 2: Submit your full UBC admission application by Dec 1.",
+      notes: "Includes the Karen McKellin International Leader of Tomorrow Award.",
+      source: "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
+    },
+    "AU Emerging Global Leader Scholarship": {
+      level: "Bachelor's (Undergraduate)",
+      age: "First-year incoming undergraduate",
+      nationality: "International students requiring a U.S. F-1/J-1 student visa",
+      eligibility: "Minimum 3.8 GPA equivalent (top 10% of class), demonstrated leadership, volunteerism, and commitment to serving underprivileged communities. English proficiency (IELTS 7.0 / TOEFL 95+ / Duolingo 125+).",
+      funding: "Full billable expenses (100% tuition, room, and board) renewable for 4 years. Does not cover non-billable costs like flights or health insurance (~$4,000/yr).",
+      deadline: "Priority Deadline: December 15; Final Deadline: January 15.",
+      status: "Annual Cycle (Dec–Jan)",
+      documents: "1) Common App admission application; 2) AU EGLS scholarship essays; 3) Bank letter & AU Certification of Finances showing ~$4,000/yr; 4) Official transcripts & English test scores.",
+      application: "Step 1: Submit Common App to American University. Step 2: Complete the AU EGLS scholarship form in your AU applicant portal before Jan 15.",
+      notes: "Only 1–2 full scholarships are awarded globally each year; runners-up may receive partial merit aid.",
+      source: "https://www.american.edu/admissions/international/egls.cfm"
     },
     "Romanian Government Scholarship": {
       level: "Bachelor's, Master's, PhD",
-      age: "Check annual programme rules.",
+      age: "Check annual call rules",
       nationality: "Non-EU foreign citizens",
-      eligibility: "Academic records and admission criteria apply. Preparatory language year provided if taught in Romanian.",
-      funding: "Tuition, monthly scholarship and accommodation support.",
-      deadline: "Check annual call",
-      status: "Awaiting next call",
-      documents: "Academic diplomas, transcripts, birth certificate, passport, CV.",
-      application: "Apply through Study in Romania platform.",
-      notes: "Check language of instruction.",
+      eligibility: "Minimum average grade of 7 (70% equivalent) in previous studies. Bachelor's and Master's programs are taught in Romanian (with a free 1-year Romanian language prep year included).",
+      funding: "Full tuition waiver, free student dormitory accommodation, and monthly financial allowance.",
+      deadline: "Opens mid-January; Deadline: March 12 (Annual cycle).",
+      status: "Annual Cycle (Jan–Mar)",
+      documents: "1) High school/Bachelor's diplomas & transcripts (translated into English/French/Romanian); 2) Birth certificate; 3) Passport bio page; 4) Curriculum Vitae (CV).",
+      application: "Step 1: Create an account on the Study in Romania platform. Step 2: Upload certified translations of all required documents. Step 3: Submit before March 12.",
+      notes: "Medicine, Dentistry, and Pharmacy are excluded from this scholarship.",
       source: "https://scholarships.studyinromania.gov.ro/"
     },
-    "Brunei Government Scholarship": {
+    "Brunei Darussalam Government Scholarship": {
       level: "Diploma, Bachelor's, Master's",
-      age: "Annual age limits apply.",
-      nationality: "International applicants from eligible countries.",
-      eligibility: "Academic and programme requirements apply.",
-      funding: "Tuition, airfare, monthly personal allowance, meals, books, accommodation.",
-      deadline: "Check annual call",
-      status: "Check next call",
-      documents: "Academic certificates, transcripts, passport, photograph, medical documents.",
-      application: "Follow Ministry of Foreign Affairs Brunei announcement.",
-      notes: "Check course availability.",
+      age: "Undergrad/Diploma: 18–25; Master's: under 35",
+      nationality: "Citizens of eligible partner countries (including Pakistan)",
+      eligibility: "Meet specific university entry requirements (e.g., A-Levels/IB for Bachelor's) and English proficiency (IELTS 6.0 / TOEFL 550 or credit in O-Level English).",
+      funding: "Full tuition waiver, economy round-trip airfare, BND $500/month personal allowance, BND $150/month meal allowance, annual book allowance, and free campus housing.",
+      deadline: "Usually February 15 (Annual cycle).",
+      status: "Annual Cycle (Jan–Feb)",
+      documents: "1) Completed BDGS Application Form; 2) Certified academic certificates & transcripts; 3) Statement of Purpose; 4) Passport copy & security clearance form.",
+      application: "Step 1: Download the form from the Brunei Ministry of Foreign Affairs website. Step 2: Apply simultaneously to your chosen Bruneian university (UBD, UTB, UNISSA, or PB). Step 3: Submit via email/portal by Feb 15.",
+      notes: "Generous tax-free allowances and English-medium instruction.",
       source: "https://www.mfa.gov.bn/"
     },
-    "Manaaki New Zealand Scholarships": {
-      level: "Postgraduate study",
-      age: "Country rules apply.",
-      nationality: "Citizens of listed eligible partner countries.",
-      eligibility: "Must belong to eligible country list.",
-      funding: "Tuition, living allowance, travel, insurance.",
-      deadline: "Country-specific",
-      status: "Check partner eligibility",
-      documents: "Academic records, identity documents, references, study plans.",
-      application: "Use official Manaaki application portal.",
-      notes: "Check country eligibility list.",
-      source: "https://www.nzscholarships.govt.nz/"
+    "Qatar University International Scholarships": {
+      level: "Bachelor's, Master's, PhD",
+      age: "Standard university admission rules",
+      nationality: "International students",
+      eligibility: "High school certificate with minimum 95% average for competitive external scholarships, plus meeting QU admission requirements.",
+      funding: "Full tuition exemption, textbook fees, monthly stipend (QAR 500), student housing, and annual round-trip airfare.",
+      deadline: "Fall intake: March; Spring intake: October.",
+      status: "Biannual Cycle",
+      documents: "1) Online QU Admission & Scholarship application; 2) Official high school/university transcripts; 3) Passport copy & health certificate; 4) SAT/ACT/IELTS scores if required.",
+      application: "Step 1: Apply for undergraduate/graduate admission on the Qatar University portal during the international admission window. Step 2: Select the International Student Scholarship option.",
+      notes: "Extremely competitive—95%+ high school grades typically required.",
+      source: "https://www.qu.edu.qa/"
     },
-    "Australia Awards Scholarships": {
-      level: "Master's and postgraduate study",
-      age: "Country-specific requirements apply.",
-      nationality: "Citizens of participating countries",
-      eligibility: "Academic, professional and development-impact requirements.",
-      funding: "Tuition, return airfare, establishment allowance, living contribution, health cover.",
-      deadline: "Annual cycle",
-      status: "Check intake dates",
-      documents: "Academic transcripts, degree certificates, CV, references, development statement.",
-      application: "Use official Australia Awards website.",
-      notes: "Development-focused scholarship.",
-      source: "https://www.dfat.gov.au/people-to-people/australia-awards"
+    "Taiwan MOFA / MOE Scholarship": {
+      level: "Bachelor's, Master's, PhD",
+      age: "18 and older",
+      nationality: "International students",
+      eligibility: "High school diploma or university degree with strong GPA; cannot hold ROC (Taiwan) nationality.",
+      funding: "MOE: Tuition waiver up to NTD 40,000/semester + NTD 15,000–20,000/month stipend. MOFA: NTD 30,000/month stipend + airfare.",
+      deadline: "February 1 – March 31 (Annual cycle).",
+      status: "Annual Cycle (Feb–Mar)",
+      documents: "1) Scholarship application form; 2) Passport & highest diploma/transcripts; 3) Proof of university admission application; 4) Two recommendation letters; 5) English/Chinese proficiency test.",
+      application: "Step 1: Apply directly to a Taiwanese university for admission. Step 2: Submit your scholarship package to your nearest Taiwan Economic & Cultural Office by March 31.",
+      notes: "Separate applications required for the university and the scholarship office.",
+      source: "https://www.studyintaiwan.org/"
+    },
+    "Islamic Development Bank (IsDB) Scholarships": {
+      level: "Bachelor's, Master's, PhD",
+      age: "Bachelor's: under 24; Master's: under 30; PhD: under 35",
+      nationality: "Citizens of IsDB Member Countries (including Pakistan) & Muslim communities in non-member states",
+      eligibility: "Minimum 70% grades in final high school/degree exams; studying approved STEM, medical, engineering, or development fields; not receiving another scholarship.",
+      funding: "Full tuition fees, monthly living allowance, medical coverage, and round-trip airfare.",
+      deadline: "Usually February – March (Annual cycle).",
+      status: "Annual Cycle",
+      documents: "1) Online IsDB portal application; 2) Academic certificates & transcripts; 3) Birth certificate & national ID/passport; 4) Medical fitness certificate; 5) Research proposal (PhD).",
+      application: "Step 1: Register on the IsDB Scholarship Portal when the annual call opens. Step 2: Upload all academic and identity documents. Step 3: Secure admission to a partner university.",
+      notes: "Includes a commitment to contribute to community/national development after graduation.",
+      source: "https://www.isdb.org/scholarships"
     },
     "Erasmus Mundus Joint Masters": {
-      level: "Joint Master's degrees",
-      age: "Programme-specific rules.",
-      nationality: "International applicants",
-      eligibility: "Bachelor's degree, subject prerequisites, language requirements.",
-      funding: "Participation costs, travel, installation and living expenses.",
-      deadline: "Varies by programme (typically Oct–Jan).",
-      status: "Check individual consortium",
-      documents: "Degree certificate, transcripts, CV, motivation letter, references, language evidence.",
-      application: "Apply directly to the specific Master's consortium.",
-      notes: "No single central deadline.",
+      level: "Master's",
+      age: "No age limit",
+      nationality: "Students worldwide",
+      eligibility: "Completed Bachelor's degree (or final year graduating before enrollment), strong academic record, and English proficiency (IELTS/TOEFL).",
+      funding: "100% tuition waiver, €1,400/month living allowance for up to 24 months, travel and installation grants, and full health insurance.",
+      deadline: "Varies by Master's programme (most close between November and January).",
+      status: "Open (Nov–Jan Window)",
+      documents: "1) Bachelor's degree & transcripts; 2) Europass CV; 3) Programme-specific Motivation Letter; 4) Two academic reference letters; 5) Passport & proof of residence; 6) IELTS/TOEFL score.",
+      application: "Step 1: Browse the official Erasmus Mundus Catalogue. Step 2: Select up to 3 joint programmes. Step 3: Apply directly on each consortium's website.",
+      notes: "You study in at least 2 different European countries and earn a joint or double Master's degree.",
       source: "https://erasmus-plus.ec.europa.eu/"
     },
     "Chevening Scholarship": {
-      level: "One-year Master's",
-      age: "No upper age limit.",
-      nationality: "Citizens of eligible Chevening countries",
-      eligibility: "Undergraduate degree, required post-graduation work experience, leadership potential.",
-      funding: "Tuition, monthly living allowance, travel and approved allowances.",
-      deadline: "Usually October",
-      status: "Check cycle",
-      documents: "Education history, work experience details, references, course choices, leadership essays.",
-      application: "Apply through official Chevening online system.",
-      notes: "Work experience required.",
+      level: "Master's",
+      age: "No upper age limit",
+      nationality: "Citizens of Chevening-eligible countries (including Pakistan)",
+      eligibility: "Completed undergraduate degree, at least 2 years (2,800 hours) of work experience (including internships/volunteering), and commitment to return home for 2 years post-study.",
+      funding: "100% UK university tuition fees, monthly living stipend, economy round-trip flights, arrival/departure allowances, and visa fee.",
+      deadline: "Opens August; Deadline: Early November (Annual cycle).",
+      status: "Annual Cycle (Aug–Nov)",
+      documents: "1) Online Chevening application with 4 essays (Leadership, Networking, Studying in UK, Career Plan); 2) University transcripts & degree; 3) Two references; 4) Unconditional UK university offer (by July).",
+      application: "Step 1: Submit your Chevening application and select 3 eligible UK Master's courses by November. Step 2: Apply separately to those 3 UK universities. Step 3: Attend embassy interview if shortlisted.",
+      notes: "Work experience can be full-time, part-time, paid, or voluntary accumulated before/after graduation.",
       source: "https://www.chevening.org/"
     },
     "Commonwealth Scholarships": {
-      level: "Taught Master's and PhD",
-      age: "No general upper age limit.",
-      nationality: "Commonwealth citizens",
-      eligibility: "Relevant prior degree and academic requirements.",
-      funding: "Tuition, approved living allowance, airfare.",
-      deadline: "Annual HEC/CSC deadline",
-      status: "Check call",
-      documents: "Academic records, references, development-impact statement, study plan.",
-      application: "Apply through CSC and HEC portals.",
-      notes: "Separate shared scholarship routes exist.",
+      level: "Master's, PhD",
+      age: "No upper age limit",
+      nationality: "Citizens of Commonwealth countries (including Pakistan)",
+      eligibility: "Hold at least an upper second-class (2:1) Bachelor's degree (or Master's for PhD) and demonstrate financial need.",
+      funding: "Full UK tuition fees, approved airfare, monthly living stipend (~£1,347–£1,652), thesis grant, and warm clothing allowance.",
+      deadline: "Typically September – October (plus HEC nomination in Pakistan).",
+      status: "Annual Cycle (Autumn)",
+      documents: "1) CSC online application; 2) HEC portal application & HAT score (for Pakistan); 3) Academic transcripts & degrees; 4) Development Impact statements; 5) Two references.",
+      application: "Step 1: Apply via the Commonwealth Scholarship Commission (CSC) online system. Step 2: Submit nomination application to your national nominating agency (HEC in Pakistan).",
+      notes: "Also check Commonwealth Shared Scholarships (applied directly through UK universities).",
       source: "https://cscuk.fcdo.gov.uk/"
     },
     "DAAD Scholarships": {
-      level: "Master's, PhD, research",
-      age: "Depends on individual scholarship.",
+      level: "Master's, PhD",
+      age: "Varies by programme (usually graduated within last 6 years)",
       nationality: "International applicants",
-      eligibility: "Academic degree, professional experience and language requirements.",
-      funding: "Monthly stipend, insurance, travel allowance.",
-      deadline: "Varies by programme.",
-      status: "Check DAAD database",
-      documents: "Transcripts, degree certificates, CV, motivation letter, references, research proposal.",
-      application: "Apply through DAAD scholarship database route.",
-      notes: "Many distinct programmes.",
+      eligibility: "Above-average Bachelor's degree; 2 years of relevant work experience required for EPOS development-related Master's programmes.",
+      funding: "€934/month (Master's) or €1,300/month (PhD), health/accident insurance, travel allowance, and rent subsidy.",
+      deadline: "Varies by programme (August–November for most EPOS and Helmut-Schmidt programmes).",
+      status: "Check DAAD Database",
+      documents: "1) DAAD application form; 2) Hand-signed CV (Europass); 3) Hand-signed Motivation Letter; 4) Degree certificates & transcripts; 5) Recommendation letters; 6) IELTS/TOEFL or German certificate.",
+      application: "Step 1: Search the DAAD Scholarship Database for your subject. Step 2: Check whether to submit via the DAAD portal or directly to the German university.",
+      notes: "Many German Master's programs are taught 100% in English with zero tuition fees.",
       source: "https://www.daad.de/en/"
     },
     "Eiffel Excellence Scholarship": {
-      level: "Master's and PhD",
-      age: "Under 30 for Master's, under 35 for PhD.",
-      nationality: "International applicants",
-      eligibility: "Must be nominated by a French higher education institution.",
-      funding: "Monthly allowance and associated benefits.",
-      deadline: "January (institutional deadline)",
-      status: "Institutional nomination",
-      documents: "Academic records, CV, motivation, project or study plan.",
-      application: "Contact French institution for nomination.",
-      notes: "University internal deadline is earlier.",
+      level: "Master's, PhD",
+      age: "Master's: max 27 years old; PhD: max 32 years old",
+      nationality: "Non-French citizens",
+      eligibility: "Outstanding academic record in Science/Engineering, Economics/Management, or Law/Political Science. Cannot apply directly—must be nominated by a French university.",
+      funding: "€1,181/month (Master's) or €1,800/month (PhD), round-trip international airfare, health insurance, and housing support.",
+      deadline: "Campus France deadline: Early January (French university internal deadlines are usually Nov–Dec).",
+      status: "Annual Cycle (Nov–Jan)",
+      documents: "1) Academic transcripts & diplomas; 2) CV & Motivation Letter; 3) PhD research project description (if applicable); 4) Language proficiency proof.",
+      application: "Step 1: Contact the International Relations office of your chosen French university in Oct/Nov. Step 2: Apply for admission and request Eiffel nomination. Step 3: University submits your file to Campus France.",
+      notes: "Students cannot submit an application themselves; only French institutions can nominate.",
       source: "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence"
     },
     "Swiss Government Excellence Scholarships": {
-      level: "Research fellowship, PhD, postdoctoral",
-      age: "Varies by award category.",
-      nationality: "Citizens of eligible countries",
-      eligibility: "Research proposal, academic qualifications, Swiss academic supervisor.",
-      funding: "Monthly stipend and support.",
-      deadline: "Country-specific",
-      status: "Check Swiss representation",
-      documents: "Research proposal, CV, academic records, recommendation letters, supervisor acceptance.",
-      application: "Follow Swiss Government country procedure.",
-      notes: "Requires prior supervisor contact.",
+      level: "Master's (Arts), PhD, Research Fellowship",
+      age: "Born after December 31, 1989 (under 35)",
+      nationality: "Citizens of over 180 eligible countries (including Pakistan)",
+      eligibility: "Master's degree required for PhD/Research scholarships, plus an official support letter from an academic host professor at a Swiss public university.",
+      funding: "CHF 1,920/month (PhD/Research), tuition waiver, health insurance, flight allowance, and housing allowance.",
+      deadline: "Varies by country (typically October – December).",
+      status: "Annual Cycle (Autumn)",
+      documents: "1) Official Swiss Embassy application package; 2) Detailed Research Proposal; 3) Support letter from a Swiss professor; 4) CV, transcripts, and 2 confidential recommendation letters.",
+      application: "Step 1: Email a Swiss professor to secure supervision agreement. Step 2: Request application forms from the Swiss Embassy in your country. Step 3: Submit physical/digital dossier before your country's deadline.",
+      notes: "Securing a Swiss professor's support letter early is the most critical step.",
       source: "https://www.sbfi.admin.ch/"
     },
-    "Swedish Institute Scholarships": {
+    "Swedish Institute Scholarships (SISGP)": {
       level: "Master's",
-      age: "No universal age limit.",
-      nationality: "Citizens of eligible countries",
-      eligibility: "Admission to Swedish Master's programme, required work and leadership experience.",
-      funding: "Tuition, monthly living allowance, insurance, travel grant.",
-      deadline: "Winter application window",
-      status: "Check call",
-      documents: "CV, work experience evidence, leadership evidence, references.",
-      application: "Apply via University Admissions and SI portal.",
-      notes: "Work and leadership criteria required.",
+      age: "No age limit",
+      nationality: "Citizens of 33 eligible countries (including Pakistan)",
+      eligibility: "Admitted to an eligible English-taught Swedish Master's programme, plus at least 3,000 hours of demonstrated work experience and leadership experience.",
+      funding: "Full tuition fees paid directly to university, SEK 12,000/month living allowance, insurance, and SEK 15,000 travel grant.",
+      deadline: "University Admissions: January 15; SI Scholarship Portal: February (Annual cycle).",
+      status: "Annual Cycle (Jan–Feb)",
+      documents: "1) SI-formatted CV; 2) Proof of 3,000+ hours work/leadership experience (using official SI forms); 3) Two reference letters on SI forms; 4) Valid passport.",
+      application: "Step 1: Apply to up to 4 Master's programs on UniversityAdmissions.se by Jan 15. Step 2: Submit your SI scholarship documents on the SI portal in February.",
+      notes: "You must use the exact official SI templates for your CV and reference letters.",
       source: "https://si.se/en/"
     },
     "Gates Cambridge Scholarship": {
-      level: "Postgraduate study at Cambridge",
-      age: "No general age limit.",
-      nationality: "Non-UK applicants",
-      eligibility: "Outstanding academic ability, leadership potential, commitment to others.",
-      funding: "Full cost of studying at Cambridge.",
-      deadline: "Course-specific deadline",
-      status: "Check course deadline",
-      documents: "University application, transcripts, references, Gates statement.",
-      application: "Apply for admission to Cambridge and indicate funding consideration.",
-      notes: "Eligible courses only.",
+      level: "Master's, PhD",
+      age: "No age limit",
+      nationality: "Any country outside the United Kingdom",
+      eligibility: "Applying for a full-time residential postgraduate degree (PhD, MSc/MLitt, or one-year Master's) at Cambridge; exceptional intellect, leadership, and social commitment.",
+      funding: "Full University Composition Fee, £21,000/year maintenance stipend, economy airfare, visa costs, and academic development funding.",
+      deadline: "US citizens: October; All other international applicants: December 3 or January 7 (depending on course).",
+      status: "Open (Dec–Jan Deadlines)",
+      documents: "1) Cambridge graduate admission application; 2) Gates Cambridge 500-word personal statement; 3) Research proposal (PhD); 4) Two academic references + one Gates reference.",
+      application: "Step 1: Apply for admission to the University of Cambridge via the Graduate Applicant Portal. Step 2: Complete the Gates Cambridge funding section within the same application.",
+      notes: "MBA, MFin, and part-time degrees are not eligible.",
       source: "https://www.gatescambridge.org/"
     },
     "Rhodes Scholarship": {
-      level: "Postgraduate study at Oxford",
-      age: "Varies by constituency.",
-      nationality: "Constituency-specific citizenship",
-      eligibility: "Academic excellence, leadership, service.",
-      funding: "Oxford course fees, annual stipend, travel support.",
-      deadline: "Year before entry",
-      status: "Constituency-specific",
-      documents: "Academic transcripts, personal statement, CV, references.",
-      application: "Apply through official Rhodes portal.",
-      notes: "Check local constituency rules.",
+      level: "Master's, PhD",
+      age: "18–24 (up to 27 for later graduates depending on constituency)",
+      nationality: "Constituency-specific (includes Pakistan, India, Global, US, UK, etc.)",
+      eligibility: "Completed Bachelor's degree with First-Class Honours (or equivalent top GPA), proven leadership, physical/moral vigor, and commitment to public service.",
+      funding: "100% Oxford college and university fees, £19,092/year living stipend, visa fees, health surcharge, and two economy flights to/from Oxford.",
+      deadline: "Varies by constituency (typically July – October).",
+      status: "Annual Cycle",
+      documents: "1) Official transcripts & proof of age/citizenship; 2) Academic statement of study; 3) Personal statement (750–1,000 words); 4) Detailed CV; 5) 4 to 6 academic and character referees.",
+      application: "Step 1: Select your country constituency on rhodeshouse.ox.ac.uk. Step 2: Submit online application before constituency deadline. Step 3: Attend preliminary and final selection interviews.",
+      notes: "Apply to the Rhodes Scholarship first; successful scholars are then assisted with Oxford college placement.",
       source: "https://www.rhodeshouse.ox.ac.uk/"
     },
+    "Oxford Graduate Scholarships (Clarendon & Reach)": {
+      level: "Master's, PhD",
+      age: "No age limit",
+      nationality: "All countries (Reach Oxford targets low-income countries)",
+      eligibility: "Outstanding academic merit and potential; must submit your Oxford graduate course application by the December or January deadline.",
+      funding: "Full course fees plus a generous grant for living costs (at least £19,237/year).",
+      deadline: "December or January course deadline (varies by department).",
+      status: "Open (Dec–Jan Window)",
+      documents: "1) Standard Oxford graduate course application; 2) Official transcripts; 3) Statement of purpose / research proposal; 4) Three academic references.",
+      application: "Step 1: Apply for your chosen Master's or DPhil course at Oxford by the December/January deadline. Step 2: For Clarendon, you are automatically considered—no separate form needed!",
+      notes: "Over 200 new Clarendon scholarships are awarded every year across all disciplines.",
+      source: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
+    },
+    "Fulbright Foreign Student Program": {
+      level: "Master's, PhD",
+      age: "No strict age limit",
+      nationality: "Citizens of participating countries (managed by USEFP in Pakistan)",
+      eligibility: "Completed 16-year Bachelor's (for Master's) or 18-year MS/MPhil (for PhD), valid GRE General score, strong academic record, and commitment to return home.",
+      funding: "Full tuition, textbooks, round-trip airfare, monthly living stipend, health insurance, and visa support.",
+      deadline: "In Pakistan (USEFP): Usually February – March each year.",
+      status: "Annual Cycle",
+      documents: "1) Online application form; 2) Two essays (Study Objectives & Personal Statement); 3) Three reference letters; 4) Official GRE score report; 5) Attested transcripts & degrees.",
+      application: "Step 1: Take the GRE General test early. Step 2: Apply through your country's Fulbright Commission (usefp.org for Pakistan) before the deadline.",
+      notes: "Clinical medicine degrees are not funded, though public health is eligible.",
+      source: "https://foreign.fulbrightonline.org/"
+    },
+    "Manaaki New Zealand Scholarships": {
+      level: "Bachelor's, Master's, PhD",
+      age: "18 or older at scholarship start",
+      nationality: "Citizens of listed eligible partner countries (Asia, Pacific, Africa, Latin America)",
+      eligibility: "Must have lived in your home country for at least 2 years prior to applying, have 1+ year of work experience (for postgrad), and commit to returning for 2 years.",
+      funding: "Full tuition, living allowance (NZ$531/week), establishment allowance (NZ$3,000), medical/travel insurance, and flights.",
+      deadline: "Usually February 1 – February 28 (Annual cycle).",
+      status: "Annual Cycle (Feb)",
+      documents: "1) Eligibility test & online application; 2) Academic transcripts & certificates; 3) Passport/ID; 4) IELTS/TOEFL score (if shortlisted).",
+      application: "Step 1: Complete the online eligibility check on nzscholarships.govt.nz. Step 2: Register and submit your application in February.",
+      notes: "Focuses on climate change, disaster resilience, food security, and governance.",
+      source: "https://www.nzscholarships.govt.nz/"
+    },
+    "Australia Awards Scholarships": {
+      level: "Master's",
+      age: "18 or older",
+      nationality: "Citizens of participating countries in Asia, Pacific, Middle East, and Africa (including Pakistan)",
+      eligibility: "Completed 16 years of education, relevant work experience, IELTS 6.5 (no band below 6.0), and commitment to return home for 2 years.",
+      funding: "Full tuition fees, return airfare, establishment allowance, Contribution to Living Expenses (fortnightly stipend), and Overseas Student Health Cover.",
+      deadline: "Opens February 1; Deadline: April 30 (Annual cycle).",
+      status: "Annual Cycle (Feb–Apr)",
+      documents: "1) Online OASIS application; 2) Certified degrees & transcripts; 3) Birth certificate & passport; 4) CV & two referee reports; 5) Development Impact Plan.",
+      application: "Step 1: Check your country profile on dfat.gov.au. Step 2: Apply online via the OASIS portal between Feb 1 and April 30.",
+      notes: "50% of awards in many partner countries are reserved for women applicants.",
+      source: "https://www.dfat.gov.au/people-to-people/australia-awards"
+    },
     "Yenching Academy Scholarship": {
-      level: "Interdisciplinary Master's at Peking University",
-      age: "Admissions rules apply.",
-      nationality: "International applicants",
-      eligibility: "Bachelor's degree, strong academic record, interest in China studies.",
-      funding: "Tuition, accommodation, monthly stipend, travel, field-study support.",
-      deadline: "Check annual call",
-      status: "Check admissions page",
-      documents: "Transcripts, degree certificate, CV, personal statement, study plan, recommendations.",
-      application: "Apply through Yenching Academy portal.",
-      notes: "China-focused interdisciplinary study.",
+      level: "Master's",
+      age: "Under 28 (typically)",
+      nationality: "International & Chinese applicants",
+      eligibility: "Bachelor's degree in any field with outstanding academic record, leadership, extracurricular engagement, and English proficiency (IELTS 7.0 / TOEFL 100).",
+      funding: "Full tuition, accommodation in Yenching Academy House, monthly stipend, one round-trip airfare, and field study costs.",
+      deadline: "International admissions deadline: Early December (Annual cycle).",
+      status: "Open (Dec Deadline)",
+      documents: "1) Online application form; 2) Personal Statement (750 words max); 3) Statement of Research Interest (1,500 words max); 4) CV, transcripts, and 2 academic recommendation letters.",
+      application: "Step 1: Apply directly on the Yenching Academy admissions portal by early December. Step 2: Attend online interview if shortlisted.",
+      notes: "All courses are taught in English; no prior Chinese language knowledge required.",
       source: "https://yenchingacademy.pku.edu.cn/"
     },
-    "Hong Kong PhD Fellowship Scheme": {
-      level: "Full-time PhD",
-      age: "No universal age limit.",
-      nationality: "All countries",
-      eligibility: "Strong academic performance, research ability, communication skills.",
-      funding: "Annual stipend and conference/travel allowance.",
-      deadline: "Fall application window",
-      status: "Check RGC call",
-      documents: "Academic records, research proposal, references, CV, English evidence.",
-      application: "Submit initial HKPFS application and complete university applications.",
-      notes: "Prestigious research fellowship.",
+    "Hong Kong PhD Fellowship Scheme (HKPFS)": {
+      level: "PhD",
+      age: "No age limit",
+      nationality: "All countries worldwide",
+      eligibility: "Strong research ability, academic excellence, and English proficiency; applying for full-time PhD at one of Hong Kong's 8 UGC-funded universities.",
+      funding: "HK$337,200 (~US$43,200) annual stipend + HK$14,000 annual conference and research travel allowance for up to 3 years.",
+      deadline: "Initial HKPFS registration: December 1 (Annual cycle).",
+      status: "Open (Dec 1 Deadline)",
+      documents: "1) Initial application on RGC HKPFS system (to get reference number); 2) Full PhD admission application to 1 or 2 Hong Kong universities; 3) Research proposal, transcripts, and references.",
+      application: "Step 1: Submit initial registration on the RGC portal by Dec 1 to receive an HKPFS Reference Number. Step 2: Submit full PhD applications to your chosen HK universities quoting that number.",
+      notes: "One of the highest-paying PhD fellowships in Asia.",
       source: "https://cerg1.ugc.edu.hk/hkpfs/"
     },
     "KAUST Fellowship": {
-      level: "Master's and PhD",
-      age: "Programme-specific.",
-      nationality: "International applicants",
-      eligibility: "Relevant Bachelor's or Master's degree, English requirements.",
-      funding: "Tuition, living stipend, accommodation, medical insurance.",
-      deadline: "Rolling / admissions rounds",
-      status: "Check admissions",
-      documents: "Transcripts, degree certificates, CV, statement of purpose, references.",
-      application: "Apply through KAUST graduate admissions portal.",
-      notes: "Science and technology focus.",
+      level: "Master's, PhD",
+      age: "No age limit",
+      nationality: "All countries worldwide",
+      eligibility: "Bachelor's or Master's degree in STEM (Biology, Chemistry, Physics, CS, Engineering, Math) with strong GPA and English proficiency (TOEFL 79 / IELTS 6.5).",
+      funding: "100% free tuition, $20,000–$30,000 annual living stipend, free on-campus housing, medical/dental coverage, and relocation support.",
+      deadline: "Rolling admissions (Priority rounds in October and January).",
+      status: "Open (Rolling)",
+      documents: "1) Official university transcripts; 2) Statement of Purpose; 3) CV; 4) Three recommendation letters; 5) TOEFL/IELTS score.",
+      application: "Step 1: Apply directly through the KAUST graduate admissions portal. Step 2: All admitted students automatically receive the KAUST Fellowship.",
+      notes: "No separate scholarship application is needed—admission equals full funding.",
       source: "https://www.kaust.edu.sa/"
     },
     "MBZUAI Graduate Scholarships": {
-      level: "Master's and PhD",
-      age: "Programme-specific.",
-      nationality: "International applicants",
-      eligibility: "Relevant academic background in math, computing, AI.",
-      funding: "Full tuition, stipend, accommodation, health insurance.",
-      deadline: "Check intake windows",
-      status: "Check graduate admissions",
-      documents: "Degree certificates, transcripts, CV, statement of purpose, references.",
-      application: "Apply through MBZUAI admissions portal.",
-      notes: "AI-focused institution.",
+      level: "Master's, PhD",
+      age: "No age limit",
+      nationality: "All countries worldwide",
+      eligibility: "Bachelor's/Master's in Computer Science, Engineering, Math, or Physics with strong GPA and English test scores (IELTS 6.5 / TOEFL 90).",
+      funding: "100% tuition waiver, monthly stipend, on-campus accommodation, UAE visa sponsorship, and health insurance.",
+      deadline: "Priority deadline: January 15; Final deadline: March 31 (Annual cycle).",
+      status: "Open (Jan–Mar Window)",
+      documents: "1) Online application; 2) Academic transcripts & degree certificates; 3) Statement of Purpose; 4) Research Statement (PhD); 5) 2–3 recommendation letters.",
+      application: "Step 1: Submit your graduate application on mbzuai.ac.ae. Step 2: Complete online screening exam and technical interview.",
+      notes: "World's first graduate-level, research-based AI university.",
       source: "https://mbzuai.ac.ae/"
-    },
-    "UBC International Scholars": {
-      level: "Undergraduate",
-      age: "Secondary school graduation",
-      nationality: "International students",
-      eligibility: "Outstanding academic achievement, leadership, financial need.",
-      funding: "Need-based financial support toward tuition and living costs.",
-      deadline: "Early December",
-      status: "Check deadline",
-      documents: "School transcripts, references, financial information, personal profile.",
-      application: "Apply for UBC admission and award application.",
-      notes: "Financial need criteria apply.",
-      source: "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
-    },
-    "Lester B. Pearson Scholarship": {
-      level: "Undergraduate at University of Toronto",
-      age: "Final year of secondary school",
-      nationality: "International students",
-      eligibility: "Academic excellence, creativity, leadership, school nomination.",
-      funding: "Tuition, books, incidental fees, full residence for four years.",
-      deadline: "Autumn/Winter",
-      status: "Check nomination rules",
-      documents: "School nomination, transcripts, university application.",
-      application: "Requires school nomination and UofT application.",
-      notes: "Self-nomination not allowed.",
-      source: "https://future.utoronto.ca/pearson/about/"
-    },
-    "AU Emerging Global Leader Scholarship": {
-      level: "Undergraduate",
-      age: "First-year admission criteria",
-      nationality: "International students requiring US visa",
-      eligibility: "Academic record, leadership, community service, civic commitment.",
-      funding: "Full tuition, room and board.",
-      deadline: "January",
-      status: "Check checklist",
-      documents: "Admission application, transcripts, financial documents, scholarship essays.",
-      application: "Apply to American University and scholarship portal.",
-      notes: "Highly competitive.",
-      source: "https://www.american.edu/admissions/international/egls.cfm"
-    },
-    "Fulbright Foreign Student Program": {
-      level: "Master's and PhD",
-      age: "Country-specific",
-      nationality: "Citizens of participating countries",
-      eligibility: "Academic and English requirements, GRE.",
-      funding: "Tuition, textbooks, airfare, living stipend, health insurance.",
-      deadline: "Country-specific cycle",
-      status: "Check national commission",
-      documents: "Academic records, personal statements, references, test scores.",
-      application: "Apply through national USEFP or Fulbright commission.",
-      notes: "Postgraduate study focus.",
-      source: "https://foreign.fulbrightonline.org/"
-    },
-    "Taiwan Scholarship": {
-      level: "Bachelor's, Master's, PhD",
-      age: "Annual call rules",
-      nationality: "International students",
-      eligibility: "Academic and language requirements.",
-      funding: "Tuition subsidy and monthly stipend.",
-      deadline: "Spring window",
-      status: "Check representative office",
-      documents: "Academic records, passport, admission application, recommendations.",
-      application: "Apply to scholarship office and university separately.",
-      notes: "Government scholarship.",
-      source: "https://www.studyintaiwan.org/"
-    },
-    "Qatar University Scholarships": {
-      level: "Undergraduate and postgraduate",
-      age: "Admission category rules",
-      nationality: "International applicants",
-      eligibility: "Academic admission requirements.",
-      funding: "Tuition, textbooks, accommodation, airfare (varies by award).",
-      deadline: "Semester-specific",
-      status: "Check admission calendar",
-      documents: "Transcripts, passport, photograph, English evidence.",
-      application: "Apply for admission and select scholarship category.",
-      notes: "Varying funding levels.",
-      source: "https://www.qu.edu.qa/"
-    },
-    "Islamic Development Bank Scholarships": {
-      level: "Undergraduate, Master's, PhD, research",
-      age: "Scheme-specific",
-      nationality: "Member-country citizens and Muslim communities",
-      eligibility: "Academic, subject and development requirements.",
-      funding: "Tuition, living allowance, medical insurance, travel.",
-      deadline: "Annual call",
-      status: "Check current call",
-      documents: "Academic records, passport, references, admission evidence, research plan.",
-      application: "Apply through IsDB scholarship portal.",
-      notes: "Multiple distinct schemes.",
-      source: "https://www.isdb.org/scholarships"
-    },
-    "Oxford Graduate Scholarships": {
-      level: "Master's, DPhil",
-      age: "No universal age limit",
-      nationality: "Varies by award",
-      eligibility: "Admission to eligible Oxford graduate course.",
-      funding: "Full or partial tuition and living costs.",
-      deadline: "Linked to course deadline (Dec/Jan)",
-      status: "Course-specific",
-      documents: "Graduate application, transcripts, references, statement of purpose.",
-      application: "Apply for graduate course by deadline.",
-      notes: "Collection of various funding schemes.",
-      source: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
     },
 
     // INTERNSHIPS DETAILS
-    "World Health Network Student Internship": {
-      level: "Student opportunity",
-      age: "Check call",
-      nationality: "Check call",
-      eligibility: "Check official vacancy criteria.",
-      funding: "Check official call",
-      deadline: "Check website",
-      status: "Verify official posting",
-      documents: "Check requirements",
-      application: "Visit official site for current status.",
-      notes: "Verify active status.",
-      source: "https://whn.global/"
-    },
-    "UNICEF Internships": {
-      level: "Undergraduate, graduate, recent graduates",
-      age: "At least 18",
-      nationality: "International",
-      eligibility: "Enrolled in university or graduated within past two years.",
-      funding: "Monthly stipend provided under UNICEF policy.",
-      deadline: "Rolling vacancies",
-      status: "Rolling",
-      documents: "CV, cover letter, enrolment/graduation proof.",
-      application: "Apply through UNICEF careers portal.",
-      notes: "Not for high school students.",
-      source: "https://www.unicef.org/careers/internships"
-    },
-    "WHO Internship Programme": {
-      level: "University students",
-      age: "At least 20",
-      nationality: "International",
-      eligibility: "Completed at least 3 years of full-time university study.",
-      funding: "Living allowance provided to eligible interns.",
-      deadline: "Vacancy-specific",
-      status: "Check vacancies",
-      documents: "CV, enrolment proof, academic records.",
-      application: "Apply through WHO careers portal.",
-      notes: "Public health focus.",
-      source: "https://www.who.int/careers/internship-programme"
-    },
-    "UNDP Internships": {
-      level: "Final-year Bachelor's, Master's, graduates",
-      age: "Vacancy rules apply",
-      nationality: "International",
-      eligibility: "Enrolled in final year or recent graduate.",
-      funding: "Stipend provided based on duty station.",
-      deadline: "Vacancy-specific",
-      status: "Rolling",
-      documents: "CV, cover letter, academic records.",
-      application: "Apply through UNDP careers portal.",
-      notes: "Development and policy focus.",
-      source: "https://www.undp.org/careers/types-opportunities/internships"
-    },
-    "UNHCR Internships": {
-      level: "University students and recent graduates",
-      age: "Vacancy rules apply",
-      nationality: "International",
-      eligibility: "Enrolled in degree or recently graduated.",
-      funding: "Stipend available depending on duty station.",
-      deadline: "Vacancy-specific",
-      status: "Rolling",
-      documents: "CV, cover letter, enrolment proof.",
-      application: "Apply through UNHCR careers portal.",
-      notes: "Refugee protection and humanitarian work.",
-      source: "https://www.unhcr.org/careers-internships"
-    },
-    "World Food Programme Internships": {
-      level: "University students and recent graduates",
-      age: "At least 18",
-      nationality: "International",
-      eligibility: "Enrolled in university or recent graduate.",
-      funding: "Stipend up to $1,000/month depending on location.",
-      deadline: "Vacancy-specific",
-      status: "Rolling",
-      documents: "CV, cover letter, enrolment proof.",
-      application: "Apply through WFP careers portal.",
-      notes: "Food security and logistics focus.",
-      source: "https://www.wfp.org/careers/internships"
-    },
-    "UNESCO Internships": {
-      level: "University students and recent graduates",
-      age: "At least 20",
-      nationality: "International",
-      eligibility: "Third-year Bachelor's, Master's, PhD or recent graduate.",
-      funding: "Generally unpaid; living expenses self-funded.",
-      deadline: "Candidate pool",
-      status: "Check pool openings",
-      documents: "CV, motivation letter, enrolment proof, academic records.",
-      application: "Apply through UNESCO careers system.",
-      notes: "Culture, education, science focus.",
-      source: "https://www.unesco.org/en/careers/internships"
-    },
-    "World Bank Internship": {
-      level: "Graduate students",
-      age: "Graduate status",
-      nationality: "International",
-      eligibility: "Master's or PhD students in relevant fields.",
-      funding: "Paid internship.",
-      deadline: "Seasonal windows",
-      status: "Seasonal",
-      documents: "CV, enrolment proof, academic records, cover letter.",
-      application: "Apply through World Bank careers portal.",
-      notes: "Economics and development focus.",
-      source: "https://www.worldbank.org/en/about/careers/programs-and-internships"
-    },
-    "IMF Internship Programme": {
-      level: "Primarily PhD students",
-      age: "Programme-specific",
-      nationality: "International",
-      eligibility: "Graduate research background, especially economics PhD.",
-      funding: "Paid internship.",
-      deadline: "Seasonal",
-      status: "Check recruitment cycle",
-      documents: "CV, transcripts, research interests, references.",
-      application: "Apply through IMF careers portal.",
-      notes: "Research and policy placements.",
-      source: "https://www.imf.org/en/About/Recruitment/working-at-the-imf"
-    },
-    "OECD Internship Programme": {
-      level: "University students",
-      age: "No universal limit",
-      nationality: "International",
-      eligibility: "Enrolled in full-time degree programme.",
-      funding: "Paid internship allowance.",
-      deadline: "Rolling",
-      status: "Rolling",
-      documents: "CV, cover letter, enrolment proof.",
-      application: "Apply through OECD online system.",
-      notes: "Policy and economic research.",
-      source: "https://www.oecd.org/en/about/careers/internships.html"
-    },
     "CERN Summer Student Programme": {
-      level: "Undergraduate and Master's",
-      age: "Academic eligibility",
-      nationality: "International (check rules)",
-      eligibility: "Completed at least 3 years of full-time university study.",
-      funding: "Monthly allowance and travel support.",
-      deadline: "January",
-      status: "Check deadline",
-      documents: "CV, transcripts, references, enrolment proof.",
-      application: "Apply through CERN careers portal.",
-      notes: "Scientific and technical research.",
+      level: "Bachelor's, Master's",
+      age: "No strict age limit (must be current university student)",
+      nationality: "CERN Member States, Associate Member States (including Pakistan), and limited non-member spots",
+      eligibility: "Completed at least 3 years of full-time university study in Physics, Engineering, Computer Science, or Mathematics by summer; must remain enrolled during the stay.",
+      funding: "CHF 93/day (~CHF 2,800/month) subsistence allowance, travel allowance to Geneva, and comprehensive health insurance.",
+      deadline: "Usually late January (Annual cycle for June–August placement).",
+      status: "Open (Jan Deadline)",
+      documents: "1) CV in English or French; 2) Most recent official academic transcript; 3) Two mandatory academic reference letters uploaded by referees before deadline.",
+      application: "Step 1: Apply on careers.cern under 'Students'. Step 2: Upload transcript and CV. Step 3: Ensure both professors upload their reference letters before the cutoff.",
+      notes: "Pakistan is an Associate Member State of CERN, making Pakistani undergrads eligible.",
       source: "https://careers.cern/"
     },
     "Amgen Scholars Programme": {
-      level: "Undergraduate research students",
-      age: "Host-specific",
-      nationality: "Host-specific rules",
-      eligibility: "Undergraduate students in science/biotechnology.",
-      funding: "Research placement and financial support by host site.",
-      deadline: "Host-specific",
-      status: "Check host institution",
-      documents: "Transcripts, CV, recommendations, personal statement.",
-      application: "Apply directly through participating host university.",
-      notes: "Biomedical and scientific research.",
+      level: "Bachelor's (Undergraduate)",
+      age: "Undergraduate student",
+      nationality: "Depends on regional program (Asia program open to students enrolled at universities across Asia, including Pakistan)",
+      eligibility: "Enrolled in an undergraduate degree with at least 1 year remaining before graduation, strong GPA, and keen interest in PhD/biomedical research.",
+      funding: "Generous living stipend, on-campus housing, meals, and round-trip travel to the host university (e.g., Tokyo, Kyoto, NUS, Tsinghua, Cambridge, ETH Zurich).",
+      deadline: "February 1 (Annual cycle for summer research).",
+      status: "Annual Cycle (Feb 1)",
+      documents: "1) Online application to chosen host university; 2) Official transcripts; 3) Statement of purpose / research interest; 4) Two academic letters of recommendation.",
+      application: "Step 1: Visit amgenscholars.com and choose your regional program (US, Europe, Asia, Australia, or Canada). Step 2: Apply directly to up to 2–3 host institutions by Feb 1.",
+      notes: "Includes an all-expenses-paid regional symposium with leading biotech scientists.",
       source: "https://amgenscholars.com/"
     },
     "Mitacs Globalink Research Internship": {
-      level: "Undergraduate university students",
-      age: "At least 18",
-      nationality: "Eligible partner countries",
-      eligibility: "Enrolled at university in participating country, strong academic standing.",
-      funding: "Travel, accommodation and living costs covered.",
-      deadline: "Autumn/Winter",
-      status: "Check cycle",
-      documents: "Transcripts, CV, research interests, references.",
-      application: "Apply through Mitacs portal.",
-      notes: "Research internship in Canada.",
+      level: "Bachelor's (Undergraduate)",
+      age: "18 or older",
+      nationality: "Students enrolled at universities in partner countries (including Pakistan, India, UK, Germany, Brazil, etc.)",
+      eligibility: "Must have 1 to 3 semesters remaining in your Bachelor's degree after the summer internship and meet country GPA minimums (e.g., 75%+ / 3.0+ CGPA).",
+      funding: "Round-trip airfare to Canada, housing stipend, food/living allowance, health insurance, and student enrollment fees covered.",
+      deadline: "August – September (for the following summer).",
+      status: "Annual Cycle (Aug–Sep)",
+      documents: "1) Online Mitacs portal application; 2) CV; 3) Official academic transcript; 4) At least one professor reference letter; 5) Ranking of 3–7 Canadian research projects.",
+      application: "Step 1: Browse the Mitacs project database in August/September. Step 2: Select 3–7 projects across at least 3 Canadian provinces. Step 3: Submit transcript and reference.",
+      notes: "Alumni also qualify for the $15,000 Mitacs Globalink Graduate Fellowship if they return to Canada for a Master's.",
       source: "https://www.mitacs.ca/our-programs/globalink-research-internship-students/"
     },
-    "NIMS Internship Programme": {
-      level: "Undergraduate and graduate",
-      age: "Programme-specific",
-      nationality: "International applicants",
-      eligibility: "University enrolment with materials science interest.",
-      funding: "Daily allowance and accommodation support.",
-      deadline: "Annual call",
-      status: "Check call",
-      documents: "CV, enrolment proof, transcripts, research interests.",
-      application: "Follow NIMS internship instructions.",
-      notes: "Materials science research in Japan.",
-      source: "https://www.nims.go.jp/eng/hr-development/internship.html"
-    },
-    "NASA Internships": {
-      level: "High school, undergraduate, graduate",
-      age: "At least 16",
-      nationality: "Most require US citizenship",
-      eligibility: "Academic, GPA and citizenship requirements.",
-      funding: "Paid/unpaid depending on programme.",
-      deadline: "Term-specific",
-      status: "Citizenship restricted",
-      documents: "Academic records, CV, essays, references.",
-      application: "Apply through NASA internship portal.",
-      notes: "U.S. citizenship required for most OSTEM roles.",
+    "NASA Internships (OSTEM)": {
+      level: "High School, Bachelor's, Master's, PhD",
+      age: "At least 16 years old at time of application",
+      nationality: "U.S. citizenship required for NASA OSTEM internships (International students from partner space agencies apply via NASA I²)",
+      eligibility: "Full-time student (high school through PhD) with a minimum 3.0 GPA on a 4.0 scale.",
+      funding: "Paid stipend based on academic level and session length (Summer, Fall, or Spring).",
+      deadline: "Summer session: Late February; Fall session: Mid-May; Spring session: Late August.",
+      status: "Seasonal Cycles",
+      documents: "1) Single profile application on stemgateway.nasa.gov; 2) Academic transcripts; 3) Resume & essays on research interests; 4) Contact info for 1 recommender.",
+      application: "Step 1: Create a profile on NASA STEM Gateway. Step 2: Apply to up to 15 specific project listings per session.",
+      notes: "Non-US citizens should check if their country's space agency participates in the NASA International Internship (NASA I²) program.",
       source: "https://www.nasa.gov/learning-resources/internship-programs/"
     },
     "Smithsonian Internships": {
-      level: "High school, undergraduate, graduate",
-      age: "Varies by placement",
-      nationality: "Check placement rules",
-      eligibility: "Academic level and subject requirements vary.",
-      funding: "Stipends available for some placements.",
-      deadline: "Placement-specific",
-      status: "Multiple calls",
-      documents: "Application form, CV, school records, essays, recommendations.",
-      application: "Apply through specific Smithsonian museum portal.",
-      notes: "Museum and research opportunities.",
+      level: "High School, Bachelor's, Master's, PhD",
+      age: "Varies by program (high school programs typically 16+)",
+      nationality: "Open to U.S. and international students (depending on specific museum fellowship)",
+      eligibility: "Academic background aligned with the specific placement (biology, astrophysics, anthropology, art conservation, museum studies, or digital media).",
+      funding: "Many placements offer stipends ($500–$850/week); some academic-credit placements are unpaid.",
+      deadline: "Summer placements typically close between January and March.",
+      status: "Multiple Calls",
+      documents: "1) SOLAA online application; 2) Resume/CV; 3) Essay/statement of purpose; 4) Academic transcripts; 5) Two letters of recommendation.",
+      application: "Step 1: Search the Smithsonian Opportunities database (ofi.si.edu). Step 2: Apply through the Smithsonian Online Academic Appointment (SOLAA) system.",
+      notes: "Includes the Smithsonian Astrophysical Observatory (SAO) Summer Intern Program at Harvard.",
       source: "https://www.si.edu/ofi"
     },
-    "Asian Development Bank Internships": {
-      level: "Master's and PhD",
-      age: "Graduate status",
-      nationality: "ADB member countries",
-      eligibility: "Enrolled in Master's or PhD in relevant field.",
-      funding: "Paid internship.",
-      deadline: "Seasonal",
-      status: "Graduate-only",
-      documents: "CV, enrolment proof, transcripts, cover letter.",
-      application: "Apply through ADB recruitment portal.",
-      notes: "Development economics and finance.",
+    "UNICEF Internships": {
+      level: "Bachelor's, Master's, PhD",
+      age: "At least 18 years old",
+      nationality: "All nationalities",
+      eligibility: "Enrolled in an undergraduate, graduate, or PhD programme (or graduated within the past 2 years), proficient in English, French, or Spanish, and no immediate relatives working at UNICEF.",
+      funding: "Paid monthly stipend (plus one-time lump sum contribution toward travel/visa costs where funding permits).",
+      deadline: "Rolling vacancies year-round (typically 6–26 weeks duration).",
+      status: "Rolling Vacancies",
+      documents: "1) Online UNICEF recruitment profile; 2) Tailored Cover Letter; 3) CV/Resume; 4) Proof of university enrollment or recent graduation.",
+      application: "Step 1: Filter by 'Internship' on unicef.org/careers. Step 2: Submit online application tailored to the specific Terms of Reference.",
+      notes: "High school students are not eligible; must be university-level.",
+      source: "https://www.unicef.org/careers/internships"
+    },
+    "WHO Internship Programme": {
+      level: "Bachelor's, Master's, PhD",
+      age: "At least 20 years old",
+      nationality: "Citizens of WHO Member States",
+      eligibility: "Completed at least 3 years of full-time university study in a public health, medical, science, or management field; currently enrolled in a degree programme.",
+      funding: "Living allowance provided to eligible interns (plus medical/accident insurance coverage).",
+      deadline: "Posted periodically throughout the year on the WHO careers portal.",
+      status: "Check Vacancies",
+      documents: "1) WHO Stellis online profile; 2) Motivation letter; 3) Proof of current university enrollment; 4) Academic transcripts.",
+      application: "Step 1: Search 'Internship' on who.int/careers. Step 2: Apply directly to open roster or division vacancies.",
+      notes: "Duration ranges from 6 to 24 weeks.",
+      source: "https://www.who.int/careers/internship-programme"
+    },
+    "UNDP Internships": {
+      level: "Bachelor's, Master's",
+      age: "No strict age limit",
+      nationality: "All nationalities",
+      eligibility: "Enrolled in a graduate school programme (Master's/PhD), in the final academic year of a first university degree (Bachelor's), or graduated within 1 year.",
+      funding: "Monthly stipend provided by UNDP (amount varies by duty station cost of living).",
+      deadline: "Rolling vacancies year-round.",
+      status: "Rolling Vacancies",
+      documents: "1) Online application form; 2) CV; 3) Brief motivation statement; 4) University enrollment/graduation verification.",
+      application: "Step 1: Visit jobs.undp.org and filter by 'Internship'. Step 2: Apply directly to remote or country-office postings.",
+      notes: "Remote/home-based internships are frequently posted.",
+      source: "https://www.undp.org/careers/types-opportunities/internships"
+    },
+    "UNHCR Internships": {
+      level: "Bachelor's, Master's",
+      age: "No strict age limit",
+      nationality: "All nationalities",
+      eligibility: "Completed at least 2 years of undergraduate study and currently enrolled in a degree programme (or graduated within 1 year).",
+      funding: "Food and local transportation allowance (or full stipend for interns not receiving external funding).",
+      deadline: "Rolling vacancies year-round.",
+      status: "Rolling Vacancies",
+      documents: "1) Workday candidate profile; 2) CV; 3) Motivation letter; 4) Proof of university enrollment.",
+      application: "Step 1: Search 'Internship' on the UNHCR careers portal. Step 2: Submit your application online.",
+      notes: "Strong opportunities for students interested in international law, data, and humanitarian work.",
+      source: "https://www.unhcr.org/careers-internships"
+    },
+    "World Food Programme (WFP) Internships": {
+      level: "Bachelor's, Master's",
+      age: "At least 18 years old",
+      nationality: "Nationals of UN Member States",
+      eligibility: "Currently enrolled in a recognized university (having completed at least 2 years of undergraduate study) or graduated within the last 6 months.",
+      funding: "Paid monthly stipend up to US$1,000/month depending on duty station.",
+      deadline: "Rolling vacancies (typically 2 to 8 months long).",
+      status: "Rolling Vacancies",
+      documents: "1) WFP online profile; 2) Resume/CV; 3) Cover letter; 4) University transcripts/enrollment proof.",
+      application: "Step 1: Browse wfp.org/careers/internships. Step 2: Apply to open roles in Rome HQ or regional/country offices.",
+      notes: "Nobel Peace Prize-winning UN agency.",
+      source: "https://www.wfp.org/careers/internships"
+    },
+    "UNESCO Internships": {
+      level: "Bachelor's, Master's, PhD",
+      age: "At least 20 years old",
+      nationality: "Citizens of UNESCO Member States",
+      eligibility: "Enrolled in a graduate programme (Master's/PhD) or in the final year of a Bachelor's degree; strong command of English or French.",
+      funding: "Unpaid (interns must cover travel and living expenses, though UNESCO provides insurance).",
+      deadline: "Rolling candidate pool applications (reviewed every 6 months).",
+      status: "Rolling Pool",
+      documents: "1) Online application; 2) Motivation letter; 3) CV; 4) Proof of enrollment.",
+      application: "Step 1: Apply to the UNESCO Internship Programme talent pool on careers.unesco.org.",
+      notes: "Duration is between 1 and 6 months.",
+      source: "https://www.unesco.org/en/careers/internships"
+    },
+    "World Bank Internship Program": {
+      level: "Master's, PhD",
+      age: "No strict age limit",
+      nationality: "Citizens of World Bank Member Countries",
+      eligibility: "Hold an undergraduate degree and be enrolled in a full-time graduate study program (pursuing a Master's or PhD) with plans to return to school full-time.",
+      funding: "Paid hourly salary plus an allowance toward travel expenses.",
+      deadline: "Summer internship: January; Winter internship: October.",
+      status: "Seasonal Cycles",
+      documents: "1) Online application; 2) Curriculum Vitae (CV); 3) Statement of Interest; 4) Proof of enrollment in a graduate degree.",
+      application: "Step 1: Apply online during the open window on worldbank.org. Step 2: Shortlisted candidates are contacted directly by hiring managers.",
+      notes: "Fields include economics, finance, public health, education, climate, and data science.",
+      source: "https://www.worldbank.org/en/about/careers/programs-and-internships"
+    },
+    "IMF Fund Internship Program (FIP)": {
+      level: "Master's, PhD",
+      age: "No strict age limit",
+      nationality: "Citizens of IMF Member Countries",
+      eligibility: "PhD students in macroeconomics or related fields (within 1–2 years of completing PhD) or Master's students (under age 32 at start of internship).",
+      funding: "Competitive paid salary, round-trip economy airfare to Washington, D.C., and limited medical insurance.",
+      deadline: "Typically December – January for the summer cohort.",
+      status: "Annual Cycle (Dec–Jan)",
+      documents: "1) Online IMF application; 2) CV; 3) Academic transcripts; 4) Research paper sample (for PhD applicants).",
+      application: "Step 1: Apply via imf.org/careers during the winter recruitment window.",
+      notes: "10–13 weeks in Washington, D.C.",
+      source: "https://www.imf.org/en/About/Recruitment/working-at-the-imf"
+    },
+    "OECD Internship Programme": {
+      level: "Bachelor's, Master's, PhD",
+      age: "No strict age limit",
+      nationality: "All nationalities (preference for OECD member/partner countries)",
+      eligibility: "Enrolled full-time in a university degree programme for the entire duration of the internship; fluent in English or French.",
+      funding: "Monthly living allowance of approximately €1,000/month.",
+      deadline: "Rolling intake (applications reviewed monthly for 1–6 month placements).",
+      status: "Rolling",
+      documents: "1) Online Taleo application; 2) Cover letter; 3) CV; 4) University enrollment agreement.",
+      application: "Step 1: Submit application to the general OECD Internship vacancy on oecd.org/careers.",
+      notes: "Based in Paris, France (with hybrid options).",
+      source: "https://www.oecd.org/en/about/careers/internships.html"
+    },
+    "NIMS Internship Programme": {
+      level: "Bachelor's, Master's, PhD",
+      age: "No strict age limit",
+      nationality: "All nationalities",
+      eligibility: "Currently enrolled in a Bachelor's, Master's, or PhD program in physics, chemistry, materials science, or engineering.",
+      funding: "Daily living allowance (JPY 2,560/day) plus free accommodation at the NIMS International Villa in Tsukuba, Japan.",
+      deadline: "Multiple rounds per year (typically 3 months before desired start date).",
+      status: "Multiple Rounds",
+      documents: "1) NIMS Application Form; 2) CV; 3) Certificate of Enrollment; 4) Academic transcript; 5) Acceptance agreement from a NIMS host researcher.",
+      application: "Step 1: Browse the NIMS Researcher Directory and email a host scientist. Step 2: Once accepted by a researcher, submit formal documents to the NIMS Internship Office.",
+      notes: "Up to 90 consecutive days of lab research in Japan.",
+      source: "https://www.nims.go.jp/eng/hr-development/internship.html"
+    },
+    "Asian Development Bank (ADB) Internships": {
+      level: "Master's, PhD",
+      age: "No strict age limit",
+      nationality: "Citizens of ADB Member Countries (including Pakistan)",
+      eligibility: "Enrolled in a Master's or PhD program at a university in an ADB member nation and returning to school after the internship.",
+      funding: "Paid daily stipend for up to 56 working days plus round-trip airfare assistance.",
+      deadline: "Batch 1: Aug–Sept; Batch 2: Dec–Jan.",
+      status: "Biannual Cycle",
+      documents: "1) Online ADB Career & Employment System (ACES) profile; 2) CV; 3) Essay responses to specific assignment questions.",
+      application: "Step 1: Register on the ADB ACES portal. Step 2: Apply to specific advertised internship assignments.",
+      notes: "Assignments are posted in batches twice a year.",
       source: "https://www.adb.org/work-with-us/careers/internship-program"
     },
     "FAO Internship Programme": {
-      level: "University students and recent graduates",
-      age: "21–30",
-      nationality: "FAO member countries",
-      eligibility: "Enrolled or recent graduate in relevant field.",
-      funding: "Monthly stipend provided.",
-      deadline: "Vacancy-specific",
+      level: "Bachelor's, Master's",
+      age: "21–30 years old",
+      nationality: "Citizens of FAO Member Nations",
+      eligibility: "Enrolled in an undergraduate or graduate programme (or recent graduate) in agriculture, environmental science, economics, or biology.",
+      funding: "Monthly stipend up to US$700/month.",
+      deadline: "Rolling calls throughout the year (3 to 11 months duration).",
       status: "Rolling",
-      documents: "CV, enrolment proof, academic records.",
-      application: "Apply through FAO recruitment portal.",
-      notes: "Food and agriculture focus.",
+      documents: "1) FAO Taleo online profile; 2) Motivation letter; 3) Proof of university enrollment/degree.",
+      application: "Step 1: Apply to the Call for Expression of Interest on jobs.fao.org.",
+      notes: "Working knowledge of English, French, or Spanish required.",
       source: "https://www.fao.org/employment/internship-programme/en"
     },
     "ILO Internship Programme": {
-      level: "Graduate students and recent graduates",
-      age: "No universal limit",
-      nationality: "International",
-      eligibility: "Relevant postgraduate background and language skills.",
-      funding: "Compensation depends on vacancy policy.",
-      deadline: "Vacancy-specific",
-      status: "Check advertised positions",
-      documents: "CV, academic records, cover letter, enrolment proof.",
-      application: "Apply through ILO jobs portal.",
-      notes: "Labour rights and employment policy.",
+      level: "Master's, PhD",
+      age: "No strict age limit",
+      nationality: "All nationalities",
+      eligibility: "Currently enrolled in the final year of a Master's/PhD programme (or graduated within 1 year) in economics, law, social sciences, or public policy.",
+      funding: "Monthly stipend provided if not funded by another institution.",
+      deadline: "Posted periodically in batches on ILO Jobs.",
+      status: "Check Vacancies",
+      documents: "1) Online ILO recruitment application; 2) Cover letter; 3) Academic transcripts & enrollment proof.",
+      application: "Step 1: Search 'Internship' on jobs.ilo.org and apply to specific department openings.",
+      notes: "3 to 6 months duration.",
       source: "https://www.ilo.org/jobs"
     },
-    "European Space Agency Internships": {
-      level: "Master's students",
-      age: "Final/penultimate year student",
-      nationality: "ESA Member States / cooperating states",
-      eligibility: "Relevant university study in science/engineering.",
-      funding: "Monthly allowance provided.",
-      deadline: "Annual recruitment cycle",
-      status: "Nationality restricted",
-      documents: "CV, transcripts, enrolment proof, motivation letter.",
-      application: "Apply through ESA careers portal.",
-      notes: "Requires eligible European nationality.",
+    "European Space Agency (ESA) Student Internships": {
+      level: "Master's",
+      age: "No strict age limit",
+      nationality: "Citizens of ESA Member States, Associate Members, or European Cooperating States",
+      eligibility: "Enrolled in the final or penultimate year of a Master's degree in engineering, space science, IT, or natural sciences.",
+      funding: "Monthly allowance (~€600–€800/month) to help cover living and travel costs.",
+      deadline: "Opens November; Deadline: November 30 (Annual cycle).",
+      status: "Annual Cycle (Nov)",
+      documents: "1) Online ESA application; 2) CV; 3) Motivation letter; 4) University transcripts.",
+      application: "Step 1: Browse student internship vacancies on jobs.esa.int in November. Step 2: Apply to a maximum of 2 positions.",
+      notes: "Strictly restricted to citizens of ESA Member/Cooperating states.",
       source: "https://www.esa.int/About_Us/Careers_at_ESA/Student_Internships"
+    },
+    "World Health Network Student Internship": {
+      level: "High School, Bachelor's, Master's",
+      age: "Open to students (check active call)",
+      nationality: "Worldwide (100% Remote)",
+      eligibility: "High school, undergraduate, or graduate students interested in public health, science communication, data visualization, or policy.",
+      funding: "Unpaid volunteer/academic-credit remote internship.",
+      deadline: "Rolling cohorts",
+      status: "Check Official Site",
+      documents: "1) Online interest form; 2) Brief statement of interest / resume.",
+      application: "Step 1: Visit whn.global and check their active student involvement/internship page.",
+      notes: "Flexible remote hours suitable alongside school.",
+      source: "https://whn.global/"
     }
   };
 
-  let selected = "All";
+  let selectedCategory = "All";
+  let selectedLevel = "All";
 
-  function choose(category) {
-    selected = category;
+  function chooseCategory(category, shouldScroll = false) {
+    selectedCategory = category;
 
     document.querySelectorAll(".category, .filter").forEach(el => {
       el.classList.toggle(
@@ -1975,36 +2104,56 @@
     });
 
     render();
+
+    if (shouldScroll) {
+      document.getElementById("opportunities").scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  function chooseLevel(level) {
+    selectedLevel = level;
+
+    document.querySelectorAll(".level-filter").forEach(el => {
+      el.classList.toggle("active", el.dataset.level === level);
+    });
+
+    render();
+  }
+
+  function resetFilters() {
+    document.getElementById("search").value = "";
+    chooseCategory("All");
+    chooseLevel("All");
   }
 
   function render() {
     const query = document.getElementById("search").value.toLowerCase().trim();
 
     const filtered = opportunities.filter(item => {
-      const matchesCategory = selected === "All" || item.type === selected;
+      const matchesCategory = selectedCategory === "All" || item.type === selectedCategory;
+      const matchesLevel = selectedLevel === "All" || (item.levels && item.levels.includes(selectedLevel));
 
+      const info = opportunityDetails[item.name] || {};
       const searchable = [
         item.name,
         item.type,
+        ...(item.levels || []),
         item.detail,
         item.country,
-        item.eligibility,
-        item.deadline,
-        item.cost,
-        ...(Object.values(opportunityDetails[item.name] || {}))
+        ...(Object.values(info))
       ].filter(Boolean).join(" ").toLowerCase();
 
-      return matchesCategory && searchable.includes(query);
+      return matchesCategory && matchesLevel && searchable.includes(query);
     });
 
     const badge = document.getElementById("count-badge");
-    badge.textContent = `Showing ${filtered.length} ${filtered.length === 1 ? "opportunity" : "opportunities"}`;
+    badge.textContent = `Showing ${filtered.length} of ${opportunities.length} opportunities`;
 
     const container = document.getElementById("cards");
     container.innerHTML = "";
 
     if (filtered.length === 0) {
-      container.innerHTML = '<p class="empty">No matching opportunities found. Try clearing your search or selecting another category.</p>';
+      container.innerHTML = '<p class="empty">No matching opportunities found for this combination. Try clicking "Reset all filters" above.</p>';
       return;
     }
 
@@ -2013,37 +2162,48 @@
       const card = document.createElement("article");
       card.className = "card";
 
+      const levelLabels = (item.levels || []).join(" · ");
+
       card.innerHTML = `
-        <span class="tag">${item.type}</span>
+        <div class="card-badges">
+          <span class="tag">${item.type}</span>
+          <span class="level-tag">${levelLabels}</span>
+        </div>
         <h3>${item.name}</h3>
-        <p>${item.detail}</p>
-        <p><strong>🎓 Study level:</strong> ${info.level || "See official source"}</p>
-        <p><strong>👤 Age:</strong> ${info.age || "Check official requirements"}</p>
-        <p><strong>🌍 Nationality:</strong> ${info.nationality || "Check official requirements"}</p>
-        <p><strong>📋 Eligibility:</strong> ${info.eligibility || item.eligibility || "Not confirmed"}</p>
-        <p><strong>💰 Funding:</strong> ${info.funding || item.cost || "Not confirmed"}</p>
-        <p><strong>📅 Deadline:</strong> ${info.deadline || item.deadline || "Not announced"}</p>
-        <p><strong>📌 Status:</strong> ${info.status || "Check official website"}</p>
+        <p class="card-summary">${item.detail}</p>
+
+        <div class="meta-grid">
+          <div class="meta-item"><strong>🎓 Study Level:</strong> ${info.level || levelLabels}</div>
+          <div class="meta-item"><strong>👤 Age Limit:</strong> ${info.age || "Check official source"}</div>
+          <div class="meta-item"><strong>🌍 Nationality & Location:</strong> ${info.nationality || item.country}</div>
+          <div class="meta-item"><strong>💰 Funding / Cost:</strong> ${info.funding || "See official website"}</div>
+          <div class="meta-item"><strong>📅 Key Deadlines:</strong> ${info.deadline || "Annual / Rolling"}</div>
+        </div>
 
         <div class="card-details-group">
           <details>
-            <summary>Documents required</summary>
+            <summary>Detailed Eligibility Criteria</summary>
+            <p>${info.eligibility || "Check official requirements."}</p>
+          </details>
+
+          <details>
+            <summary>Required Documents Checklist</summary>
             <p>${info.documents || "Check official requirements."}</p>
           </details>
 
           <details>
-            <summary>How to apply</summary>
+            <summary>Step-by-Step How to Apply</summary>
             <p>${info.application || "Follow the official application instructions."}</p>
           </details>
 
           <details>
-            <summary>Important notes</summary>
-            <p>${info.notes || "Check the official programme conditions."}</p>
+            <summary>Key Tips & Important Notes</summary>
+            <p>${info.notes || "Verify all conditions on the official portal."}</p>
           </details>
         </div>
 
         <a class="btn-link" href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
-          Official programme website ↗
+          Visit Official Programme Website ↗
         </a>
       `;
 
