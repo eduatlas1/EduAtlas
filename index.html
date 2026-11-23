@@ -2,187 +2,418 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N5ELLP4WWV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-N5ELLP4WWV');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5ELLP4WWV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N5ELLP4WWV');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172b4d">
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/svg+xml" href="./icon.svg">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <meta name="description" content="Discover scholarships, internships, courses and educational opportunities worldwide.">
+  <meta name="description" content="Discover scholarships, internships, free courses, and competitions worldwide.">
   <title>EduAtlas — A world of opportunities</title>
   <style>
     :root {
       --navy: #172b4d;
+      --navy-light: #233f6e;
       --gold: #e9b96e;
+      --gold-hover: #dfa853;
       --ivory: #f7f5ef;
       --sage: #76968a;
       --ink: #263449;
-      --muted: #788393;
-      --white: #fff;
+      --muted: #647182;
+      --white: #ffffff;
+      --border: #e5e2d9;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--ivory);
       color: var(--ink);
+      line-height: 1.5;
     }
+
     header {
-      padding: 20px 7%;
+      padding: 18px 7%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--white);
-      border-bottom: 1px solid #e9e7e0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .logo { font-size: 25px; font-weight: 800; color: var(--navy); }
-    .logo span { color: var(--gold); }
-    nav { display: flex; gap: 22px; flex-wrap: wrap; }
-    nav a { color: var(--navy); text-decoration: none; font-size: 14px; }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--sage);
+    }
+
     .hero {
-      padding: 75px 7% 65px;
+      padding: 80px 7% 70px;
       background: var(--navy);
-      color: white;
+      color: var(--white);
     }
+
     .eyebrow {
       color: var(--gold);
       letter-spacing: 2px;
       font-size: 11px;
-      font-weight: bold;
+      font-weight: 700;
+      text-transform: uppercase;
     }
+
     h1 {
       font-family: Georgia, serif;
-      font-size: clamp(38px, 6vw, 65px);
-      max-width: 700px;
+      font-size: clamp(36px, 5.5vw, 62px);
+      max-width: 720px;
       line-height: 1.12;
-      margin: 18px 0;
+      margin: 16px 0;
       font-weight: normal;
     }
-    .hero p { color: #d5dce6; line-height: 1.7; max-width: 510px; }
+
+    .hero p {
+      color: #d5dce6;
+      line-height: 1.7;
+      max-width: 540px;
+      font-size: 16px;
+    }
+
     .search {
-      margin-top: 28px;
+      margin-top: 30px;
       display: flex;
       gap: 10px;
-      max-width: 600px;
+      max-width: 620px;
     }
+
     input {
       min-width: 0;
       flex: 1;
-      padding: 16px;
+      padding: 15px 18px;
       border: 0;
-      border-radius: 7px;
-      font-size: 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
     }
+
+    input:focus {
+      box-shadow: 0 0 0 3px rgba(233, 185, 110, 0.4);
+    }
+
     button {
       border: 0;
       cursor: pointer;
-      border-radius: 7px;
-      padding: 13px 20px;
-      font-weight: bold;
+      border-radius: 8px;
+      padding: 14px 22px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.2s ease;
     }
-    .search button { background: var(--gold); color: var(--navy); }
-    main { padding: 45px 7%; }
-    .section-heading { font-family: Georgia, serif; font-size: 29px; color: var(--navy); }
+
+    .search button {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .search button:hover {
+      background: var(--gold-hover);
+    }
+
+    main {
+      padding: 50px 7%;
+    }
+
+    .section-heading {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
     .categories {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin: 25px 0 45px;
+      gap: 16px;
+      margin: 25px 0 50px;
     }
+
     .category {
-      background: white;
-      border: 1px solid #e9e7e0;
-      border-radius: 10px;
-      padding: 22px 15px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 18px;
       text-align: left;
       color: var(--navy);
-      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-    .category.active { border: 2px solid var(--sage); }
-    .category .symbol { font-size: 26px; display: block; margin-bottom: 12px; }
-    .category small { display: block; margin-top: 7px; color: var(--muted); }
-    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin: 18px 0; }
+
+    .category:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(23, 43, 77, 0.06);
+    }
+
+    .category.active {
+      border: 2px solid var(--sage);
+      background: #fcfdfb;
+    }
+
+    .category .symbol {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .category small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: normal;
+      font-size: 13px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 18px 0 24px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
     .filter {
-      background: white;
+      background: var(--white);
       color: var(--navy);
       border: 1px solid #deded8;
-      padding: 9px 14px;
+      padding: 9px 16px;
       border-radius: 6px;
-      cursor: pointer;
+      font-weight: 600;
     }
-    .filter.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+    .filter:hover {
+      border-color: var(--navy);
+    }
+
+    .filter.active {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .count-badge {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-      margin-top: 20px;
+      gap: 20px;
     }
+
     .card {
-      background: white;
-      border: 1px solid #e9e7e0;
-      border-radius: 10px;
-      padding: 22px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(23, 43, 77, 0.07);
+    }
+
     .tag {
       font-size: 11px;
-      color: #466c5e;
-      background: #edf3ef;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #3d6355;
+      background: #eaf2ed;
       border-radius: 20px;
-      padding: 6px 10px;
+      padding: 5px 12px;
       display: inline-block;
       align-self: flex-start;
     }
-    .card h3 { color: var(--navy); font-size: 19px; margin: 17px 0 9px; }
-    .card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 5px 0; }
+
+    .card h3 {
+      color: var(--navy);
+      font-size: 19px;
+      margin: 15px 0 8px;
+      line-height: 1.3;
+    }
+
+    .card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 5px 0;
+    }
+
+    .card p strong {
+      color: var(--ink);
+    }
+
+    .card-details-group {
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
     .card details {
       border-top: 1px solid #efede7;
-      padding: 8px 0;
+      padding: 9px 0;
       font-size: 13px;
     }
+
     .card summary {
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 600;
       color: var(--navy);
       outline: none;
     }
-    .card a {
-      color: var(--navy);
-      font-size: 13px;
-      font-weight: bold;
-      margin-top: auto;
-      padding-top: 14px;
-      text-decoration: none;
+
+    .card summary:hover {
+      color: var(--sage);
     }
-    .card a:hover { text-decoration: underline; }
-    .empty { color: var(--muted); padding: 25px 0; }
-    .note { font-size: 12px; color: var(--muted); margin-top: 22px; }
-    footer {
-      padding: 30px 7%;
-      background: var(--navy);
-      color: white;
+
+    .card a.btn-link {
+      display: inline-block;
+      text-align: center;
+      background: var(--ivory);
+      color: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: 7px;
       font-size: 13px;
+      font-weight: 700;
+      margin-top: auto;
+      padding: 11px 14px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .card a.btn-link:hover {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .empty {
+      color: var(--muted);
+      padding: 35px 0;
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .note {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 28px;
+    }
+
+    footer {
+      padding: 36px 7%;
+      background: var(--navy);
+      color: #d5dce6;
+      font-size: 13.5px;
       line-height: 1.8;
     }
-    @media(max-width: 750px) {
-      header { align-items: flex-start; gap: 15px; flex-direction: column; }
-      nav { gap: 15px; }
-      .categories { grid-template-columns: repeat(2, 1fr); }
-      .cards { grid-template-columns: 1fr; }
-      .hero { padding: 55px 6%; }
-      main { padding: 35px 6%; }
+
+    footer strong {
+      color: var(--white);
+      font-size: 16px;
     }
-    @media(max-width: 390px) {
-      .search { flex-direction: column; }
-      .search button { width: 100%; }
+
+    @media (max-width: 960px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 750px) {
+      header {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+        position: static;
+      }
+      nav {
+        gap: 16px;
+      }
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 55px 6%;
+      }
+      main {
+        padding: 35px 6%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .search {
+        flex-direction: column;
+      }
+      .search button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -199,9 +430,9 @@
 <section class="hero" id="home">
   <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
   <h1>A world of opportunities, one place.</h1>
-  <p>Discover scholarships, internships, courses and competitions from around the world. Your next opportunity might be closer than you think.</p>
+  <p>Discover verified scholarships, internships, free courses, and global competitions. Built to help students everywhere access life-changing programs.</p>
   <div class="search">
-    <input id="search" type="search" placeholder="Search opportunities, subjects, countries...">
+    <input id="search" type="search" placeholder="Search by keyword, subject, country (e.g., STEM, Pakistan, UK)...">
     <button onclick="render()">Explore</button>
   </div>
 </section>
@@ -209,34 +440,37 @@
 <main>
   <section id="categories">
     <div class="section-heading">Explore possibilities.</div>
-    <p>Find the opportunity that moves you forward.</p>
+    <p class="section-sub">Select a category below to filter curated opportunities.</p>
     <div class="categories">
       <button class="category" data-category="Scholarship" onclick="choose('Scholarship')">
         <span class="symbol">🎓</span>Scholarships<small>Funding your education</small>
       </button>
       <button class="category" data-category="Internship" onclick="choose('Internship')">
-        <span class="symbol">💼</span>Internships<small>Gain experience</small>
+        <span class="symbol">💼</span>Internships<small>Gain global experience</small>
       </button>
       <button class="category" data-category="Course" onclick="choose('Course')">
-        <span class="symbol">📚</span>Free courses<small>Learn something new</small>
+        <span class="symbol">📚</span>Free courses<small>Learn new skills</small>
       </button>
       <button class="category" data-category="Competition" onclick="choose('Competition')">
-        <span class="symbol">🏆</span>Competitions<small>Show your potential</small>
+        <span class="symbol">🏆</span>Competitions<small>Showcase your potential</small>
       </button>
     </div>
   </section>
 
   <section id="opportunities">
     <div class="section-heading">Discover opportunities.</div>
-    <div class="filters">
-      <button class="filter active" data-filter="All" onclick="choose('All')">All</button>
-      <button class="filter" data-filter="Scholarship" onclick="choose('Scholarship')">Scholarships</button>
-      <button class="filter" data-filter="Internship" onclick="choose('Internship')">Internships</button>
-      <button class="filter" data-filter="Course" onclick="choose('Course')">Courses</button>
-      <button class="filter" data-filter="Competition" onclick="choose('Competition')">Competitions</button>
+    <div class="toolbar">
+      <div class="filters">
+        <button class="filter active" data-filter="All" onclick="choose('All')">All</button>
+        <button class="filter" data-filter="Scholarship" onclick="choose('Scholarship')">Scholarships</button>
+        <button class="filter" data-filter="Internship" onclick="choose('Internship')">Internships</button>
+        <button class="filter" data-filter="Course" onclick="choose('Course')">Free Courses</button>
+        <button class="filter" data-filter="Competition" onclick="choose('Competition')">Competitions</button>
+      </div>
+      <div class="count-badge" id="count-badge">Showing all opportunities</div>
     </div>
     <div class="cards" id="cards"></div>
-    <p class="note">Always verify eligibility requirements and deadlines on the official websites before applying.</p>
+    <p class="note">Always verify final eligibility requirements and deadlines directly on the official programme websites before applying.</p>
   </section>
 </main>
 
@@ -248,66 +482,211 @@
 
 <script>
   const opportunities = [
+    // COMPETITIONS (10 Verified Programs)
     {
-      name: "Blue Ocean Student Entrepreneur Competition 2027",
+      name: "Blue Ocean Student Entrepreneur Competition",
       type: "Competition",
-      detail: "Develop an innovative business idea and submit a video pitch.",
+      detail: "Develop an innovative business idea and submit a 5-minute video pitch.",
       country: "Worldwide · Online",
-      eligibility: "High-school students",
-      deadline: "21 February 2027",
+      eligibility: "High-school students (Grades 9–12)",
+      deadline: "February (Annual cycle)",
       cost: "Free entry",
       url: "https://blueoceancompetition.org/"
     },
     {
       name: "World of 8 Billion Video Contest",
       type: "Competition",
-      detail: "Create a one-minute video about a global population challenge.",
+      detail: "Create a 60-second educational video addressing a global population challenge.",
       country: "Worldwide · Online",
-      eligibility: "Grades 6–12",
-      deadline: "3 March 2027",
+      eligibility: "Grades 6–12 worldwide",
+      deadline: "March (Annual cycle)",
       cost: "Free entry",
       url: "https://www.worldof8billion.org/video-contest/"
     },
     {
-      name: "The Earth Prize 2027",
+      name: "The Earth Prize",
       type: "Competition",
-      detail: "Develop an environmental sustainability solution.",
+      detail: "Develop an environmental sustainability solution for your community or the planet.",
       country: "Worldwide · Online",
       eligibility: "Ages 13–19",
-      deadline: "10 January 2027 registration",
+      deadline: "January registration",
       cost: "Free registration",
-      url: "https://www.theearthprize.org/competition"
+      url: "https://www.theearthprize.org/"
     },
     {
-      name: "CS50x Introduction to Computer Science",
+      name: "Breakthrough Junior Challenge",
+      type: "Competition",
+      detail: "Explain a complex idea in physics, life sciences, or mathematics in a creative 2-minute video.",
+      country: "Worldwide · Online",
+      eligibility: "Ages 13–18 worldwide",
+      deadline: "June (Annual cycle)",
+      cost: "Free entry",
+      url: "https://breakthroughjuniorchallenge.org/"
+    },
+    {
+      name: "Conrad Challenge",
+      type: "Competition",
+      detail: "Global STEM and entrepreneurship competition solving real-world challenges in aerospace, health, and energy.",
+      country: "Worldwide · Online & Final Summit",
+      eligibility: "Ages 13–18 (Teams of 2–5)",
+      deadline: "November (Lean Canvas stage)",
+      cost: "Free initial round",
+      url: "https://www.conradchallenge.org/"
+    },
+    {
+      name: "International Mathematical Modeling Challenge (IMMC)",
+      type: "Competition",
+      detail: "Work in a team to solve a real-world problem using applied mathematics and modeling.",
+      country: "Worldwide · Team-based",
+      eligibility: "Secondary school students",
+      deadline: "Spring (Country-specific rounds)",
+      cost: "Free / National organizer rules",
+      url: "https://www.immchallenge.org/"
+    },
+    {
+      name: "Regeneron International Science and Engineering Fair (ISEF)",
+      type: "Competition",
+      detail: "The world's largest pre-college STEM research competition via affiliated national science fairs.",
+      country: "Worldwide · Affiliated Fairs",
+      eligibility: "Grades 9–12",
+      deadline: "Varies by regional/national fair",
+      cost: "Free via affiliated fairs",
+      url: "https://www.societyforscience.org/isef/"
+    },
+    {
+      name: "Diamond Challenge",
+      type: "Competition",
+      detail: "Premier high school entrepreneurship competition offering funding for business and social innovation.",
+      country: "Worldwide · Online & In-person",
+      eligibility: "High school students (Ages 14–18)",
+      deadline: "January (Annual cycle)",
+      cost: "Free entry",
+      url: "https://diamondchallenge.org/"
+    },
+    {
+      name: "Bebras Computing Challenge",
+      type: "Competition",
+      detail: "International computational thinking and informatics problem-solving challenge.",
+      country: "Worldwide · Online via schools",
+      eligibility: "School students (Ages 8–18)",
+      deadline: "November (Annual challenge week)",
+      cost: "Free via participating schools",
+      url: "https://www.bebras.org/"
+    },
+    {
+      name: "International Chemistry Quiz (ICQ)",
+      type: "Competition",
+      detail: "Global chemistry competition run by the Royal Australian Chemical Institute promoting chemical sciences.",
+      country: "Worldwide · School-hosted",
+      eligibility: "Grades 7–12",
+      deadline: "Mid-year (Country coordinator dates)",
+      cost: "Low entry fee via school",
+      url: "https://icq.raci.org.au/"
+    },
+
+    // FREE COURSES (10 Verified Programs)
+    {
+      name: "CS50x: Introduction to Computer Science (Harvard)",
       type: "Course",
-      detail: "Learn programming, algorithms and computer science fundamentals.",
+      detail: "Harvard University's flagship course covering C, Python, SQL, algorithms, and web fundamentals.",
       country: "Worldwide · Online",
       eligibility: "Open to all learners",
       deadline: "Self-paced",
-      cost: "Free course access",
+      cost: "Free course & free certificate",
       url: "https://cs50.harvard.edu/x/"
     },
     {
-      name: "CS50 Web Programming",
+      name: "CS50's Web Programming with Python and JavaScript",
       type: "Course",
-      detail: "Learn Python, JavaScript, databases and web development.",
+      detail: "Build scalable web applications using Python, Django, JavaScript, SQL, and Git.",
       country: "Worldwide · Online",
-      eligibility: "Python and CS50x experience recommended",
+      eligibility: "Basic programming experience recommended",
       deadline: "Self-paced",
-      cost: "Free course access",
+      cost: "Free course & free certificate",
       url: "https://cs50.harvard.edu/web/"
     },
     {
-      name: "CS50 Introduction to Artificial Intelligence",
+      name: "CS50's Introduction to Artificial Intelligence with Python",
       type: "Course",
-      detail: "Explore machine learning, neural networks and artificial intelligence.",
+      detail: "Explore graph search algorithms, machine learning, neural networks, and natural language processing.",
       country: "Worldwide · Online",
       eligibility: "Python experience recommended",
       deadline: "Self-paced",
-      cost: "Free course access",
+      cost: "Free course & free certificate",
       url: "https://cs50.harvard.edu/ai/"
     },
+    {
+      name: "Elements of AI (University of Helsinki)",
+      type: "Course",
+      detail: "Accessible, non-technical introduction to what AI is, how it is created, and how it affects society.",
+      country: "Worldwide · Online",
+      eligibility: "Open to everyone (No math/coding required)",
+      deadline: "Self-paced",
+      cost: "100% Free with certificate",
+      url: "https://www.elementsofai.com/"
+    },
+    {
+      name: "MIT OpenCourseWare: Introduction to Biology",
+      type: "Course",
+      detail: "Full undergraduate MIT lecture videos, notes, and problem sets covering biochemistry, genetics, and molecular biology.",
+      country: "Worldwide · Online",
+      eligibility: "High school & university learners",
+      deadline: "Self-paced",
+      cost: "100% Free (Open access)",
+      url: "https://ocw.mit.edu/courses/7-01sc-fundamentals-of-biology-fall-2011/"
+    },
+    {
+      name: "The Science of Well-Being (Yale University)",
+      type: "Course",
+      detail: "Yale's most popular psychology course exploring behavioral science and habits for mental resilience.",
+      country: "Worldwide · Online (Coursera)",
+      eligibility: "Open to all learners",
+      deadline: "Self-paced",
+      cost: "Free to audit",
+      url: "https://www.coursera.org/learn/the-science-of-well-being"
+    },
+    {
+      name: "Scientific Computing with Python (freeCodeCamp)",
+      type: "Course",
+      detail: "Hands-on curriculum teaching Python fundamentals, data structures, and algorithmic problem solving.",
+      country: "Worldwide · Online",
+      eligibility: "Beginners welcome",
+      deadline: "Self-paced",
+      cost: "100% Free with verified certificate",
+      url: "https://www.freecodecamp.org/learn/scientific-computing-with-python/"
+    },
+    {
+      name: "Machine Learning Specialization (Stanford & DeepLearning.AI)",
+      type: "Course",
+      detail: "Taught by Andrew Ng, covering supervised learning, neural networks, and recommender systems.",
+      country: "Worldwide · Online (Coursera)",
+      eligibility: "Basic coding & high school math",
+      deadline: "Self-paced",
+      cost: "Free to audit / Financial aid available",
+      url: "https://www.coursera.org/specializations/machine-learning-introduction"
+    },
+    {
+      name: "Khan Academy: AP & College STEM Courses",
+      type: "Course",
+      detail: "Comprehensive interactive courses in Calculus, Physics, Organic Chemistry, and Biology.",
+      country: "Worldwide · Online",
+      eligibility: "All students",
+      deadline: "Self-paced",
+      cost: "100% Free forever",
+      url: "https://www.khanacademy.org/science"
+    },
+    {
+      name: "Google AI & Digital Skills Training",
+      type: "Course",
+      detail: "Practical courses on generative AI, data fundamentals, and career readiness from Google.",
+      country: "Worldwide · Online",
+      eligibility: "Open to all learners",
+      deadline: "Self-paced",
+      cost: "Free access",
+      url: "https://grow.google/intl/en_pk/"
+    },
+
+    // SCHOLARSHIPS
     {
       name: "Türkiye Scholarships",
       type: "Scholarship",
@@ -518,6 +897,8 @@
       country: "United Kingdom",
       url: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
     },
+
+    // INTERNSHIPS
     {
       name: "World Health Network Student Internship",
       type: "Internship",
@@ -661,15 +1042,280 @@
   ];
 
   const opportunityDetails = {
+    // COMPETITIONS DETAILS
+    "Blue Ocean Student Entrepreneur Competition": {
+      level: "High school (Grades 9–12)",
+      age: "High school students worldwide",
+      nationality: "Worldwide",
+      eligibility: "Enrolled in high school; solo or team entries.",
+      funding: "Free entry; cash prizes for top finalists.",
+      deadline: "February (Annual cycle)",
+      status: "Annual cycle",
+      documents: "Online registration and 5-minute video pitch.",
+      application: "Register on the official Blue Ocean website.",
+      notes: "100% virtual competition.",
+      source: "https://blueoceancompetition.org/"
+    },
+    "World of 8 Billion Video Contest": {
+      level: "Grades 6–12",
+      age: "Middle and High School students",
+      nationality: "Worldwide",
+      eligibility: "Students in grades 6–12 worldwide.",
+      funding: "Free entry; cash prizes up to $1,200.",
+      deadline: "March (Annual cycle)",
+      status: "Annual cycle",
+      documents: "60-second video and works cited document.",
+      application: "Upload via official contest portal.",
+      notes: "Strict 60-second video limit.",
+      source: "https://www.worldof8billion.org/video-contest/"
+    },
+    "The Earth Prize": {
+      level: "Secondary school",
+      age: "Ages 13–19",
+      nationality: "Worldwide",
+      eligibility: "Students aged 13–19 in secondary education.",
+      funding: "Free registration; $100,000 total prize pool for winning schools/teams.",
+      deadline: "January registration",
+      status: "Annual cycle",
+      documents: "Team registration and environmental project proposal.",
+      application: "Register online via The Earth Prize portal.",
+      notes: "Includes mentorship from university students.",
+      source: "https://www.theearthprize.org/"
+    },
+    "Breakthrough Junior Challenge": {
+      level: "High school",
+      age: "Ages 13–18",
+      nationality: "Worldwide",
+      eligibility: "Students aged 13–18 not yet enrolled in full-time university.",
+      funding: "Free entry; $250,000 college scholarship + $100,000 science lab for school.",
+      deadline: "June (Annual cycle)",
+      status: "Annual cycle",
+      documents: "Original 2-minute science/math explainer video + peer-to-peer reviews.",
+      application: "Submit online through official Breakthrough portal.",
+      notes: "Judged on engagement, illumination, creativity, and difficulty.",
+      source: "https://breakthroughjuniorchallenge.org/"
+    },
+    "Conrad Challenge": {
+      level: "High school",
+      age: "Ages 13–18",
+      nationality: "Worldwide",
+      eligibility: "Teams of 2–5 high school students with an adult coach.",
+      funding: "Free Lean Canvas round; scholarships and seed funding for finalists.",
+      deadline: "November (Stage 1)",
+      status: "Annual cycle",
+      documents: "Lean Canvas business model, innovation brief, and pitch video.",
+      application: "Register team on Conrad Challenge portal.",
+      notes: "Categories include Aerospace, Cyber-Technology, Energy, and Health.",
+      source: "https://www.conradchallenge.org/"
+    },
+    "International Mathematical Modeling Challenge (IMMC)": {
+      level: "Secondary school",
+      age: "High school age",
+      nationality: "Participating countries worldwide",
+      eligibility: "Teams of up to 4 students from the same school.",
+      funding: "Varies by regional committee (usually free).",
+      deadline: "Spring (Check regional schedule)",
+      status: "Annual cycle",
+      documents: "Mathematical modeling research paper solving the annual prompt.",
+      application: "Enter through your country/region's IMMC committee.",
+      notes: "Great for students interested in applied math and data.",
+      source: "https://www.immchallenge.org/"
+    },
+    "Regeneron International Science and Engineering Fair (ISEF)": {
+      level: "High school (Grades 9–12)",
+      age: "Under 20",
+      nationality: "Worldwide (via affiliated fairs)",
+      eligibility: "Must qualify through a Society for Science affiliated regional/national fair.",
+      funding: "All-expenses-paid trip to ISEF finals + nearly $9M in awards/scholarships.",
+      deadline: "Varies by local affiliated fair",
+      status: "Annual cycle",
+      documents: "Original STEM research paper, data notebook, and project display.",
+      application: "Compete in your country's affiliated science fair first.",
+      notes: "The gold standard for pre-college scientific research.",
+      source: "https://www.societyforscience.org/isef/"
+    },
+    "Diamond Challenge": {
+      level: "High school",
+      age: "Ages 14–18",
+      nationality: "Worldwide",
+      eligibility: "Teams of 2–4 high school students with an adult advisor.",
+      funding: "Free entry; over $100,000 in funding awards.",
+      deadline: "January (Submission round)",
+      status: "Annual cycle",
+      documents: "Written concept narrative and pitch deck.",
+      application: "Submit online via University of Delaware's Diamond Challenge portal.",
+      notes: "Offers both Business Innovation and Social Innovation tracks.",
+      source: "https://diamondchallenge.org/"
+    },
+    "Bebras Computing Challenge": {
+      level: "Primary & Secondary school",
+      age: "Ages 8–18",
+      nationality: "Over 80 participating countries",
+      eligibility: "Students registered through a participating school or coordinator.",
+      funding: "Free for students.",
+      deadline: "November (Annual Bebras Week)",
+      status: "Annual cycle",
+      documents: "45-minute online logic and computational thinking tasks.",
+      application: "Ask a teacher at your school to register as a Bebras coordinator.",
+      notes: "No prior coding knowledge required—tests pure logic.",
+      source: "https://www.bebras.org/"
+    },
+    "International Chemistry Quiz (ICQ)": {
+      level: "Secondary school (Grades 7–12)",
+      age: "School students",
+      nationality: "Worldwide",
+      eligibility: "Enrolled in grades 7–12 at a participating school.",
+      funding: "Certificates of High Distinction and plaques for top global scorers.",
+      deadline: "Mid-year (Check local coordinator)",
+      status: "Annual cycle",
+      documents: "30 multiple-choice chemistry questions completed in 60 minutes.",
+      application: "Register through your school's science department.",
+      notes: "Organized by the Royal Australian Chemical Institute.",
+      source: "https://icq.raci.org.au/"
+    },
+
+    // FREE COURSES DETAILS
+    "CS50x: Introduction to Computer Science (Harvard)": {
+      level: "Beginner",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all learners with zero prior coding experience.",
+      funding: "100% free course access and free Harvard CS50 certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free edX/CS50 account and GitHub account.",
+      application: "Enroll online anytime via CS50 portal.",
+      notes: "Covers C, Python, SQL, HTML, CSS, and JavaScript.",
+      source: "https://cs50.harvard.edu/x/"
+    },
+    "CS50's Web Programming with Python and JavaScript": {
+      level: "Intermediate",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "CS50x or basic Python/HTML familiarity recommended.",
+      funding: "100% free course access and free certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free edX/CS50 account and GitHub account.",
+      application: "Start anytime on the CS50 Web portal.",
+      notes: "Builds real full-stack web apps.",
+      source: "https://cs50.harvard.edu/web/"
+    },
+    "CS50's Introduction to Artificial Intelligence with Python": {
+      level: "Intermediate",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Python experience recommended.",
+      funding: "100% free course access and free certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free edX/CS50 account and GitHub account.",
+      application: "Enroll online via CS50 AI website.",
+      notes: "Covers neural networks, optimization, and machine learning.",
+      source: "https://cs50.harvard.edu/ai/"
+    },
+    "Elements of AI (University of Helsinki)": {
+      level: "Beginner",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to everyone; no programming required.",
+      funding: "100% free with downloadable completion certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free email registration.",
+      application: "Sign up directly on the Elements of AI website.",
+      notes: "Over 1 million students worldwide have taken this course.",
+      source: "https://www.elementsofai.com/"
+    },
+    "MIT OpenCourseWare: Introduction to Biology": {
+      level: "Introductory University / AP Level",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all students.",
+      funding: "100% free (no registration required).",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "None required.",
+      application: "Access lectures and problem sets directly on MIT OCW.",
+      notes: "Taught by MIT professors including Eric Lander.",
+      source: "https://ocw.mit.edu/courses/7-01sc-fundamentals-of-biology-fall-2011/"
+    },
+    "The Science of Well-Being (Yale University)": {
+      level: "Beginner",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all learners.",
+      funding: "Free to audit on Coursera.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free Coursera account.",
+      application: "Click 'Enroll for Free' and choose 'Audit' on Coursera.",
+      notes: "Taught by Yale Professor Laurie Santos.",
+      source: "https://www.coursera.org/learn/the-science-of-well-being"
+    },
+    "Scientific Computing with Python (freeCodeCamp)": {
+      level: "Beginner to Intermediate",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all learners.",
+      funding: "100% free with verified developer certification.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free account on freeCodeCamp.org.",
+      application: "Start coding directly in your browser on freeCodeCamp.",
+      notes: "Includes 5 required certification projects.",
+      source: "https://www.freecodecamp.org/learn/scientific-computing-with-python/"
+    },
+    "Machine Learning Specialization (Stanford & DeepLearning.AI)": {
+      level: "Beginner to Intermediate",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Basic coding and high school algebra.",
+      funding: "Free to audit; Coursera financial aid available for certificate.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Free Coursera account.",
+      application: "Enroll via Coursera and select Audit or Financial Aid.",
+      notes: "Updated modern Python version of Andrew Ng's famous ML course.",
+      source: "https://www.coursera.org/specializations/machine-learning-introduction"
+    },
+    "Khan Academy: AP & College STEM Courses": {
+      level: "High school & Introductory College",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all students.",
+      funding: "100% free nonprofit platform.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Optional free account to track mastery progress.",
+      application: "Visit Khan Academy Science or Math sections.",
+      notes: "Ideal for exam prep and strengthening science fundamentals.",
+      source: "https://www.khanacademy.org/science"
+    },
+    "Google AI & Digital Skills Training": {
+      level: "Beginner",
+      age: "All ages",
+      nationality: "Worldwide",
+      eligibility: "Open to all learners.",
+      funding: "Free training modules and badges.",
+      deadline: "Self-paced",
+      status: "Open year-round",
+      documents: "Google account.",
+      application: "Access directly via Grow with Google.",
+      notes: "Covers AI productivity, data analytics basics, and digital tools.",
+      source: "https://grow.google/intl/en_pk/"
+    },
+
+    // SCHOLARSHIPS DETAILS
     "Türkiye Scholarships": {
       level: "Bachelor's, Master's, PhD",
       age: "Bachelor's: under 21; Master's: under 30; PhD: under 35",
       nationality: "International applicants, including Pakistan",
-      eligibility: "Minimum academic achievement: 70% for most programmes; 90% for medicine, dentistry and pharmacy. Age and other programme conditions apply.",
+      eligibility: "Minimum academic achievement: 70% for most programmes; 90% for medicine, dentistry and pharmacy.",
       funding: "Tuition, monthly stipend, accommodation, health insurance, one-year Turkish language course and flight ticket.",
       deadline: "Normally January–February",
       status: "Upcoming cycle check",
-      documents: "Passport or ID, photograph, academic transcripts, diploma or expected graduation document, test scores if applicable, and motivation letter.",
+      documents: "Passport or ID, photograph, academic transcripts, diploma, test scores if applicable, motivation letter.",
       application: "Apply through the official Türkiye Scholarships application system.",
       notes: "Bachelor's applicants must meet the age requirement.",
       source: "https://www.turkiyeburslari.gov.tr/"
@@ -1051,6 +1697,8 @@
       notes: "Collection of various funding schemes.",
       source: "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/oxford-funding"
     },
+
+    // INTERNSHIPS DETAILS
     "World Health Network Student Internship": {
       level: "Student opportunity",
       age: "Check call",
@@ -1088,7 +1736,7 @@
       documents: "CV, enrolment proof, academic records.",
       application: "Apply through WHO careers portal.",
       notes: "Public health focus.",
-      source: "https://www.wto.org"
+      source: "https://www.who.int/careers/internship-programme"
     },
     "UNDP Internships": {
       level: "Final-year Bachelor's, Master's, graduates",
@@ -1310,84 +1958,6 @@
       application: "Apply through ESA careers portal.",
       notes: "Requires eligible European nationality.",
       source: "https://www.esa.int/About_Us/Careers_at_ESA/Student_Internships"
-    },
-    "Blue Ocean Student Entrepreneur Competition 2027": {
-      level: "High school (Grades 9–12)",
-      age: "High school students worldwide",
-      nationality: "Worldwide",
-      eligibility: "Enrolled in high school; solo or team entries.",
-      funding: "Free entry; cash prizes for finalists.",
-      deadline: "21 February 2027",
-      status: "Open",
-      documents: "Registration and 5-minute video pitch.",
-      application: "Register on official website.",
-      notes: "Virtual competition.",
-      source: "https://blueoceancompetition.org/"
-    },
-    "World of 8 Billion Video Contest": {
-      level: "Grades 6–12",
-      age: "Grades 6–12",
-      nationality: "Worldwide",
-      eligibility: "Students in grades 6–12 worldwide.",
-      funding: "Free entry; cash prizes up to $1,200.",
-      deadline: "3 March 2027",
-      status: "Open",
-      documents: "60-second video and works cited.",
-      application: "Upload via official portal.",
-      notes: "Strict 60-second video limit.",
-      source: "https://www.worldof8billion.org/video-contest/"
-    },
-    "The Earth Prize 2027": {
-      level: "Secondary school",
-      age: "Ages 13–19",
-      nationality: "Worldwide",
-      eligibility: "Students aged 13–19 in secondary education.",
-      funding: "Free registration; $100,000 total prize pool.",
-      deadline: "10 January 2027 registration",
-      status: "Open",
-      documents: "Team registration, project proposal.",
-      application: "Register online.",
-      notes: "Environmental sustainability solutions.",
-      source: "https://www.theearthprize.org/competition"
-    },
-    "CS50x Introduction to Computer Science": {
-      level: "Beginner",
-      age: "All ages",
-      nationality: "Worldwide",
-      eligibility: "Open to all learners.",
-      funding: "100% free course access and free certificate.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free edX/CS50 account, GitHub account.",
-      application: "Enroll online via edX or CS50.",
-      notes: "Covers C, Python, SQL, HTML, CSS, JavaScript.",
-      source: "https://cs50.harvard.edu/x/"
-    },
-    "CS50 Web Programming": {
-      level: "Intermediate",
-      age: "All ages",
-      nationality: "Worldwide",
-      eligibility: "Python and CS50x experience recommended.",
-      funding: "100% free course access and free certificate.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free edX/CS50 account, GitHub account.",
-      application: "Start anytime on CS50 Web portal.",
-      notes: "Covers Django, JavaScript, SQL.",
-      source: "https://cs50.harvard.edu/web/"
-    },
-    "CS50 Introduction to Artificial Intelligence": {
-      level: "Intermediate",
-      age: "All ages",
-      nationality: "Worldwide",
-      eligibility: "Python experience recommended.",
-      funding: "100% free course access and free certificate.",
-      deadline: "Self-paced",
-      status: "Open year-round",
-      documents: "Free edX/CS50 account, GitHub account.",
-      application: "Enroll online via CS50 AI website.",
-      notes: "Covers machine learning, neural networks.",
-      source: "https://cs50.harvard.edu/ai/"
     }
   };
 
@@ -1427,11 +1997,14 @@
       return matchesCategory && searchable.includes(query);
     });
 
+    const badge = document.getElementById("count-badge");
+    badge.textContent = `Showing ${filtered.length} ${filtered.length === 1 ? "opportunity" : "opportunities"}`;
+
     const container = document.getElementById("cards");
     container.innerHTML = "";
 
     if (filtered.length === 0) {
-      container.innerHTML = '<p class="empty">No matching opportunities yet. Try another search or category.</p>';
+      container.innerHTML = '<p class="empty">No matching opportunities found. Try clearing your search or selecting another category.</p>';
       return;
     }
 
@@ -1452,22 +2025,24 @@
         <p><strong>📅 Deadline:</strong> ${info.deadline || item.deadline || "Not announced"}</p>
         <p><strong>📌 Status:</strong> ${info.status || "Check official website"}</p>
 
-        <details>
-          <summary>Documents required</summary>
-          <p>${info.documents || "Check official requirements."}</p>
-        </details>
+        <div class="card-details-group">
+          <details>
+            <summary>Documents required</summary>
+            <p>${info.documents || "Check official requirements."}</p>
+          </details>
 
-        <details>
-          <summary>How to apply</summary>
-          <p>${info.application || "Follow the official application instructions."}</p>
-        </details>
+          <details>
+            <summary>How to apply</summary>
+            <p>${info.application || "Follow the official application instructions."}</p>
+          </details>
 
-        <details>
-          <summary>Important notes</summary>
-          <p>${info.notes || "Check the official programme conditions."}</p>
-        </details>
+          <details>
+            <summary>Important notes</summary>
+            <p>${info.notes || "Check the official programme conditions."}</p>
+          </details>
+        </div>
 
-        <a href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
+        <a class="btn-link" href="${info.source || item.url}" target="_blank" rel="noopener noreferrer">
           Official programme website ↗
         </a>
       `;
@@ -1489,6 +2064,5 @@
     });
   }
 </script>
-  <img src="https://laobi.icu" alt="visitors"/>
 </body>
 </html>
